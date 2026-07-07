@@ -35,7 +35,7 @@ const LoginDrawer = () => {
         id="login-drawer"
         role="dialog"
         aria-modal="true"
-        className={`fixed right-0 top-0 z-50 h-screen w-full max-w-md bg-white shadow-lg transition-transform duration-300 ${isDrawerOpen ? "translate-x-0" : "translate-x-full"}`}
+        className={`fixed right-0 top-0 z-50 h-screen w-full max-w-md bg-[color:var(--app-surface)] text-[color:var(--app-text)] shadow-lg transition-transform duration-300 ${isDrawerOpen ? "translate-x-0" : "translate-x-full"}`}
       >
         <button type="button" onClick={closeDrawer} className={`absolute right-4 top-4 u-text-2xl ${focusRingClass}`} aria-label="Close login drawer">×</button>
         <div className="space-y-4 p-6">

@@ -1,7 +1,8 @@
 .header {
   display: flex; /* dark header background */
   width: 100%; /* match viewport without scrollbar */
-  background: var(--brand-black); /* dark header background */
+  background: var(--app-header-bg); /* themed header background */
+  color: var(--app-header-text); /* themed header text */
   margin-left: 0; /* no full-bleed hack on fixed header */
   margin-right: 0; /* no full-bleed hack on fixed header */
   position: fixed; /* always visible on scroll */
@@ -44,5 +45,5 @@
 }
 
 .header__icon-btn:hover {
-  background: #f3f4f6;
+  background: var(--app-surface-alt);
 }

@@ -8,8 +8,8 @@
 
   body {
     font-family: "DM Serif Text", "Poynter", "New York", "Iowan Old Style", "Apple Garamond", "Baskerville", "Times New Roman", "Droid Serif", "Times", "Source Serif Pro", serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; /* serif stack with emoji fallbacks */
-    color: var(--brand-black);
-    background: var(--brand-gray-100);
+    color: var(--app-text);
+    background: var(--app-bg);
     overflow-x: hidden;
     font-weight: var(--fw-semibold); /* default to semibold */
   }

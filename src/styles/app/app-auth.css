@@ -10,7 +10,8 @@
   width: 100%;
   max-width: 24rem;
   border-radius: 0.5rem;
-  background: var(--brand-white);
+  background: var(--app-surface);
+  color: var(--app-text);
   padding: 1.5rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }

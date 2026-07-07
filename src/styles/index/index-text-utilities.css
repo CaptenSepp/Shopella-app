@@ -72,15 +72,15 @@
   }
 
   .u-text-gray-600 {
-    color: var(--brand-gray-600); /* deep gray */
+    color: var(--app-text-muted); /* deep gray */
   }
 
   .u-text-gray-700 {
-    color: var(--brand-gray-700); /* darker gray */
+    color: var(--app-text); /* darker gray */
   }
 
   .u-text-gray-800 {
-    color: var(--brand-gray-800); /* heading gray */
+    color: var(--app-text); /* heading gray */
   }
 
   .u-text-danger {
@@ -92,7 +92,7 @@
   }
 
   .text-brand-black {
-    color: var(--brand-black); /* shared black text */
+    color: var(--app-text); /* shared black text */
   }
 
   .text-brand-orange {

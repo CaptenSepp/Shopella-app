@@ -1,12 +1,25 @@
 .footer {
   text-align: center;
   font-size: var(--fs-sm);
-  color: var(--brand-white);
-  background: var(--brand-black);
+  color: var(--app-text);
+  background: var(--app-surface);
+  border-top: 1px solid var(--app-border);
 }
 
 .footer__section {
-  background: var(--brand-black); /* Keep the top footer section on the same dark surface. */
+  background: var(--app-surface); /* Keep the top footer section on the same surface. */
+}
+
+.footer .u-text-white {
+  color: var(--app-text); /* let footer text follow theme */
+}
+
+.footer .nav-link {
+  color: var(--app-text); /* let footer links follow theme */
+}
+
+.footer .nav-link:hover {
+  background: var(--app-surface-alt); /* themed footer hover */
 }
 
 .footer__content {
@@ -29,7 +42,7 @@
 .footer__note {
   margin-bottom: 0.75rem; /* space before link grid */
   text-align: left; /* match footer link column */
-  color: rgba(255, 255, 255, 0.72); /* quiet demo note */
+  color: var(--app-text-muted); /* quiet demo note */
 }
 
 .footer__links {

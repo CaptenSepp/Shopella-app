@@ -19,7 +19,7 @@ const SearchResults = ({ isError, isLoading, normalizedQuery, onSelect, visibleR
     {!isLoading && !isError && visibleResults.length > 0 && (
       <div className="no-scrollbar min-h-0 flex-1 space-y-3 overflow-y-auto pr-1">
         {visibleResults.map((product) => (
-          <Link key={product.id} to={`/products/${product.id}`} className={`flex items-center gap-4 rounded-md p-3 hover:bg-gray-50 ${focusRingClass}`} onClick={onSelect}>
+          <Link key={product.id} to={`/products/${product.id}`} className={`flex items-center gap-4 rounded-md p-3 hover:bg-[color:var(--app-surface-alt)] ${focusRingClass}`} onClick={onSelect}>
             <span className="media-thumb">
               <img src={product.thumbnail} alt={product.title} loading="lazy" className="media-thumb__img" />
             </span>

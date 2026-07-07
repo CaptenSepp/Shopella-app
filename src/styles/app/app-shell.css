@@ -2,7 +2,7 @@
   width: 100%;
   margin-left: auto;
   margin-right: auto;
-  background: var(--brand-gray-100); /* ensure visible global background */
+  background: var(--app-bg); /* ensure visible global background */
 }
 
 .layout {
@@ -12,9 +12,19 @@
   padding-left: 1rem;
   padding-right: 1rem; /* sticky footer layout */
   gap: 0; /* keep zero vertical gap without unsupported utility */
-  background: var(--brand-gray-200); /* global page background */
+  background: var(--app-layout-bg); /* global page background */
   padding-top: var(--header-total-h); /* offset the full fixed header */
   padding-bottom: var(--mobile-bar-h); /* offset fixed mobile bottom bar when present */
+}
+
+#root:has(.home-page),
+.layout:has(.home-page) {
+  background: var(--shopella-bg-dark); /* keep home shell dark */
+}
+
+[data-theme="light"]:has(.home-page) #root,
+[data-theme="light"]:has(.home-page) .layout {
+  background: var(--app-bg); /* keep light home shell light */
 }
 
 .app-page-shell {

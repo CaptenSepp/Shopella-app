@@ -1,58 +1,74 @@
 @layer components {
-  .contact-section {
+  .home-page .contact-section {
     position: relative; /* overlay base */
     background-size: cover; /* keep media cover */
     background-position: center; /* center media */
-    padding: 3rem 1rem; /* outer spacing */
-    background: var(--brand-gray-600); /* contact section base */
+    padding: var(--home-section-block) var(--home-full-inline); /* full-width spacing */
+    background: var(--shopella-bg-dark); /* contact section base */
+    width: 100vw; /* full viewport section */
+    margin-left: calc(50% - 50vw); /* align with screen edge */
+    margin-right: calc(50% - 50vw); /* align with screen edge */
   }
 
-  .contact-section::before {
-    content: ""; /* decorative overlay */
-    position: absolute; /* stretch overlay */
-    inset: 0; /* full overlay */
-    background: linear-gradient(90deg, var(--overlay-dark-35), var(--overlay-dark-15)); /* soft fade */
+  .home-page .contact-section::before {
+    display: none; /* remove decorative overlay */
   }
 
-  .contact-form {
+  .home-page .contact-form {
     position: relative; /* stay above overlay */
     z-index: 1; /* keep form clickable */
     max-width: 48rem; /* readable width */
     margin: 0; /* align with top-left content */
-    padding: 1rem; /* inner spacing */
+    padding: 0; /* compact form */
     background: transparent; /* match section background */
     -webkit-backdrop-filter: blur(4px); /* Safari blur */
     backdrop-filter: blur(4px); /* soft blur */
     display: grid; /* simple grid */
     grid-template-columns: 1fr 1fr auto; /* two fields + button */
-    gap: 0.75rem; /* field gap */
+    gap: 1.2rem; /* field gap */
   }
 
-  .contact-form-wrap {
-    background: var(--brand-gray-600); /* keep section background */
-    padding: var(--space-5); /* keep spacing around form */
+  .home-page .contact-form-wrap {
+    background: var(--shopella-surface-dark); /* keep section background */
+    padding: 2rem; /* keep spacing around form */
+    border: 1px solid var(--shopella-border-dark); /* clean edge */
+    border-radius: var(--r-md); /* 8px radius */
+    box-shadow: var(--home-card-shadow); /* subtle depth */
   }
 
-  .contact-input {
-    border: 1px solid var(--border-color); /* field border */
-    background: var(--brand-white); /* keep fields visible */
-    border-radius: 0.5rem; /* simple radius */
-    padding: 0.5rem 0.75rem; /* field spacing */
+  .home-page .contact-input {
+    min-height: 4rem; /* match compact home buttons */
+    border: 1px solid var(--shopella-border-dark); /* field border */
+    background: var(--shopella-elevated-dark); /* keep fields visible */
+    border-radius: var(--r-md); /* simple radius */
+    padding: 0 1.2rem; /* field spacing */
+    color: var(--shopella-text-dark); /* input text */
+    font-size: 1.3rem; /* readable input */
   }
 
-  .contact-input:focus {
+  .home-page .contact-input:focus {
     outline: none; /* remove browser outline */
-    border-color: var(--brand-orange); /* accent border on focus */
-    box-shadow: 0 0 0 3px var(--brand-orange-100); /* soft focus ring */
+    border-color: var(--shopella-orange); /* accent border on focus */
+    box-shadow: 0 0 0 3px var(--shopella-focus-ring); /* soft focus ring */
   }
 
-  .contact-section__note {
-    color: rgba(255, 255, 255, 0.8); /* quiet demo note */
-    font-size: var(--fs-sm); /* small helper text */
+  .home-page .contact-section__note {
+    color: var(--shopella-muted-dark); /* quiet demo note */
+    font-size: 1.2rem; /* small helper text */
+  }
+
+  .home-page .contact-section img {
+    max-height: 24rem; /* compact newsletter media */
+    border-radius: var(--r-md); /* match radius */
+    border: 1px solid var(--shopella-border-dark); /* clean edge */
   }
 
   @media (max-width: 640px) {
-    .contact-form {
+    .home-page .contact-section {
+      padding: var(--home-section-block) var(--home-full-inline); /* mobile full spacing */
+    }
+
+    .home-page .contact-form {
       grid-template-columns: 1fr; /* stack fields on phones */
     }
   }

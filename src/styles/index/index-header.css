@@ -5,7 +5,8 @@
     width: 100vw; /* make header full width */
     margin-left: calc(50% - 50vw); /* cancel page side padding */
     margin-right: calc(50% - 50vw); /* cancel page side padding */
-    background: var(--brand-black); /* dark header base */
+    background: var(--app-header-bg); /* themed header base */
+    color: var(--app-header-text); /* themed header text */
   }
 
   .header__main {
@@ -96,8 +97,8 @@
       gap: 0.4rem; /* slight spacing between icons */
       min-height: var(--mobile-bar-h); /* stable bottom bar height */
       padding: 0.6rem 1rem calc(0.6rem + env(safe-area-inset-bottom)); /* support phone safe area */
-      background: var(--brand-black); /* match top header */
-      border-top: 1px solid var(--overlay-white-16); /* separate from content */
+      background: var(--app-header-bg); /* match top header */
+      border-top: 1px solid var(--app-header-border); /* separate from content */
       box-shadow: 0 -8px 18px rgba(17, 17, 17, 0.14); /* subtle top shadow */
     }
 

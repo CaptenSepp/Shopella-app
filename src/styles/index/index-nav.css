@@ -1,6 +1,7 @@
 @layer components {
   .nav-link {
     @apply inline-flex items-center self-stretch rounded-md font-medium text-white; /* let the hover area reach the full header row height */
+    color: var(--app-header-text); /* themed nav text */
     padding: 0 0.55rem; /* use height for vertical sizing */
     white-space: nowrap; /* keep nav text on one line */
   }
@@ -17,7 +18,7 @@
   }
 
   .header-nav-bar__link.nav-link-active {
-    color: var(--brand-white); /* text nav stays white like the icon pattern */
+    color: var(--app-header-text); /* text nav follows theme */
   }
 
   .header-nav-bar:has(.header-nav-bar__item:hover) .header-nav-bar__item:not(:hover):not(:focus-visible) {
@@ -39,12 +40,12 @@
 
   .nav-link-active {
     background: transparent; /* keep active on label only */
-    color: var(--brand-white); /* keep active text readable */
+    color: var(--app-header-text); /* keep active text readable */
   }
 
   .nav-link:hover .nav-link__label,
   .nav-link-active .nav-link__label {
-    background: var(--overlay-white-10); /* compact hover/active */
+    background: var(--app-surface-alt); /* compact hover/active */
   }
 
   .header-nav-bar__link .nav-link__label {

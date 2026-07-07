@@ -1,7 +1,9 @@
 @layer components {
   .input-field {
-    @apply mt-2 block w-full rounded-lg border bg-white px-4 py-2 text-gray-700 focus:outline-none;
+    @apply mt-2 block w-full rounded-lg border px-4 py-2 focus:outline-none;
+    background: var(--app-input-bg); /* themed input surface */
     border-color: var(--border-color);
+    color: var(--app-text); /* readable input text */
   }
 
   .input-field:focus {

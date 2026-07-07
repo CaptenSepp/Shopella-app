@@ -34,8 +34,25 @@
     --brand-black: #2a2a2a;
     --brand-black-true: #000000; /* true black for deep hover */
     --brand-orange: #ff7d1a;        /* primary */
-    --brand-orange-hover: #e96d11;  /* darker hover */
+    --brand-orange-hover: #ff8a2a;  /* brighter hover */
     --brand-red: #e11d48; /* accent red */
+
+    /* Shopella Obsidian Orange palette */
+    --shopella-bg-dark: #070707;
+    --shopella-surface-dark: #111111;
+    --shopella-elevated-dark: #1d1d1d;
+    --shopella-soft-dark: #171717;
+    --shopella-border-dark: #2a2a2a;
+    --shopella-text-dark: #f5f5f5;
+    --shopella-muted-dark: #a7a7a7;
+    --shopella-bg-light: #fafafa;
+    --shopella-surface-light: #ffffff;
+    --shopella-elevated-light: #f1f1f1;
+    --shopella-border-light: #dadada;
+    --shopella-text-light: #111111;
+    --shopella-muted-light: #666666;
+    --shopella-orange: #ff7a1a;
+    --shopella-orange-hover: #ff8a2a;
 
     /* Neutrals and surfaces */
     --brand-gray-50: #fafafa;
@@ -56,6 +73,17 @@
     --border-color: var(--brand-gray-200);
     --border-color-strong: #d1d5db; /* darker border on hover */
     --text-muted: var(--brand-gray-600);
+    --app-bg: var(--brand-gray-100);
+    --app-layout-bg: var(--brand-gray-200);
+    --app-surface: var(--brand-white);
+    --app-surface-alt: var(--brand-gray-50);
+    --app-border: var(--brand-gray-200);
+    --app-text: var(--brand-black);
+    --app-text-muted: var(--brand-gray-600);
+    --app-input-bg: var(--brand-white);
+    --app-header-bg: var(--brand-white);
+    --app-header-text: var(--brand-black);
+    --app-header-border: var(--brand-gray-200);
     --overlay-white-08: rgba(255, 255, 255, 0.08);
     --overlay-white-10: rgba(255, 255, 255, 0.10);
     --overlay-white-16: rgba(255, 255, 255, 0.16);
@@ -70,6 +98,17 @@
     --glass-dark: rgba(42, 42, 42, 0.38);
     --glass-dark-hover: rgba(0, 0, 0, 0.48);
     --glass-blur: 18px;
+    --shopella-overlay-soft: rgba(7, 7, 7, 0.28);
+    --shopella-overlay-strong: rgba(7, 7, 7, 0.72);
+    --shopella-overlay-clear: rgba(7, 7, 7, 0);
+    --shopella-overlay-medium: rgba(7, 7, 7, 0.55);
+    --shopella-focus-ring: rgba(255, 122, 26, 0.42);
+    --shopella-shadow-soft: 0 14px 30px rgba(0, 0, 0, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    --shopella-section-pad: 64px 6vw;
+    --shopella-section-pad-mobile: 28px 20px;
+    --shopella-content-width: 1280px;
+    --shopella-card-gap: 24px;
+    --shopella-card-gap-sm: 16px;
 
     /* Spacing scale (4px -> 40px) */
     --space-1: 0.4rem;
@@ -113,6 +152,7 @@
     }
 
     --fs-base: 1.6rem; /* base text size */
+    --fs-sm: 1.2rem; /* small helper text */
     --fs-md: 1.25rem;
     --fs-lg: 1.5rem;
     --fs-xl: 1.75rem;
@@ -121,8 +161,27 @@
     --fs-4xl: 4rem;
 
     /* Font weights */
-    --fw-semibold: 900;
-    --fw-bold: 900;
-    --fw-black: 1000;
+    --fw-semibold: 600;
+    --fw-bold: 700;
+    --fw-black: 900;
+  }
+
+  [data-theme="dark"] {
+    --surface: var(--shopella-surface-dark);
+    --surface-alt: var(--shopella-soft-dark);
+    --border-color: var(--shopella-border-dark);
+    --border-color-strong: var(--shopella-orange);
+    --text-muted: var(--shopella-muted-dark);
+    --app-bg: var(--shopella-bg-dark);
+    --app-layout-bg: var(--shopella-bg-dark);
+    --app-surface: var(--shopella-surface-dark);
+    --app-surface-alt: var(--shopella-soft-dark);
+    --app-border: var(--shopella-border-dark);
+    --app-text: var(--shopella-text-dark);
+    --app-text-muted: var(--shopella-muted-dark);
+    --app-input-bg: var(--shopella-elevated-dark);
+    --app-header-bg: var(--brand-black);
+    --app-header-text: var(--brand-white);
+    --app-header-border: var(--shopella-border-dark);
   }
 }

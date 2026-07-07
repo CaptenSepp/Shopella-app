@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom"
 import { RootState } from "@/app/store"
 import { focusRingClass, getIconLinkClassName } from "./header-tools"
 import LoginDrawer from "./LoginDrawer"
+import ThemeToggle from "./ThemeToggle"
 
 const NavbarIcons = ({ className = "" }: { className?: string }) => {
   const cartCount = useSelector((state: RootState) => state.cart.items.reduce((sum, item) => sum + (item.quantity ?? 0), 0)) // total cart quantity
@@ -19,6 +20,7 @@ const NavbarIcons = ({ className = "" }: { className?: string }) => {
         <span className="relative inline-flex"><Heart size={20} />{wishCount > 0 && <span className="badge-counter">{wishCount}</span>}</span>
       </NavLink>
       <NavLink to="/about" aria-label="Open about page" className={({ isActive }) => `${getIconLinkClassName(isActive)} ${focusRingClass}`}><Info size={20} /></NavLink>
+      <ThemeToggle />
       <LoginDrawer />
     </div>
   )

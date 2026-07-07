@@ -19,7 +19,8 @@
     max-height: none; /* let top/bottom control total height */
     overflow-y: auto; /* scroll when content is tall */
     border-radius: 1.6rem 1.6rem 0 0; /* rounded top only */
-    background: var(--brand-white); /* clean sheet surface */
+    background: var(--app-surface); /* clean sheet surface */
+    color: var(--app-text); /* readable sheet text */
     padding: 1.6rem; /* sheet inner spacing */
     box-shadow: var(--shadow-lg); /* clear elevation */
   }
@@ -34,7 +35,7 @@
     gap: 1.2rem; /* small spacing between title and button */
     margin-bottom: 1.6rem; /* spacing below header */
     padding: 1.6rem 0 1.2rem; /* rebuild panel top padding for sticky header */
-    background: var(--brand-white); /* cover content while sticky */
+    background: var(--app-surface); /* cover content while sticky */
   }
 
   .products-filters-sheet__header-actions {
@@ -55,7 +56,8 @@
     padding: 0 0.9rem; /* compact sidebar padding */
     border-radius: var(--r-md); /* match app buttons */
     border: 1px solid var(--border-color); /* visible dropdown edge */
-    background: var(--brand-white); /* clean dropdown surface */
+    background: var(--app-input-bg); /* clean dropdown surface */
+    color: var(--app-text); /* readable dropdown text */
     font-size: 1.2rem; /* match filter option text */
     box-shadow: var(--shadow-sm); /* modern light depth */
   }

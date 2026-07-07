@@ -1,6 +1,7 @@
 @layer components {
   .about-page {
     padding: 2.4rem 1.6rem; /* base page padding */
+    color: var(--app-text); /* themed page text */
   }
 
   .about-hero {
@@ -80,7 +81,7 @@
   .about-values {
     margin-top: 2.4rem; /* section spacing */
     padding: 2.4rem; /* inner space */
-    background: var(--brand-gray-50); /* light section */
+    background: var(--app-surface-alt); /* light section */
     border-radius: var(--r-lg); /* soft corners */
   }
 
@@ -153,7 +154,7 @@
     width: 6rem; /* avatar size */
     height: 6rem; /* avatar size */
     border-radius: 9999px; /* round avatar */
-    background: var(--brand-gray-200); /* placeholder */
+    background: var(--app-surface-alt); /* placeholder */
     margin: 0 auto 1rem; /* center + space */
   }
 

@@ -37,7 +37,7 @@
     max-width: min(90vw, 32rem); /* responsive width */
     min-height: 36rem; /* larger default panel height */
     max-height: 80vh; /* never exceed most of browser height */
-    background: var(--brand-white); /* panel base */
+    background: var(--app-surface); /* panel base */
     border: 1px solid var(--border-color); /* subtle border */
     border-radius: var(--r-lg); /* soft corners */
     box-shadow: var(--shadow-lg); /* elevated panel */
@@ -70,7 +70,7 @@
   .assistant-panel__title {
     font-size: var(--fs-md); /* small title */
     font-weight: var(--fw-semibold); /* medium emphasis */
-    color: var(--brand-black); /* readable title */
+    color: var(--app-text); /* readable title */
   }
 
   .assistant-panel__text-btn {
@@ -80,7 +80,7 @@
   }
 
   .assistant-panel__text-btn:hover {
-    color: var(--brand-black); /* stronger on hover */
+    color: var(--app-text); /* stronger on hover */
   }
 
   .assistant-panel__close {
@@ -93,7 +93,7 @@
   }
 
   .assistant-panel__close:hover {
-    background: var(--brand-gray-100); /* light hover */
+    background: var(--app-surface-alt); /* light hover */
   }
 
   .assistant-panel__content {
@@ -120,7 +120,7 @@
     padding: 0.8rem; /* bubble spacing */
     border-radius: var(--r-md); /* soft bubble corners */
     border: 1px solid var(--border-color); /* subtle separator */
-    background: var(--brand-gray-50); /* default assistant bubble */
+    background: var(--app-surface-alt); /* default assistant bubble */
   }
 
   .assistant-message--user {
@@ -139,7 +139,7 @@
     font-size: 1.15rem; /* slightly smaller body text */
     font-weight: 400; /* lighter text for longer chat */
     line-height: 1.4; /* fit more text comfortably */
-    color: var(--brand-black); /* clear contrast */
+    color: var(--app-text); /* clear contrast */
     white-space: pre-wrap; /* keep line breaks */
     word-break: break-word; /* prevent overflow */
   }
@@ -160,7 +160,8 @@
     font-size: 1.15rem; /* slightly smaller input text */
     font-weight: 400; /* avoid bold typing look */
     line-height: 1.4; /* more compact text flow */
-    background: var(--brand-white); /* clear field background */
+    background: var(--app-surface); /* clear field background */
+    color: var(--app-text); /* readable typed text */
     resize: none; /* auto-grow by script instead */
     overflow-y: auto; /* scroll only after max height */
     min-height: 1.7rem; /* single-line start height */
@@ -184,7 +185,7 @@
 
   .toast-item {
     background: var(--toast-bg); /* Let each toast kind supply its own background color. */
-    color: var(--brand-black);
+    color: var(--app-text);
     border-left: 4px solid var(--toast-border);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     border-radius: 0.8rem;

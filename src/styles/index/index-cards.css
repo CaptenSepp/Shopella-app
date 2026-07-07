@@ -13,7 +13,8 @@
     border-radius: var(--r-lg); /* softer edges for general cards */
     overflow: hidden; /* clip images to rounded corners */
     border: 1px solid var(--border-color); /* base card border */
-    background: var(--brand-white); /* clean card surface */
+    background: var(--app-surface); /* clean card surface */
+    color: var(--app-text); /* readable card text */
     transition: transform 150ms ease, box-shadow 150ms ease, border-color 150ms ease; /* subtle hover */
     box-shadow: var(--shadow-sm); /* light resting shadow */
   }
@@ -31,14 +32,14 @@
 
   .card--product-fit {
     background-size: contain; /* show the full odd product image */
-    background-color: var(--brand-white); /* keep transparent image visible */
+    background-color: var(--app-surface-alt); /* keep transparent image visible */
   }
 
   .card--product.bg-cover:hover {
     background-size: contain; /* show full product on hover */
     background-repeat: no-repeat; /* keep image clean */
     background-position: center; /* center full image */
-    background-color: var(--brand-white); /* white fallback */
+    background-color: var(--app-surface-alt); /* themed fallback */
   }
 
   .line-item {
@@ -48,6 +49,8 @@
     border: 1px solid var(--border-color); /* base border */
     transition: transform 150ms ease, box-shadow 150ms ease, border-color 150ms ease; /* subtle hover */
     box-shadow: var(--shadow-sm); /* resting shadow */
+    background: var(--app-surface); /* themed line item surface */
+    color: var(--app-text); /* readable line item text */
   }
 
   .line-item__actions {
@@ -56,7 +59,7 @@
 
   .item-title {
     @apply mb-1 text-lg font-bold lg:text-xl;
-    color: var(--brand-black);
+    color: var(--app-text);
   }
 
   .item-brand {
@@ -66,7 +69,7 @@
 
   .item-price {
     @apply mb-1 block font-bold md:text-lg;
-    color: var(--brand-black);
+    color: var(--app-text);
   }
 
   .product-price {
@@ -96,6 +99,7 @@
 
   .media-thumb {
     @apply relative block h-48 w-32 overflow-hidden rounded-md bg-gray-100 sm:h-56 sm:w-40;
+    background: var(--app-surface-alt); /* themed image well */
   }
 
   .media-thumb__img {
