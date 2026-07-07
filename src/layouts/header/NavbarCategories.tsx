@@ -4,7 +4,7 @@ import { focusRingClass, getNavLinkClassName } from "./header-tools"
 import SearchDrawer from "./SearchDrawer"
 
 const dropdownClassName =
-  "pointer-events-none fixed left-0 top-[calc(var(--header-total-h)-2.2rem)] z-50 hidden w-1/2 rounded-b-lg bg-[color:var(--brand-black)] p-4 shadow-lg invisible opacity-0 transition-opacity md:block group-hover:pointer-events-auto group-hover:visible group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:visible group-focus-within:opacity-100 u-text-white" // shared desktop panel
+  "pointer-events-none fixed left-0 top-[calc(var(--header-total-h)-2.2rem)] z-50 hidden w-1/2 rounded-b-lg bg-[color:var(--app-surface)] p-4 text-[color:var(--app-text)] shadow-lg invisible opacity-0 transition-opacity md:block group-hover:pointer-events-auto group-hover:visible group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:visible group-focus-within:opacity-100" // shared desktop panel
 
 const NavbarCategories = () => {
   const location = useLocation() // current path and query
@@ -26,10 +26,10 @@ const NavbarCategories = () => {
             <span className="nav-link__label">Products</span>
           </Link>
           <div className={dropdownClassName}>
-            <div className="mb-2 u-text-sm u-text-white-70">Shop by category</div>
+            <div className="mb-2 u-text-sm text-muted">Shop by category</div>
             <div className="grid grid-cols-2 gap-3">
               {categoryCards.slice(0, 4).map((card) => (
-                <Link key={card.id} to={card.href} className={`flex items-center gap-3 rounded-md p-2 hover:bg-[color:var(--overlay-white-10)] ${focusRingClass}`}>
+                <Link key={card.id} to={card.href} className={`flex items-center gap-3 rounded-md p-2 hover:bg-[color:var(--app-surface-alt)] ${focusRingClass}`}>
                   <img src={card.img} alt="" className="h-10 w-10 rounded object-cover" loading="lazy" />
                   <span className="u-font-medium">{card.label}</span>
                 </Link>
@@ -46,11 +46,11 @@ const NavbarCategories = () => {
             <span className="nav-link__label">Best Deals</span>
           </Link>
           <div className={dropdownClassName}>
-            <div className="mb-2 u-text-sm u-text-white-70">Deals you might like</div>
+            <div className="mb-2 u-text-sm text-muted">Deals you might like</div>
             <div className="grid grid-cols-2 gap-3">
-              <Link to="/products?sale=1&sort=price-asc" className={`rounded-md p-2 u-font-medium hover:bg-[color:var(--overlay-white-10)] ${focusRingClass}`}>All Deals</Link>
+              <Link to="/products?sale=1&sort=price-asc" className={`rounded-md p-2 u-font-medium hover:bg-[color:var(--app-surface-alt)] ${focusRingClass}`}>All Deals</Link>
               {categoryCards.slice(0, 3).map((card) => (
-                <Link key={card.id} to={`${card.href}&sale=1&sort=price-asc`} className={`rounded-md p-2 hover:bg-[color:var(--overlay-white-10)] ${focusRingClass}`}>
+                <Link key={card.id} to={`${card.href}&sale=1&sort=price-asc`} className={`rounded-md p-2 hover:bg-[color:var(--app-surface-alt)] ${focusRingClass}`}>
                   {card.label} Deals
                 </Link>
               ))}

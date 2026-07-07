@@ -9,7 +9,7 @@ const Retailers: React.FC = () => ( // simple retailers page
       </p>
     </div>
 
-    <div className="rounded-lg border border-[color:var(--border-color)] overflow-hidden bg-white"> {/* map frame */}
+    <div className="rounded-lg border border-[color:var(--border-color)] overflow-hidden bg-[color:var(--app-surface)]"> {/* map frame */}
       <iframe
         title="Retailers map"
         src="https://www.openstreetmap.org/export/embed.html?bbox=-122.516%2C37.706%2C-122.357%2C37.816&layer=mapnik"

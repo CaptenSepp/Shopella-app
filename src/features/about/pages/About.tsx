@@ -9,8 +9,7 @@ const About: React.FC = () => (
     <section className="about-hero">
       <div className="about-hero__content">
         <span className="about-hero__label">ABOUT</span>
-        <h1 className="about-hero__title">Built for daily essentials,</h1>
-        <h1 className="about-hero__title">crafted with real care.</h1>
+        <h1 className="about-hero__title">Built for daily essentials,<br />crafted with real care.</h1>
         <p className="about-hero__intro">We exist to make everyday shopping feel simple, honest, and reliable. Our focus is quality, fair pricing, and fast delivery without the noise.</p>
         <div className="about-hero__actions"><Link className="btn btn-primary" to="/products">Browse Products</Link><Link className="btn btn-secondary" to="/products?sale=1&sort=price-asc">Shop Deals</Link></div>
       </div>
