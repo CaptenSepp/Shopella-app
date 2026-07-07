@@ -15,7 +15,6 @@ const FeaturedCollectionGrid = () => ( // featured grid section
       {cards.map((card) => (
         <div key={card.title} className="featured-card featured-card--inactive"> {/* collection card */}
           <img src={card.image} alt={card.title} className="featured-card__image" /> {/* background image */}
-          <div className="featured-card__overlay" aria-hidden="true" /> {/* gradient overlay */}
           <div className="featured-card__content"> {/* text + button */}
             <span className="featured-card__status">Demo Preview</span> {/* demo label */}
             <div className="featured-card__title">{card.title}</div> {/* collection name */}

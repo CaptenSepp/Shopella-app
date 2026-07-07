@@ -1,39 +1,53 @@
 import { Link } from "react-router-dom";
 import topBannerImg from "@/assets/images/Banner-top.png"; // top banner image
+import beautyImg from "@/assets/images/beauty.jpg"; // static hero card image
+import fragrancesImg from "@/assets/images/fragrances.jpg"; // static hero card image
+import groceriesImg from "@/assets/images/groceries.jpg"; // static hero card image
+
+const heroCards = [ // quick attention cards
+  { label: "Best seller", title: "Beauty Edit", image: beautyImg, href: "/products?cat=beauty" },
+  { label: "New arrival", title: "Fragrance Drop", image: fragrancesImg, href: "/products?cat=fragrances" },
+  { label: "Top rated", title: "Daily Goods", image: groceriesImg, href: "/products?cat=groceries" },
+];
 
 const Banner = () => { // hero banner section
   return (
-    <div className=""> {/* keep wrapper for layout consistency */}
-      <section className="relative w-screen full-bleed overflow-hidden"> {/* frame matches image size */}
-        <img src={topBannerImg} alt="Top banner" className="block w-full h-auto" /> {/* full-width hero image */}
+    <div className="home-hero-wrap"> {/* keep wrapper for layout consistency */}
+      <section className="home-hero full-bleed"> {/* premium dark hero */}
+        <img src={topBannerImg} alt="" className="home-hero__bg" aria-hidden="true" /> {/* subtle old hero image */}
 
-        <div className="banner__overlay" aria-hidden="true" /> {/* contrast overlay */}
+        <div className="home-hero__content"> {/* text and cards layout */}
+          <div className="home-hero__copy"> {/* left hero copy */}
+            <p className="home-hero__eyebrow">Obsidian Orange picks</p>
+            <h1 className="banner__title home-hero__title"> {/* hero headline */}
+              Premium essentials for sharper everyday shopping
+            </h1>
 
-        <div className="absolute inset-0 flex items-center justify-center text-center"> {/* content overlay */}
-          <div className="px-6"> {/* safe padding on small screens */}
-            <div className="max-w-prose"> {/* keep readable line length */}
-              <h1 className="banner__title"> {/* hero headline */}
-                Everyday essentials with a
-                <strong className="banner__accent"> BOLD </strong>
-                
-                touch
-              </h1>
+            <p className="banner__subcopy home-hero__subcopy"> {/* readable hero text */}
+              Discover trusted bestsellers, fresh arrivals, and clean daily finds in one polished shop.
+            </p>
 
-              <p className="banner__subcopy mt-4 hidden text-pretty md:block"> {/* hide long subcopy on phones so CTA buttons stay visible */}
-                Discover fresh arrivals and trusted bestsellers curated for your day-to-day.
-                Shop quality products, fair prices, fast delivery.
-              </p>
+            <div className="home-hero__actions"> {/* hero CTAs */}
+              <Link className="btn btn-primary" to="/products"> {/* primary CTA */}
+                Shop Now
+              </Link>
 
-              <div className="mt-4 flex flex-wrap justify-center gap-4"> {/* center buttons */}
-                <Link className="btn btn-primary" to="/products"> {/* primary CTA */}
-                  Shop Now
-                </Link>
-
-                <Link className="btn btn-secondary" to="/products?sale=1&sort=price-asc"> {/* secondary CTA */}
-                  Explore Deals
-                </Link>
-              </div>
+              <Link className="btn btn-secondary" to="/products?sale=1&sort=price-asc"> {/* secondary CTA */}
+                Explore Deals
+              </Link>
             </div>
+          </div>
+
+          <div className="home-hero__cards" aria-label="Featured product highlights"> {/* static product cards */}
+            {heroCards.map((card) => (
+              <Link key={card.label} to={card.href} className="home-hero__card"> {/* single hero card */}
+                <img src={card.image} alt="" className="home-hero__card-img" /> {/* card image */}
+                <div className="home-hero__card-body"> {/* card text */}
+                  <span className="home-hero__card-label">{card.label}</span>
+                  <h2 className="home-hero__card-title">{card.title}</h2>
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
       </section>

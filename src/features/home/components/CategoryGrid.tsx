@@ -21,7 +21,6 @@ const CategoryGridCard = ({ img, label, href }: CategoryCardProps) => { // singl
         loading="lazy" // lazy-load for performance
         decoding="async" // async decode for smoother paint
       />
-      <div className="category-card__overlay" /> {/* soft overlay for readability */}
       <Link
         to={href}
         className="absolute left-1/2 bottom-4 -translate-x-1/2 btn btn-primary btn-sm "

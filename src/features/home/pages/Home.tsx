@@ -17,8 +17,9 @@ import { HOME_SECTION_TITLES } from "@/features/home/components/HomeSections"
 
 const Home = () => {
   return (
-    <div className="flex-column pb-10">
+    <div className="home-page flex-column pb-10">
       <Banner />
+      <TrustBar />
       <FeaturedCollectionGrid />
       <CategoryGrid cards={gridTop} />
 
@@ -29,8 +30,7 @@ const Home = () => {
 
       <BrandStoryMini />
 
-      <RichText>{HOME_SECTION_TITLES.freshPicks}</RichText>
-      <FullBleedImage src={middleBannerImg} alt="Middle banner" />
+      <FullBleedImage src={middleBannerImg} alt="Middle banner" title={HOME_SECTION_TITLES.freshPicks} />
       <Scrollbar offset={0} title="Best picks for you" />
 
       <RichText>{HOME_SECTION_TITLES.trendingNow}</RichText>
@@ -40,9 +40,6 @@ const Home = () => {
       <Scrollbar offset={8} title="Best sellers from your region" />
 
       <SocialProofSection />
-
-      <RichText>{HOME_SECTION_TITLES.fragranceSpotlight}</RichText>
-      <TrustBar />
       <NewsletterSignupSection />
     </div>
   )

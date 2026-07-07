@@ -2,8 +2,8 @@ import newsletterBannerImg from "@/assets/images/Banner-newsletter.png"
 
 const NewsletterSignupSection = () => {
   return (
-    <section className="w-full py-10 contact-section">
-      <div className="flex w-full flex-col gap-0 px-4 md:flex-row">
+    <section className="contact-section">
+      <div className="flex w-full flex-col gap-0 md:flex-row">
         <div className="md:w-1/2">
           <img
             src={newsletterBannerImg} // Show the newsletter image in the left half.
