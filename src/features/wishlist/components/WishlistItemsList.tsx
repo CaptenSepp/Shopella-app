@@ -16,9 +16,9 @@ const WishlistItemsList = () => {
   }
 
   return (
-    <div className="mb-6 flex flex-col gap-4 sm:mb-8 md:gap-6">
+    <ul className="mb-6 flex flex-col gap-4 sm:mb-8 md:gap-6">
       {items.map((item) => ( // render wishlist items
-        <div key={item.id} className="line-item">
+        <li key={item.id} className="line-item">
           <Link to={`/products/${item.id}`} className="media-thumb">
             <img
               src={item.thumbnail}
@@ -64,9 +64,9 @@ const WishlistItemsList = () => {
               </button>
             </div>
           </div>
-        </div>
+        </li>
       ))}
-    </div>
+    </ul>
   )
 }
 

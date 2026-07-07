@@ -41,7 +41,6 @@ const ProductCard = ({ product }: { product: Product }) => {
   return (
     <div className="flex flex-col">
       <Link to={`/products/${product.id}`} className={`card card--product ${productImageClass} bg-center relative block`} style={{ backgroundImage: `url(${productImageUrl})` }} aria-label={`View ${product.title}`}>
-        <span className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
         <div className="relative flex h-full flex-col justify-end">
           <div className="products-card__actions">
             <button type="button" aria-label={`Add ${product.title} to cart`} aria-disabled={isOutOfStock} className={`btn btn-primary btn-sm btn-square products-card__action-btn ${isOutOfStock ? "products-card__action-btn--disabled" : ""} ${focusRingClass}`} onClick={handleAddToCart} onMouseMove={handleStockTooltipMove} onMouseLeave={() => setStockTooltip(null)}>

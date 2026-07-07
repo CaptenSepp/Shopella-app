@@ -49,7 +49,8 @@ const sendJson = (res: ServerResponse, status: number, data: unknown) => {
   res.end(JSON.stringify(data)) // send JSON body
 }
 
-const handleDevOrders = (req: IncomingMessage, res: ServerResponse, url: URL, body: any) => {
+const handleDevOrders = (req: IncomingMessage, res: ServerResponse, url: URL, body: unknown) => {
+  const bodyData = toDevRecord(body) // read body as a safe object
   if (req.method === 'GET') {
     const email = String(url.searchParams.get('email') ?? '').trim().toLowerCase() // user key
     if (!email) return sendJson(res, 400, { message: 'Email is required.' })
@@ -57,10 +58,10 @@ const handleDevOrders = (req: IncomingMessage, res: ServerResponse, url: URL, bo
   }
 
   if (req.method === 'POST') {
-    const customer = body.customer ?? {} // checkout customer
+    const customer = toDevRecord(bodyData.customer) // checkout customer
     const email = String(customer.email ?? '').trim().toLowerCase()
     if (!email) return sendJson(res, 400, { message: 'Email is required.' })
-    const items = normalizeDevOrderItems(body.items) // keep order items clean
+    const items = normalizeDevOrderItems(bodyData.items) // keep order items clean
     const order = { id: `order_${Date.now()}`, createdAt: new Date().toISOString(), customer: { name: String(customer.name ?? '').trim(), email, address: String(customer.address ?? '').trim() }, items, totals: buildDevOrderTotals(items) }
     devOrdersByUser[email] = [order, ...(devOrdersByUser[email] ?? [])]
     return sendJson(res, 201, order) // return created order
@@ -70,8 +71,15 @@ const handleDevOrders = (req: IncomingMessage, res: ServerResponse, url: URL, bo
   return sendJson(res, 405, { message: 'Method not allowed.' })
 }
 
-const normalizeDevOrderItems = (items: any[]): DevOrder['items'] => (
-  Array.isArray(items) ? items.map((item) => ({ id: Number(item.id), title: String(item.title ?? ''), price: Number(item.price ?? 0), discountPercentage: Number(item.discountPercentage ?? 0), quantity: Number(item.quantity ?? 0) })) : []
+const toDevRecord = (value: unknown): Record<string, unknown> => (
+  value && typeof value === 'object' ? value as Record<string, unknown> : {}
+)
+
+const normalizeDevOrderItems = (items: unknown): DevOrder['items'] => (
+  Array.isArray(items) ? items.map((item) => {
+    const itemData = toDevRecord(item) // read item as a safe object
+    return { id: Number(itemData.id), title: String(itemData.title ?? ''), price: Number(itemData.price ?? 0), discountPercentage: Number(itemData.discountPercentage ?? 0), quantity: Number(itemData.quantity ?? 0) }
+  }) : []
 )
 
 const buildDevOrderTotals = (items: DevOrder['items']) => {

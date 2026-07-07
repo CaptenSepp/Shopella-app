@@ -14,9 +14,9 @@ const CartItemsList = () => {
   }
 
   return (
-    <div className="mb-6 flex flex-col gap-4 sm:mb-8 md:gap-6">
+    <ul className="mb-6 flex flex-col gap-4 sm:mb-8 md:gap-6">
       {items.map((item) => ( // render cart items
-        <div key={item.id} className="line-item">
+        <li key={item.id} className="line-item">
           <div className="media-thumb">
             <img
               src={item.thumbnail}
@@ -81,9 +81,9 @@ const CartItemsList = () => {
               </button>
             </div>
           </div>
-        </div>
+        </li>
       ))}
-    </div>
+    </ul>
   );
 };
 
