@@ -1,11 +1,27 @@
+const activeScrollFrames = new WeakMap<HTMLDivElement, number>()
+
+const getCardScrollLeft = (scrollElement: HTMLDivElement, cardElement: HTMLElement) => {
+  const cardRect = cardElement.getBoundingClientRect()
+  const containerRect = scrollElement.getBoundingClientRect()
+  return cardRect.left - containerRect.left + scrollElement.scrollLeft
+}
+
 export const animateScrollLeft = (
   scrollElement: HTMLDivElement,
   targetLeft: number,
-  durationMs = 720,
+  durationMs = 400,
 ) => {
+  const activeFrame = activeScrollFrames.get(scrollElement)
+  if (activeFrame !== undefined) window.cancelAnimationFrame(activeFrame)
+
   const startLeft = scrollElement.scrollLeft // Read the current position once at the start.
   const distanceLeft = targetLeft - startLeft
-  if (Math.abs(distanceLeft) < 1) return
+  scrollElement.style.scrollSnapType = "none" // Stop CSS snap fighting the JS animation.
+  if (Math.abs(distanceLeft) < 1) {
+    scrollElement.style.scrollSnapType = "x mandatory"
+    activeScrollFrames.delete(scrollElement)
+    return
+  }
 
   const startTime = performance.now() // Use time-based animation so it stays smooth.
   const easeOutCubic = (progress: number) => 1 - Math.pow(1 - progress, 3)
@@ -14,10 +30,15 @@ export const animateScrollLeft = (
     const elapsedMs = currentTime - startTime
     const progress = Math.min(1, elapsedMs / durationMs)
     scrollElement.scrollLeft = startLeft + distanceLeft * easeOutCubic(progress)
-    if (progress < 1) window.requestAnimationFrame(step)
+    if (progress < 1) {
+      activeScrollFrames.set(scrollElement, window.requestAnimationFrame(step))
+      return
+    }
+    scrollElement.style.scrollSnapType = "x mandatory"
+    activeScrollFrames.delete(scrollElement)
   }
 
-  window.requestAnimationFrame(step)
+  activeScrollFrames.set(scrollElement, window.requestAnimationFrame(step))
 }
 
 export const getCardTargetLeft = (
@@ -30,7 +51,7 @@ export const getCardTargetLeft = (
 
   const currentScrollLeft = scrollElement.scrollLeft
   const currentCardIndex = cardElements.findIndex(
-    (cardElement) => cardElement.offsetLeft >= currentScrollLeft - 4,
+    (cardElement) => getCardScrollLeft(scrollElement, cardElement) >= currentScrollLeft - 4,
   )
   const safeCurrentIndex = currentCardIndex >= 0 ? currentCardIndex : 0
   const targetIndex = Math.max(
@@ -38,7 +59,8 @@ export const getCardTargetLeft = (
     Math.min(cardElements.length - 1, safeCurrentIndex + direction),
   )
 
-  return cardElements[targetIndex]?.offsetLeft ?? 0
+  const targetCard = cardElements[targetIndex]
+  return targetCard ? getCardScrollLeft(scrollElement, targetCard) : 0
 }
 
 export const getNearestCardLeft = (
@@ -49,11 +71,11 @@ export const getNearestCardLeft = (
   if (cardElements.length === 0) return null
 
   const nearestCardElement = cardElements.reduce((closestCardElement, currentCardElement) =>
-    Math.abs(currentCardElement.offsetLeft - scrollElement.scrollLeft) <
-    Math.abs(closestCardElement.offsetLeft - scrollElement.scrollLeft)
+    Math.abs(getCardScrollLeft(scrollElement, currentCardElement) - scrollElement.scrollLeft) <
+    Math.abs(getCardScrollLeft(scrollElement, closestCardElement) - scrollElement.scrollLeft)
       ? currentCardElement
       : closestCardElement
   )
 
-  return nearestCardElement.offsetLeft
+  return getCardScrollLeft(scrollElement, nearestCardElement)
 }
