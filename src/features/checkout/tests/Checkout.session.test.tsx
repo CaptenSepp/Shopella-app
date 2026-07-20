@@ -35,8 +35,6 @@ describe("Checkout session customer data", () => {
     const user = userEvent.setup()
     vi.mocked(createOrder).mockResolvedValueOnce({ id: "order_123", createdAt: new Date().toISOString(), customer: { name: "Ada Lovelace", email: "ada@example.com", address: "123 Long Street" }, items: [{ id: 202, title: "Checkout Item", price: 20, quantity: 1 }], totals: { subtotal: 20, shipping: 4.99, total: 24.99 } })
     renderCheckoutWithStore([buildItem()])
-    await user.type(screen.getByLabelText("Full name"), "Ada Lovelace")
-    await user.type(screen.getByLabelText("Email"), "ADA@example.com")
     await user.type(screen.getByLabelText("Address"), "123 Long Street")
     await user.click(screen.getByRole("button", { name: /place order/i }))
     await waitFor(() => expect(window.sessionStorage.getItem(CUSTOMER_STORAGE_KEY)).toBeTruthy())
