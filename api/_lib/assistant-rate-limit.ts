@@ -1,6 +1,6 @@
 import { createHash } from "node:crypto"
-import type { ApiRequest } from "./http"
-import { createServerSupabase } from "./supabase-server"
+import type { ApiRequest } from "./http.js"
+import { createServerSupabase } from "./supabase-server.js"
 
 const REQUEST_LIMIT = 5
 const WINDOW_MILLISECONDS = 60_000

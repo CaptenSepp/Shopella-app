@@ -1,4 +1,4 @@
-import type { CatalogProduct } from "./product-catalog"
+import type { CatalogProduct } from "./product-catalog.js"
 
 export const buildAssistantSystemPrompt = (products: CatalogProduct[]) => {
   const catalogue = products.map((product) => (

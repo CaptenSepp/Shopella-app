@@ -1,10 +1,10 @@
 import type { Order } from "../../src/features/orders/types"
 import { calculateOrderTotals } from "../../src/features/orders/order-calculations"
-import type { ApiRequest, ApiResponse } from "./http"
-import { readRequestBody, sendJson } from "./http"
-import { createOrderRequestSchema } from "./order-schema"
-import { authenticateRequest } from "./supabase-server"
-import { getCatalogProduct } from "./product-catalog"
+import type { ApiRequest, ApiResponse } from "./http.js"
+import { readRequestBody, sendJson } from "./http.js"
+import { createOrderRequestSchema } from "./order-schema.js"
+import { authenticateRequest } from "./supabase-server.js"
+import { getCatalogProduct } from "./product-catalog.js"
 
 type OrderRow = {
   id: string

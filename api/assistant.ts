@@ -1,11 +1,11 @@
 import { createGroq } from "@ai-sdk/groq"
 import { convertToModelMessages, streamText, type UIMessage } from "ai"
-import type { ApiRequest, ApiResponse } from "./_lib/http"
-import { readRequestBody, sendJson } from "./_lib/http"
-import { assistantRequestSchema } from "./_lib/assistant-schema"
-import { checkAssistantRateLimit } from "./_lib/assistant-rate-limit"
-import { buildAssistantSystemPrompt } from "./_lib/assistant-prompt"
-import { getCatalogProducts } from "./_lib/product-catalog"
+import type { ApiRequest, ApiResponse } from "./_lib/http.js"
+import { readRequestBody, sendJson } from "./_lib/http.js"
+import { assistantRequestSchema } from "./_lib/assistant-schema.js"
+import { checkAssistantRateLimit } from "./_lib/assistant-rate-limit.js"
+import { buildAssistantSystemPrompt } from "./_lib/assistant-prompt.js"
+import { getCatalogProducts } from "./_lib/product-catalog.js"
 
 export default async function handler(request: ApiRequest, response: ApiResponse) {
   if (request.method !== "POST") {

@@ -1,6 +1,6 @@
 import { createClient } from "@supabase/supabase-js"
-import type { ApiRequest } from "./http"
-import { getServerConfig } from "./server-config"
+import type { ApiRequest } from "./http.js"
+import { getServerConfig } from "./server-config.js"
 
 export const createServerSupabase = () => {
   const { supabaseUrl, supabaseSecretKey } = getServerConfig()
