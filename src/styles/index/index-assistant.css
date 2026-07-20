@@ -116,6 +116,10 @@
     min-width: 0; /* keep layout stable inside flex column */
   }
 
+  .assistant-panel__conversation { height: calc(80vh - 13rem); min-height: 22rem; }
+  .assistant-panel__status { color: var(--app-text-muted); font-size: var(--fs-sm); }
+  .assistant-panel__error { padding: 0.8rem; color: var(--status-danger); background: var(--status-danger-soft); border-radius: var(--r-md); font-size: var(--fs-sm); }
+
   .assistant-message {
     padding: 0.8rem; /* bubble spacing */
     border-radius: var(--r-md); /* soft bubble corners */
@@ -151,6 +155,10 @@
     padding-top: 0.8rem; /* small space under divider */
     margin-top: auto; /* keep input area pinned to panel bottom */
   }
+
+  .assistant-panel__send { align-self: flex-end; min-width: 4.4rem; min-height: 4.4rem; margin-top: 0.8rem; padding: 0 1.2rem; border-radius: var(--r-md); background: var(--brand-orange); color: var(--brand-black-true); font-weight: var(--fw-semibold); }
+  .assistant-panel__send:disabled { opacity: 0.5; cursor: not-allowed; }
+  .assistant-panel__privacy { padding: 0 1.2rem 1.2rem; color: var(--app-text-muted); font-size: 1rem; line-height: 1.35; }
 
   .assistant-panel__input {
     width: 100%; /* fill panel width */
@@ -214,5 +222,7 @@
     .assistant-fab {
       bottom: 8rem; /* move phone assistant above bottom bar */
     }
+
+    .assistant-panel { width: min(34rem, calc(100vw - 2.4rem)); max-height: calc(100vh - 11rem); }
   }
 }

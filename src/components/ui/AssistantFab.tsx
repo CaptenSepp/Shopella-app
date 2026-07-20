@@ -1,46 +1,38 @@
-import { useEffect, useRef, useState } from "react"
+import { useChat } from "@ai-sdk/react"
+import { DefaultChatTransport } from "ai"
+import { useCallback, useEffect, useRef, useState } from "react"
 import AssistantPanel from "./AssistantPanel"
-import { ASSISTANT_DRAFT_KEY, ASSISTANT_STORAGE_KEY, createAssistantReply, loadStoredDraft, loadStoredMessages, type AssistantMessage } from "./assistant-fab-tools"
+import { ASSISTANT_DRAFT_KEY, loadStoredDraft } from "./assistant-fab-tools"
+import { useDialogFocus } from "./use-dialog-focus"
+
+const assistantTransport = new DefaultChatTransport({ api: "/api/assistant" })
 
 const AssistantFab = () => {
-  const [isOpen, setIsOpen] = useState(false) // panel open state
-  const [draftText, setDraftText] = useState("") // current textarea value
-  const [messages, setMessages] = useState<AssistantMessage[]>([]) // saved chat messages
-  const inputRef = useRef<HTMLTextAreaElement | null>(null) // auto-grow textarea ref
+  const [isOpen, setIsOpen] = useState(false)
+  const [draftText, setDraftText] = useState(loadStoredDraft)
+  const inputRef = useRef<HTMLTextAreaElement | null>(null)
+  const panelRef = useRef<HTMLDivElement | null>(null)
+  const triggerRef = useRef<HTMLButtonElement | null>(null)
+  const { error, messages, sendMessage, setMessages, status, stop } = useChat({ transport: assistantTransport, experimental_throttle: 50 })
+  const isWorking = status === "submitted" || status === "streaming"
+  const closePanel = useCallback(() => setIsOpen(false), [])
 
-  // Restore the last saved thread and draft once so a refresh does not wipe the local assistant UI.
-  useEffect(() => { setMessages(loadStoredMessages()); setDraftText(loadStoredDraft()) }, []) // restore saved browser state
+  useDialogFocus({ containerRef: panelRef, isOpen, onClose: closePanel, triggerRef })
 
-  // Save the conversation and the unfinished draft separately.
-  // This keeps both the sent messages and half-written input after reload.
-  useEffect(() => { try { localStorage.setItem(ASSISTANT_STORAGE_KEY, JSON.stringify(messages)) } catch { return } }, [messages]) // keep thread saved
-  useEffect(() => { try { localStorage.setItem(ASSISTANT_DRAFT_KEY, draftText) } catch { return } }, [draftText]) // keep draft saved
+  useEffect(() => {
+    try { localStorage.setItem(ASSISTANT_DRAFT_KEY, draftText) } catch { return }
+    const input = inputRef.current
+    if (input) { input.style.height = "0px"; input.style.height = `${input.scrollHeight}px` }
+  }, [draftText])
 
-  // Reset the height first, then grow to the real content height.
-  // That allows the textarea to shrink again after text is removed.
-  useEffect(() => { const textareaElement = inputRef.current; if (!textareaElement) return; textareaElement.style.height = "0px"; textareaElement.style.height = `${textareaElement.scrollHeight}px` }, [draftText]) // grow input with content
+  const sendDraft = () => {
+    const text = draftText.trim()
+    if (!text || isWorking) return
+    setDraftText("")
+    void sendMessage({ text })
+  }
 
-  return (
-    <AssistantPanel
-      draftText={draftText}
-      inputRef={inputRef}
-      isOpen={isOpen}
-      messages={messages}
-      onClear={() => { setMessages([]); setDraftText("") }}
-      onClose={() => setIsOpen(false)}
-      onDraftChange={setDraftText}
-      onSend={() => {
-        const trimmedText = draftText.trim()
-        if (!trimmedText) return // skip blank messages
-
-        // Add the user message and placeholder reply in one state update
-        // so the chat list stays consistent after a single send action.
-        setMessages((previous) => [...previous, { id: `user-${Date.now()}`, role: "user", text: trimmedText }, { id: `assistant-${Date.now() + 1}`, role: "assistant", text: createAssistantReply(trimmedText) }])
-        setDraftText("")
-      }}
-      onToggle={() => setIsOpen((previous) => !previous)}
-    />
-  )
+  return <AssistantPanel draftText={draftText} errorMessage={error?.message} inputRef={inputRef} isOpen={isOpen} isWorking={isWorking} messages={messages} panelRef={panelRef} triggerRef={triggerRef} onClear={() => { setMessages([]); setDraftText("") }} onClose={closePanel} onDraftChange={setDraftText} onSend={sendDraft} onStop={() => void stop()} onToggle={() => setIsOpen((current) => !current)} />
 }
 
 export default AssistantFab
