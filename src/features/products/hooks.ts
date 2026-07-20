@@ -4,10 +4,7 @@ import { getCategories, getProductById, getProducts, Product, Category } from '.
 export function useProducts() {
   return useQuery<Product[], Error>({
     queryKey: ['products'],
-    queryFn: () => getProducts(),
-    staleTime: 5 * 60 * 1000,           // 5 Minuten "frisch"
-    refetchOnMount: false,              // Kein Reload beim Zurückkommen
-    refetchOnWindowFocus: false,        // Kein Reload bei Tabwechsel
+    queryFn: ({ signal }) => getProducts(signal),
     placeholderData: []
   })
 }
@@ -15,10 +12,7 @@ export function useProducts() {
 export function useProductById(id: number) {
   return useQuery<Product, Error>({
     queryKey: ['product', id],
-    queryFn: () => getProductById(id),
-    staleTime: 5 * 60 * 1000,
-    refetchOnMount: false, 
-    refetchOnWindowFocus: false,
+    queryFn: ({ signal }) => getProductById(id, signal),
     placeholderData: undefined,
   })
 }
@@ -26,10 +20,7 @@ export function useProductById(id: number) {
 export const useCategories = () => {
   return useQuery<Category[], Error>({
     queryKey: ['categories'],
-    queryFn: () => getCategories(),
-    staleTime: 5 * 60 * 1000,
-    refetchOnMount: false,
-    refetchOnWindowFocus: false,
+    queryFn: ({ signal }) => getCategories(signal),
     placeholderData: []
   })
 }

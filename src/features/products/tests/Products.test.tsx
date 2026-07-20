@@ -22,7 +22,7 @@ describe("ProductsPage", () => {
     useProductsMock.mockReturnValueOnce({ data: [], isLoading: true, error: null, refetch: vi.fn() })
     useCategoriesMock.mockReturnValueOnce({ data: [], isLoading: true, error: null, refetch: vi.fn() })
     const { rerender } = renderProductsPage()
-    expect(screen.getByRole("status")).toHaveTextContent("Loading...")
+    expect(screen.getByRole("status")).toHaveAccessibleName("Loading products")
     useProductsMock.mockReturnValueOnce({ data: [buildProduct({ title: "Mock Product A" })], isLoading: false, error: null, refetch: vi.fn() })
     useCategoriesMock.mockReturnValueOnce({ data: [buildCategory()], isLoading: false, error: null, refetch: vi.fn() })
     rerender(

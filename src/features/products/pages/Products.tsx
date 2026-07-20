@@ -1,9 +1,11 @@
-import { useEffect, useMemo, useState } from "react"
+import { useCallback, useEffect, useMemo, useState } from "react"
 import { useSearchParams } from "react-router-dom"
 import ProductFilters from "@/features/products/components/ProductFilters"
 import MobileFiltersSheet from "@/features/products/components/MobileFiltersSheet"
 import ProductsErrorState from "@/features/products/components/ProductsErrorState"
 import ProductsGrid from "@/features/products/components/ProductsGrid"
+import ProductsEmptyState from "@/features/products/components/ProductsEmptyState"
+import ProductsLoadingState from "@/features/products/components/ProductsLoadingState"
 import { useCategories, useProducts } from "@/features/products/hooks"
 import { buildProductSearchParams, fallbackCategories, focusRingClass, getFilteredProducts, getSaleMode } from "@/features/products/products-page-tools"
 
@@ -28,15 +30,6 @@ const ProductsPage = () => {
   useEffect(() => setSortBy(initialSort), [initialSort]) // keep sort synced too
   useEffect(() => setDraftCategory(categoryQueryParam), [categoryQueryParam]) // update mobile draft category
   useEffect(() => setDraftSortBy(initialSort), [initialSort]) // update mobile draft sort
-
-  // While the mobile sheet is open, block page scrolling behind it.
-  // That keeps the interaction focused on the filter panel itself.
-  useEffect(() => {
-    if (!isMobileFiltersOpen) return // do nothing when closed
-    const previousOverflow = document.body.style.overflow
-    document.body.style.overflow = "hidden" // stop background scrolling
-    return () => { document.body.style.overflow = previousOverflow }
-  }, [isMobileFiltersOpen])
 
   // Build the final list from the raw API data and the current filter state.
   // useMemo helps avoid repeating the full filter and sort work on unrelated renders.
@@ -71,9 +64,9 @@ const ProductsPage = () => {
     setIsMobileFiltersOpen(true) // Keep the button handler named so the JSX stays shorter.
   }
 
-  const handleCloseMobileFilters = () => {
+  const handleCloseMobileFilters = useCallback(() => {
     setIsMobileFiltersOpen(false) // Reuse the same close action in every place that hides the sheet.
-  }
+  }, [])
 
   const handleCategoryChange = (nextCategory: string) => {
     setSelectedCategory(nextCategory)
@@ -85,13 +78,34 @@ const ProductsPage = () => {
     updateParams(selectedCategory, nextSort)
   }
 
-  if (isProductsLoading || isCategoriesLoading) return <p role="status" aria-live="polite">Loading...</p>
+  const clearFilters = () => {
+    setSelectedCategory("")
+    setSortBy("relevance")
+    setDraftCategory("")
+    setDraftSortBy("relevance")
+    setSearchParams({})
+  }
+
+  if (isProductsLoading || isCategoriesLoading) return <ProductsLoadingState />
   if (hasBlockingLoadFailure) return <ProductsErrorState errorMessage={productsError?.message || categoriesError?.message || "Failed to load data"} onRetry={retryFailedQueries} />
 
   return (
-    <div className="px-4 py-8">
+    <div className="products-page">
+      <header className="products-page__header">
+        <div>
+          <p className="products-page__eyebrow">Shop the catalogue</p>
+          <h1 className="products-page__title">Products</h1>
+        </div>
+        <span className="products-page__count" aria-live="polite">{filteredProducts.length} results</span>
+      </header>
+      {(selectedCategory || searchQuery || saleMode || sortBy !== "relevance") ? (
+        <div className="products-page__active-filters">
+          <span>{searchQuery ? `Search: “${searchQuery}”` : selectedCategory ? `Category: ${selectedCategory}` : saleMode ? "Sale picks" : `Sorted: ${sortBy}`}</span>
+          <button type="button" className="btn btn-secondary btn-sm" onClick={clearFilters}>Clear filters</button>
+        </div>
+      ) : null}
       <ProductsMobileToolbar resultCount={filteredProducts.length} onOpenFilters={handleOpenMobileFilters} />
-      <div className="flex gap-8">
+      <div className="products-page__content">
         <ProductsDesktopFilters
           availableCategories={availableCategories}
           selectedCategory={selectedCategory}
@@ -99,7 +113,7 @@ const ProductsPage = () => {
           onCategoryChange={handleCategoryChange}
           onSortChange={handleSortChange}
         />
-        <ProductsGrid products={filteredProducts} />
+        {filteredProducts.length > 0 ? <ProductsGrid products={filteredProducts} /> : <ProductsEmptyState onClear={clearFilters} />}
       </div>
       {isMobileFiltersOpen && (
         <MobileFiltersSheet
