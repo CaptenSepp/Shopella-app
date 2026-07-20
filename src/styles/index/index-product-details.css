@@ -1,0 +1,56 @@
+@layer components {
+  .product-details-page {
+    width: min(100% - 3.2rem, var(--shopella-content-width));
+    margin: 0 auto;
+    padding: 3.2rem 0 6.4rem;
+  }
+
+  .product-details-page__back { margin-bottom: 2rem; }
+  .product-details-page__main { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(28rem, 0.85fr); gap: 4rem; }
+
+  .product-gallery__main {
+    overflow: hidden;
+    aspect-ratio: 1;
+    border-radius: var(--r-xl);
+    background: var(--app-surface-alt);
+  }
+
+  .product-gallery__main-image { width: 100%; height: 100%; object-fit: contain; }
+  .product-gallery__thumbnails { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; margin-top: 1rem; }
+
+  .product-gallery__thumbnail {
+    overflow: hidden;
+    min-height: 6.4rem;
+    aspect-ratio: 1;
+    border: 2px solid transparent;
+    border-radius: var(--r-md);
+    background: var(--app-surface-alt);
+  }
+
+  .product-gallery__thumbnail img { width: 100%; height: 100%; object-fit: cover; }
+  .product-gallery__thumbnail--active { border-color: var(--brand-orange); }
+
+  .product-details-summary { align-self: center; }
+  .product-details-summary__category { color: var(--brand-orange); text-transform: capitalize; font-weight: var(--fw-semibold); }
+  .product-details-summary__title { margin-top: 0.8rem; font-size: clamp(3rem, 4vw, 4.8rem); line-height: 1.05; }
+  .product-details-summary__meta,
+  .product-details-summary__description { margin-top: 1.6rem; color: var(--app-text-muted); line-height: 1.6; }
+  .product-details-summary__price { margin-top: 2rem; font-size: var(--fs-2xl); }
+  .product-details-summary__actions { display: flex; flex-wrap: wrap; gap: 1.2rem; margin-top: 2rem; }
+
+  .stock-note { width: fit-content; margin-top: 1.2rem; padding: 0.6rem 1rem; color: var(--status-success); background: var(--status-success-soft); border-radius: var(--r-pill); }
+  .stock-note--empty { color: var(--status-danger); background: var(--status-danger-soft); }
+
+  .related-products { margin-top: 6.4rem; }
+  .related-products__title { margin-bottom: 2rem; font-size: var(--fs-3xl); }
+  .related-products__grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 2rem; }
+
+  @media (max-width: 767px) {
+    .product-details-page { width: min(100% - 2.4rem, var(--shopella-content-width)); padding-top: 2rem; }
+    .product-details-page__main { grid-template-columns: 1fr; gap: 2.4rem; }
+    .product-gallery__thumbnails { grid-template-columns: repeat(4, 1fr); }
+    .product-details-summary__actions .btn { flex: 1 1 14rem; min-height: 4.8rem; }
+    .related-products { margin-top: 4rem; }
+    .related-products__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.2rem; }
+  }
+}
