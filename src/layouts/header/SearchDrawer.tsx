@@ -10,7 +10,7 @@ const dropdownClassName =
 
 const SearchDrawer = () => {
   const [queryText, setQueryText] = useState("") // local search text
-  const { isDrawerOpen, openButtonRef, openDrawer, closeDrawer } = useHeaderDrawer() // shared drawer behavior
+  const { isDrawerOpen, openButtonRef, drawerRef, openDrawer, closeDrawer } = useHeaderDrawer() // shared drawer behavior
   const { data: products, isLoading, isError } = useProducts() // load product list once
   const normalizedQuery = queryText.trim().toLowerCase() // normalize user query
   const visibleResults = (products ?? []).filter((product) => normalizedQuery && `${product.title} ${product.brand}`.toLowerCase().includes(normalizedQuery))
@@ -52,9 +52,10 @@ const SearchDrawer = () => {
 
       {isDrawerOpen && <div className="fixed inset-0 z-40 bg-black/40 backdrop-blur-xs" onClick={closeDrawer} />}
 
-      <aside id="search-drawer" role="dialog" aria-modal="true" className={`fixed right-0 top-0 z-50 h-screen w-full max-w-md bg-[color:var(--app-surface)] text-[color:var(--app-text)] shadow-lg transition-transform duration-300 ${isDrawerOpen ? "translate-x-0" : "translate-x-full"}`}>
+      <aside ref={drawerRef} id="search-drawer" role="dialog" aria-modal="true" aria-labelledby="search-drawer-title" hidden={!isDrawerOpen} className={`fixed right-0 top-0 z-50 h-screen w-full max-w-md bg-[color:var(--app-surface)] text-[color:var(--app-text)] shadow-lg transition-transform duration-300 ${isDrawerOpen ? "translate-x-0" : "translate-x-full"}`}>
         <button type="button" onClick={closeDrawer} className={`absolute right-4 top-4 u-text-2xl ${focusRingClass}`} aria-label="Close search drawer">×</button>
         <div className="flex h-full min-h-0 flex-col gap-4 p-6">
+          <h2 id="search-drawer-title" className="u-text-xl u-font-semibold">Search products</h2>
           <div>
             <label htmlFor="drawer-search" className="u-text-sm u-font-medium">Search</label>
             <input id="drawer-search" type="text" className={`input-field header-search-input ${focusRingClass}`} placeholder="Search products..." value={queryText} onChange={(event) => setQueryText(event.target.value)} />

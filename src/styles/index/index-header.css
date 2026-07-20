@@ -30,7 +30,7 @@
     min-height: 3.4rem; /* slim strip like before */
     padding: 0.6rem 1.2rem; /* keep text away from edges */
     background: var(--brand-orange); /* restore orange strip */
-    color: var(--brand-white); /* white text on orange */
+    color: var(--brand-black-true); /* dark text keeps the orange strip readable at AA contrast */
     text-align: center; /* keep text tidy on small screens */
   }
 
