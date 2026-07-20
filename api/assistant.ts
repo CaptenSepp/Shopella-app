@@ -1,5 +1,6 @@
 import { createGroq } from "@ai-sdk/groq"
 import { convertToModelMessages, streamText, type UIMessage } from "ai"
+import { ZodError } from "zod"
 import type { ApiRequest, ApiResponse } from "./_lib/http.js"
 import { readRequestBody, sendJson } from "./_lib/http.js"
 import { assistantRequestSchema } from "./_lib/assistant-schema.js"
@@ -15,7 +16,7 @@ export default async function handler(request: ApiRequest, response: ApiResponse
   try {
     if (!process.env.GROQ_API_KEY) throw new Error("Groq is not configured yet.")
     const parsed = assistantRequestSchema.parse(await readRequestBody(request))
-    const messages = parsed.messages.slice(-10) as UIMessage[] // keep model context and cost controlled
+    const messages = parsed.messages.slice(-5) as UIMessage[] // Send the newest five chat messages as context.
     const products = await getCatalogProducts()
     const groq = createGroq({ apiKey: process.env.GROQ_API_KEY })
 
@@ -28,7 +29,9 @@ export default async function handler(request: ApiRequest, response: ApiResponse
     })
     return result.pipeUIMessageStreamToResponse(response)
   } catch (error) {
-    const message = error instanceof Error ? error.message : "The assistant is unavailable."
+    const message = error instanceof ZodError
+      ? "Your message is too long. Please keep it under 800 characters."
+      : error instanceof Error ? error.message : "The assistant is unavailable."
     const status = message.includes("environment") || message.includes("configured") ? 503 : 400
     return sendJson(response, status, { message })
   }

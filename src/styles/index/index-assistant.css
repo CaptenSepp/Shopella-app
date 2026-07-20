@@ -35,8 +35,10 @@
   .assistant-panel {
     width: 26rem; /* small panel */
     max-width: min(90vw, 32rem); /* responsive width */
-    min-height: 36rem; /* larger default panel height */
-    max-height: 80vh; /* never exceed most of browser height */
+    height: calc(100dvh - 8.8rem); /* use the available space above the chat button */
+    min-height: 0; /* allow short browser windows */
+    display: flex; /* let the messages fill the remaining panel space */
+    flex-direction: column; /* keep the panel sections stacked */
     background: var(--app-surface); /* panel base */
     border: 1px solid var(--border-color); /* subtle border */
     border-radius: var(--r-lg); /* soft corners */
@@ -106,17 +108,23 @@
   }
 
   .assistant-panel__messages {
-    min-height: 18rem; /* visible thread area */
-    max-height: 24rem; /* avoid oversized panel */
+    min-height: 0; /* let the message area fit the panel */
+    max-height: none; /* use all available panel space */
     overflow-y: auto; /* scroll long chats */
     display: flex; /* stack bubble blocks */
     flex-direction: column; /* top to bottom */
     gap: 0.8rem; /* space between messages */
     flex: 1 1 auto; /* let history give space to growing input */
     min-width: 0; /* keep layout stable inside flex column */
+    scrollbar-width: thin; /* use a smaller scrollbar */
+    scrollbar-color: var(--brand-orange) transparent; /* match the app colors */
   }
 
-  .assistant-panel__conversation { height: calc(80vh - 13rem); min-height: 22rem; }
+  .assistant-panel__messages::-webkit-scrollbar { width: 0.7rem; }
+  .assistant-panel__messages::-webkit-scrollbar-track { background: transparent; }
+  .assistant-panel__messages::-webkit-scrollbar-thumb { background: var(--brand-orange); border-radius: 9999px; }
+
+  .assistant-panel__conversation { flex: 1 1 auto; min-height: 0; }
   .assistant-panel__status { color: var(--app-text-muted); font-size: var(--fs-sm); }
   .assistant-panel__error { padding: 0.8rem; color: var(--status-danger); background: var(--status-danger-soft); border-radius: var(--r-md); font-size: var(--fs-sm); }
 
@@ -223,6 +231,6 @@
       bottom: 8rem; /* move phone assistant above bottom bar */
     }
 
-    .assistant-panel { width: min(34rem, calc(100vw - 2.4rem)); max-height: calc(100vh - 11rem); }
+    .assistant-panel { width: min(34rem, calc(100vw - 2.4rem)); height: calc(100dvh - 14.4rem); }
   }
 }
