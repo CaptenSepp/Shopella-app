@@ -1,13 +1,12 @@
 import { useSelector } from 'react-redux'
 import { RootState } from '../../../app/store'
 import { useNavigate } from 'react-router-dom'
+import { calculateOrderTotals } from '@/features/orders/order-calculations'
 
 const CartSummary = () => {
   const items = useSelector((state: RootState) => state.cart.items); // read cart items
   const navigate = useNavigate(); // programmatic navigation
-  const subtotal = items.reduce((sum, it) => sum + it.price * it.quantity, 0); // compute subtotal
-  const shipping = items.length ? 4.99 : 0; // simple shipping rule
-  const total = subtotal + shipping; // compute total
+  const { subtotal, shipping, total } = calculateOrderTotals(items); // shared discounted totals
 
   const handleCheckout = () => {
     navigate('/checkout') // Keep navigation in a named handler so the button JSX stays simple.
@@ -34,7 +33,7 @@ const CartSummary = () => {
 
             <span className="flex flex-col items-end">
               <span className="u-text-lg u-font-bold">${total.toFixed(2)} USD</span>
-              <span className="u-text-sm text-muted">including VAT</span>
+              <span className="u-text-sm text-muted">estimated total</span>
             </span>
           </div>
         </div>

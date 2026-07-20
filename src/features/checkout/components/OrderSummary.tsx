@@ -1,14 +1,13 @@
 import type { Product } from "@/features/products/services"
 import ProductPrice from "@/features/products/components/ProductPrice"
+import { calculateOrderTotals } from "@/features/orders/order-calculations"
 
 type OrderSummaryProps = {
   items: Array<Product & { quantity: number }>
 }
 
 const OrderSummary = ({ items }: OrderSummaryProps) => {
-  const subtotal = items.reduce((sum, item) => sum + item.price * item.quantity, 0) // calculate subtotal
-  const shipping = items.length ? 4.99 : 0 // simple shipping rule
-  const total = subtotal + shipping // final total
+  const { subtotal, shipping, total } = calculateOrderTotals(items) // shared discounted totals
 
   return (
     <aside className="surface-card p-4">
@@ -28,6 +27,7 @@ const OrderSummary = ({ items }: OrderSummaryProps) => {
       <div className="mt-3 flex justify-between border-t pt-3 u-font-bold">
         <span>Total</span><span>${total.toFixed(2)} USD</span>
       </div>
+      <p className="checkout-summary__delivery">Estimated delivery: 3–5 business days.</p>
     </aside>
   )
 }
