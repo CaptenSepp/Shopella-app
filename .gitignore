@@ -23,7 +23,9 @@ dist-ssr
 
 # build/output
 dist/
-docs/
+docs/*
+!docs/screenshots/
+!docs/screenshots/*.png
 build/
 .out/
 .next/
@@ -34,3 +36,8 @@ build/
 node_modules/
 
 coverage/
+
+# Keep real environment values on this computer only.
+.env
+.env.*
+!.env.example
