@@ -14,7 +14,7 @@ const Banner = () => { // hero banner section
   return (
     <div className="home-hero-wrap"> {/* keep wrapper for layout consistency */}
       <section className="home-hero full-bleed"> {/* premium dark hero */}
-        <img src={topBannerImg} alt="" className="home-hero__bg" aria-hidden="true" /> {/* subtle old hero image */}
+        <img src={topBannerImg} alt="" className="home-hero__bg" aria-hidden="true" fetchPriority="high" /> {/* load the main hero first */}
 
         <div className="home-hero__content"> {/* text and cards layout */}
           <div className="home-hero__copy"> {/* left hero copy */}
@@ -41,7 +41,7 @@ const Banner = () => { // hero banner section
           <div className="home-hero__cards" aria-label="Featured product highlights"> {/* static product cards */}
             {heroCards.map((card) => (
               <Link key={card.label} to={card.href} className="home-hero__card"> {/* single hero card */}
-                <img src={card.image} alt="" className="home-hero__card-img" /> {/* card image */}
+                <img src={card.image} alt="" className="home-hero__card-img" loading="lazy" decoding="async" /> {/* defer supporting card images */}
                 <div className="home-hero__card-body"> {/* card text */}
                   <span className="home-hero__card-label">{card.label}</span>
                   <h2 className="home-hero__card-title">{card.title}</h2>

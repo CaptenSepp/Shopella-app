@@ -20,7 +20,7 @@ const ProductMediaCard = ({ product, onClick }: ProductMediaCardProps) => {
       onClick={onClick}
     >
       <div className="best-row__media"> {/* product image area */}
-        <img src={product.thumbnail} alt="" className="best-row__image" draggable={false} /> {/* dynamic product image */}
+        <img src={product.thumbnail} alt="" className="best-row__image" draggable={false} loading="lazy" decoding="async" /> {/* defer catalogue images until needed */}
       </div>
       <div className="best-row__content">
         <div className="best-row__name line-clamp-2">{product.title}</div>

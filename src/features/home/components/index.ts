@@ -10,3 +10,5 @@ export { default as BrandStoryMini } from './BrandStoryMini'; // brand story min
 export { default as SocialProofSection } from './SocialProofSection'; // social proof
 export { default as NewsletterSignupSection } from './NewsletterSignupSection'; // newsletter signup section
 export { default as ProductMediaCard } from './ProductMediaCard'; // reusable home product card
+export { default as ShoppingStepsSection } from './ShoppingStepsSection'; // truthful shopping process
+export { default as ShopCtaSection } from './ShopCtaSection'; // final shopping action

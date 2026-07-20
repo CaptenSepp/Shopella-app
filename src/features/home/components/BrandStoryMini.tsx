@@ -12,7 +12,7 @@ const BrandStoryMini = () => ( // condensed story section
         <a className="brand-mini__link" href="/about">Learn more →</a> {/* about link */}
       </div>
       <div className="brand-mini__media"> {/* image column */}
-        <img src={philosophyImg} alt="Our Philosophy" className="brand-mini__image" /> {/* image */}
+        <img src={philosophyImg} alt="Our Philosophy" className="brand-mini__image" loading="lazy" decoding="async" /> {/* defer this story image */}
       </div>
     </div>
   </section>
