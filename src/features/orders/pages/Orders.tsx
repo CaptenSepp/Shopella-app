@@ -1,9 +1,7 @@
-import { useEffect, useState } from 'react' // React hooks
 import { Link } from 'react-router-dom' // router links
 import { useSelector } from 'react-redux' // redux selector
 import { RootState } from '@/app/store' // root state type
-import { getOrders } from '@/features/orders/services' // orders service
-import type { Order } from '@/features/orders/types' // order type
+import { useOrders } from '@/features/orders/hooks'
 import ProductPrice from '@/features/products/components/ProductPrice'
 
 type OrdersPageProps = {
@@ -12,17 +10,7 @@ type OrdersPageProps = {
 
 const OrdersPage = ({ showAccountHeader = false }: OrdersPageProps) => { // orders list page
   const user = useSelector((state: RootState) => state.auth.user) // read auth user
-  const [orders, setOrders] = useState<Order[]>([]) // orders state
-  const [isLoading, setIsLoading] = useState(false) // loading state
-
-  useEffect(() => { // load orders for signed-in user
-    if (!user) return // skip when signed out
-    setIsLoading(true) // show loading state
-    getOrders(user.email)
-      .then(setOrders)
-      .catch(() => setOrders([])) // fallback to empty on error
-      .finally(() => setIsLoading(false))
-  }, [user])
+  const { data: orders = [], error, isLoading, refetch } = useOrders(Boolean(user))
 
   if (!user) { // protect orders page
     return (
@@ -35,7 +23,17 @@ const OrdersPage = ({ showAccountHeader = false }: OrdersPageProps) => { // orde
   }
 
   if (isLoading) { // loading state
-    return <p role="status" aria-live="polite">Loading orders...</p>
+    return <div className="app-state-panel" role="status" aria-live="polite">Loading orders...</div>
+  }
+
+  if (error) {
+    return (
+      <div className="app-state-panel app-page-shell app-page-shell--center">
+        <h1 className="u-text-2xl u-font-semibold">Orders could not be loaded</h1>
+        <p className="text-muted">{error.message}</p>
+        <button type="button" className="btn btn-primary" onClick={() => void refetch()}>Try again</button>
+      </div>
+    )
   }
 
   if (orders.length === 0) { // empty state
