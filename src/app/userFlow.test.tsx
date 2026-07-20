@@ -13,6 +13,8 @@ import Checkout from '@/features/checkout/pages/Checkout' // checkout page
 import { ToastContext } from '@/components/ui/toastContext' // toast provider
 import authReducer from '@/features/auth/authSlice' // auth reducer for layout
 import type { Product, Category } from '@/features/products/services' // product types
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { ThemeProvider } from '@/app/theme'
 
 const useProductsMock = vi.fn() // controlled products hook mock
 const useCategoriesMock = vi.fn() // controlled categories hook mock
@@ -61,7 +63,7 @@ describe('User flow: add to cart then checkout', () => {
 
     const store = configureStore({
       reducer: { cart: cartReducer, wishlist: wishlistReducer, auth: authReducer }, // reducers for flow
-      preloadedState: { cart: { items: [] }, wishlist: { items: [] }, auth: { user: null } }, // empty initial state
+      preloadedState: { cart: { items: [] }, wishlist: { items: [] }, auth: { user: { id: 'u1', name: 'Test User', email: 'test@example.com' } } }, // signed-in flow
     })
 
     const router = createMemoryRouter(
@@ -81,9 +83,13 @@ describe('User flow: add to cart then checkout', () => {
 
     render(
       <Provider store={store}>
-        <ToastContext.Provider value={{ notify: vi.fn() }}>
-          <RouterProvider router={router} />
-        </ToastContext.Provider>
+        <QueryClientProvider client={new QueryClient()}>
+          <ThemeProvider>
+            <ToastContext.Provider value={{ notify: vi.fn() }}>
+              <RouterProvider router={router} />
+            </ToastContext.Provider>
+          </ThemeProvider>
+        </QueryClientProvider>
       </Provider>
     )
 
@@ -91,6 +97,6 @@ describe('User flow: add to cart then checkout', () => {
     await user.click(screen.getAllByRole('link', { name: /open cart/i })[0]) // go to cart
     expect(screen.getByText('Your Cart')).toBeInTheDocument() // cart page visible
     await user.click(screen.getByRole('button', { name: /check out/i })) // go to checkout
-    expect(screen.getByRole('heading', { name: 'Checkout' })).toBeInTheDocument() // checkout visible
+    expect(screen.getByRole('heading', { name: 'Delivery details' })).toBeInTheDocument() // checkout visible
   })
 })

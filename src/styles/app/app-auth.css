@@ -26,6 +26,15 @@
   font-size: var(--fs-sm); /* small helper text */
 }
 
+.auth-form__tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; margin-bottom: 1.6rem; }
+.auth-form__tab { min-height: 4.4rem; padding: 0.8rem; border: 1px solid var(--app-border); border-radius: var(--r-md); color: var(--app-text-muted); }
+.auth-form__tab--active { border-color: var(--brand-orange); color: var(--app-text); background: var(--brand-orange-100); }
+.auth-form__error { margin-bottom: 1.2rem; padding: 1rem; color: var(--status-danger); background: var(--status-danger-soft); border-radius: var(--r-md); }
+.auth-form .submit-button { width: 100%; min-height: 4.4rem; }
+.account-drawer-content { padding: 1.6rem; border-radius: var(--r-md); background: var(--app-surface-alt); }
+.account-drawer-content__name { font-size: var(--fs-xl); font-weight: var(--fw-semibold); }
+.account-drawer-content__email { margin-top: 0.4rem; color: var(--app-text-muted); overflow-wrap: anywhere; }
+
 @media (min-width: 640px) {
   .login-logo {
     height: 2rem;
