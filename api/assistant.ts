@@ -3,7 +3,6 @@ import { convertToModelMessages, streamText, type UIMessage } from "ai"
 import type { ApiRequest, ApiResponse } from "./_lib/http.js"
 import { readRequestBody, sendJson } from "./_lib/http.js"
 import { assistantRequestSchema } from "./_lib/assistant-schema.js"
-import { checkAssistantRateLimit } from "./_lib/assistant-rate-limit.js"
 import { buildAssistantSystemPrompt } from "./_lib/assistant-prompt.js"
 import { getCatalogProducts } from "./_lib/product-catalog.js"
 
@@ -15,8 +14,6 @@ export default async function handler(request: ApiRequest, response: ApiResponse
 
   try {
     if (!process.env.GROQ_API_KEY) throw new Error("Groq is not configured yet.")
-    const isAllowed = await checkAssistantRateLimit(request)
-    if (!isAllowed) return sendJson(response, 429, { message: "Please wait a minute before asking again." })
     const parsed = assistantRequestSchema.parse(await readRequestBody(request))
     const messages = parsed.messages.slice(-10) as UIMessage[] // keep model context and cost controlled
     const products = await getCatalogProducts()

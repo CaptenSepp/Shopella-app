@@ -18,15 +18,3 @@ alter table public.orders enable row level security;
 
 -- No public policies are added: only the verified server function uses the secret key.
 revoke all on table public.orders from anon, authenticated;
-
-create table if not exists public.assistant_requests (
-  id bigint generated always as identity primary key,
-  fingerprint text not null,
-  created_at timestamptz not null default now()
-);
-
-create index if not exists assistant_requests_fingerprint_created_index
-  on public.assistant_requests (fingerprint, created_at desc);
-
-alter table public.assistant_requests enable row level security;
-revoke all on table public.assistant_requests from anon, authenticated;

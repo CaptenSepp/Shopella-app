@@ -67,10 +67,9 @@ VITE_SUPABASE_URL=your_project_url
 VITE_SUPABASE_PUBLISHABLE_KEY=your_publishable_key
 SUPABASE_SECRET_KEY=your_server_secret_key
 GROQ_API_KEY=your_groq_key
-RATE_LIMIT_SALT=a_long_random_private_value
 ```
 
-Only variables beginning with `VITE_` are exposed to the browser. Keep the Supabase secret, Groq key, and rate-limit salt only in local/Vercel server environment settings. Never commit `.env.local`.
+Only variables beginning with `VITE_` are exposed to the browser. Keep the Supabase secret and Groq key only in local/Vercel server environment settings. Never commit `.env.local`.
 
 ## Supabase setup
 
@@ -79,7 +78,7 @@ Only variables beginning with `VITE_` are exposed to the browser. Keep the Supab
 3. For this portfolio flow, disable email confirmation so registration can sign in immediately.
 4. Add the browser and server environment values shown above.
 
-The browser cannot read or write the `orders` or `assistant_requests` tables directly. Vercel verifies the access token and uses the server secret for scoped reads and writes.
+The browser cannot read or write the `orders` table directly. Vercel verifies the access token and uses the server secret for scoped reads and writes.
 
 ## API contracts
 
