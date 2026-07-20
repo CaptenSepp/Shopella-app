@@ -35,6 +35,11 @@
   display: flex; /* wrap left column */
 }
 
+.footer__brand { font-size: var(--fs-3xl); font-weight: var(--fw-bold); text-align: left; }
+.footer__description { max-width: 38rem; margin-top: 0.8rem; color: var(--app-text-muted); text-align: left; line-height: 1.5; }
+.footer__links a { min-height: 4.4rem; display: inline-flex; align-items: center; color: var(--app-text); }
+.footer__links a:hover { color: var(--brand-orange); }
+
 .footer__hours {
   margin-top: 0.25rem; /* small gap before opening hours */
 }

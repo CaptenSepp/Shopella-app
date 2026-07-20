@@ -109,6 +109,28 @@
     --shopella-content-width: 1280px;
     --shopella-card-gap: 24px;
     --shopella-card-gap-sm: 16px;
+    --status-danger: #b42318;
+    --status-danger-soft: #fef3f2;
+    --status-success: #067647;
+    --status-success-soft: #ecfdf3;
+    --skeleton-base: #e7e7e7;
+    --skeleton-highlight: #f7f7f7;
+    --dialog-layer: 80;
+
+    /* These aliases let the small AI components reuse the Shopella theme. */
+    --background: var(--app-surface);
+    --foreground: var(--app-text);
+    --primary: var(--brand-orange);
+    --primary-foreground: var(--brand-white);
+    --secondary: var(--app-surface-alt);
+    --secondary-foreground: var(--app-text);
+    --muted: var(--app-surface-alt);
+    --muted-foreground: var(--app-text-muted);
+    --border: var(--app-border);
+    --input: var(--app-border);
+    --ring: var(--shopella-orange);
+    --destructive: var(--status-danger);
+    --radius: var(--r-md);
 
     /* Spacing scale (4px -> 40px) */
     --space-1: 0.4rem;
@@ -183,5 +205,11 @@
     --app-header-bg: var(--brand-black);
     --app-header-text: var(--brand-white);
     --app-header-border: var(--shopella-border-dark);
+    --status-danger: #f97066;
+    --status-danger-soft: #321313;
+    --status-success: #47cd89;
+    --status-success-soft: #102a20;
+    --skeleton-base: #202020;
+    --skeleton-highlight: #303030;
   }
 }

@@ -9,6 +9,11 @@
 @import "./styles/index/index-about.css";
 @import "./styles/index/index-contact.css";
 @import "./styles/index/index-products-filters.css";
+@import "./styles/index/index-product-states.css";
+@import "./styles/index/index-product-details.css";
+@import "./styles/index/index-home-journey.css";
 @import "./styles/index/index-assistant.css";
+@import "./styles/app/app-checkout.css";
+@import "./styles/app/app-accessibility.css";
 @import "./styles/index/index-text-utilities.css";
 @import "./styles/index/index-layout-utilities.css";
