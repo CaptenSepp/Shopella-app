@@ -3,21 +3,29 @@ import {
   createRoutesFromElements,
   Route,
 } from "react-router-dom";
-import About from "@/features/about/pages/About";
-import Account from "@/features/account/pages/Account";
-import Cart from "@/features/cart/pages/Cart";
-import Home from "@/features/home/pages/Home";
+import { lazy, Suspense, type ComponentType, type LazyExoticComponent } from "react";
 import Layout from "@/layouts/RootLayout";
-import LoginPage from "@/features/auth/pages/Login";
-import NotFoundPage from "@/features/error/pages/NotFound";
-import ProductDetails from "@/features/products/pages/ProductDetails";
-import ProductsPage from "@/features/products/pages/Products";
-import Wishlist from "@/features/wishlist/pages/Wishlist";
-import Checkout from "@/features/checkout/pages/Checkout";
-import OrderConfirmation from "@/features/checkout/pages/OrderConfirmation";
-import Retailers from "@/features/retailers/pages/Retailers";
 import ErrorPage from "@/features/error/pages/ErrorPage";
-import OrdersPage from "@/features/orders/pages/Orders";
+import RequireAuth from "@/features/auth/RequireAuth";
+import RouteLoadingState from "@/components/ui/RouteLoadingState";
+
+const About = lazy(() => import("@/features/about/pages/About"))
+const Account = lazy(() => import("@/features/account/pages/Account"))
+const Cart = lazy(() => import("@/features/cart/pages/Cart"))
+const Checkout = lazy(() => import("@/features/checkout/pages/Checkout"))
+const Home = lazy(() => import("@/features/home/pages/Home"))
+const LoginPage = lazy(() => import("@/features/auth/pages/Login"))
+const NotFoundPage = lazy(() => import("@/features/error/pages/NotFound"))
+const OrderConfirmation = lazy(() => import("@/features/checkout/pages/OrderConfirmation"))
+const OrdersPage = lazy(() => import("@/features/orders/pages/Orders"))
+const ProductDetails = lazy(() => import("@/features/products/pages/ProductDetails"))
+const ProductsPage = lazy(() => import("@/features/products/pages/Products"))
+const Retailers = lazy(() => import("@/features/retailers/pages/Retailers"))
+const Wishlist = lazy(() => import("@/features/wishlist/pages/Wishlist"))
+
+const page = (PageComponent: LazyExoticComponent<ComponentType>) => (
+  <Suspense fallback={<RouteLoadingState />}><PageComponent /></Suspense>
+)
 
 const router = createBrowserRouter( // central route tree for the SPA
   createRoutesFromElements(
@@ -28,55 +36,45 @@ const router = createBrowserRouter( // central route tree for the SPA
     >
       <Route
         index
-        element={<Home />} // home page
+        element={page(Home)} // home page
       />
       <Route
         path="products" // product listing
-        element={<ProductsPage />}
+        element={page(ProductsPage)}
       />
       <Route
         path="products/:productId" // product details by id
-        element={<ProductDetails />}
+        element={page(ProductDetails)}
       />
       <Route
         path="cart" // cart page
-        element={<Cart />}
+        element={page(Cart)}
       />
-      <Route
-        path="checkout" // checkout page
-        element={<Checkout />}
-      />
-      <Route
-        path="account" // account page with user orders
-        element={<Account />}
-      />
-      <Route
-        path="orders" // orders page (protected)
-        element={<OrdersPage />}
-      />
-      <Route
-        path="order-confirmation" // post-order confirmation
-        element={<OrderConfirmation />}
-      />
+      <Route element={<RequireAuth />}>
+        <Route path="checkout" element={page(Checkout)} />
+        <Route path="account" element={page(Account)} />
+        <Route path="orders" element={page(OrdersPage)} />
+        <Route path="order-confirmation" element={page(OrderConfirmation)} />
+      </Route>
       <Route
         path="wishlist" // wishlist page
-        element={<Wishlist />}
+        element={page(Wishlist)}
       />
       <Route
         path="about" // about page
-        element={<About />}
+        element={page(About)}
       />
       <Route
         path="retailers" // retailers map page
-        element={<Retailers />}
+        element={page(Retailers)}
       />
       <Route
         path="*" // catch-all 404
-        element={<NotFoundPage />}
+        element={page(NotFoundPage)}
       />
       <Route
-        path="login" // login page (UI only)
-        element={<LoginPage />}
+        path="login" // Supabase sign-in and registration page
+        element={page(LoginPage)}
       />
 
     </Route>
