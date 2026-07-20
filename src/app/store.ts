@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit'
 import { useDispatch } from 'react-redux'
 import cartReducer from '@/features/cart/cartSlice'
 import wishlistReducer from '@/features/wishlist/wishlistSlice'
-import authReducer, { type AuthUser } from '@/features/auth/authSlice'
+import authReducer from '@/features/auth/authSlice'
 import type { Product } from '@/features/products/services'
 
 function loadState<T>(key: string): T | undefined {
@@ -25,11 +25,9 @@ function saveState(key: string, value: unknown) {
 
 type PreloadedCart = { items: (Product & { quantity: number })[] }
 type PreloadedWishlist = { items: Product[] }
-type PreloadedAuth = { user: AuthUser | null }
 
 const preloadedCart = loadState<PreloadedCart>('cart')
 const preloadedWishlist = loadState<PreloadedWishlist>('wishlist')
-const preloadedAuth = loadState<PreloadedAuth>('auth')
 
 // Build a full preloaded object even when one slice is missing.
 // Redux store setup is simpler when each reducer always receives a complete shape.
@@ -37,7 +35,6 @@ const preloadedState: { cart: PreloadedCart; wishlist: PreloadedWishlist } = {
   cart: preloadedCart ?? { items: [] },
   wishlist: preloadedWishlist ?? { items: [] }
 }
-const resolvedAuth: PreloadedAuth = preloadedAuth ?? { user: null }
 
 export const store = configureStore({
   reducer: {
@@ -45,7 +42,7 @@ export const store = configureStore({
     wishlist: wishlistReducer,
     auth: authReducer
   },
-  preloadedState: { ...preloadedState, auth: resolvedAuth }
+  preloadedState: { ...preloadedState, auth: { user: null } }
 })
 
 // Save only the slices that are meant to survive a refresh.
@@ -54,7 +51,6 @@ store.subscribe(() => {
   const state = store.getState()
   saveState('cart', state.cart)
   saveState('wishlist', state.wishlist)
-  saveState('auth', state.auth)
 })
 
 export type RootState = ReturnType<typeof store.getState>
