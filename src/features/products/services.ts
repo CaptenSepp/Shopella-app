@@ -9,7 +9,9 @@ export interface Category {
   name: string
 }
 
-const API_BASE = import.meta.env.VITE_API_BASE_URL ?? "https://dummyjson.com" // Allow an env override so the same service can point to another backend without code changes.
+const viteEnv = import.meta.env
+const nextApiBase = typeof process !== "undefined" ? process.env.NEXT_PUBLIC_API_BASE_URL : undefined
+const API_BASE = viteEnv?.VITE_API_BASE_URL ?? nextApiBase ?? "https://dummyjson.com" // Allow an env override so the same service can point to another backend without code changes.
 const endpoint = (path: string) => `${API_BASE}${path}` // Build endpoints in one place so every request uses the same base URL rules.
 const outOfStockProductIds = new Set([2, 7, 11, 16, 21, 26, 31, 36, 41, 46]) // Demo out-of-stock products.
 let lastProductsValidationWarnings: string[] = [] // Keep the latest data-quality warnings available for debugging without stopping the app.
