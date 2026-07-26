@@ -1,5 +1,0 @@
-Lint : 0
-Typecheck : 0
-Tests : 0
-E2E tests : 0
-Build : 0

@@ -6,6 +6,8 @@ import authReducer from '@/features/auth/authSlice'
 import type { Product } from '@/features/products/services'
 
 function loadState<T>(key: string): T | undefined {
+  if (typeof window === 'undefined') return undefined
+
   try {
     const raw = localStorage.getItem(key)
     if (!raw) return undefined // Returning undefined here lets the reducer fall back to its normal initial state.
@@ -16,6 +18,8 @@ function loadState<T>(key: string): T | undefined {
 }
 
 function saveState(key: string, value: unknown) {
+  if (typeof window === 'undefined') return
+
   try {
     localStorage.setItem(key, JSON.stringify(value)) // Save only plain serializable slice data so restore stays predictable.
   } catch {

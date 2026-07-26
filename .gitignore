@@ -1,5 +1,5 @@
 # Logs
-logs
+logs/
 *.log
 npm-debug.log*
 yarn-debug.log*
@@ -7,13 +7,13 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-dist-ssr
+# Local files
 *.local
 
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
-.idea
+.idea/
 .DS_Store
 *.suo
 *.ntvs*
@@ -21,21 +21,32 @@ dist-ssr
 *.sln
 *.sw?
 
-# build/output
+# Build output
 dist/
-docs/*
-!docs/screenshots/
-!docs/screenshots/*.png
+dist-ssr/
 build/
+out/
 .out/
 .next/
 .cache/
 .vite/
+*.tsbuildinfo
 
-# dependencies
+# Documentation output
+docs/*
+!docs/screenshots/
+!docs/screenshots/*.png
+
+# Dependencies
 node_modules/
 
+# Test output
 coverage/
+playwright-report/
+test-results/
+
+# Vercel local project settings
+.vercel/
 
 # Keep real environment values on this computer only.
 .env
