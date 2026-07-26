@@ -1,5 +1,5 @@
-import type { ApiRequest, ApiResponse } from "../../../api/_lib/http.js"
-import { handleOrdersRequest } from "../../../api/_lib/orders-handler.js"
+import type { ApiRequest, ApiResponse } from "../../../api/_lib/http"
+import { handleOrdersRequest } from "../../../api/_lib/orders-handler"
 
 const handleRequest = async (request: Request) => {
   let body: unknown
