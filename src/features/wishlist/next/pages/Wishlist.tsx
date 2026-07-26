@@ -1,0 +1,28 @@
+import { useSelector } from 'react-redux'
+import { RootState, useAppDispatch } from '@/app/store'
+import { clearWishlist } from '@/features/wishlist/wishlistSlice'
+import WishlistItemsList from '@/features/wishlist/components/WishlistItemsList'
+
+const WishlistPage = () => { // wishlist page using store items
+  const dispatch = useAppDispatch() // typed dispatch for sinding wishlist actions like clear
+  const wishlist = useSelector((state: RootState) => state.wishlist.items) // read wishlist items
+
+  return (
+    <div className="bg-[color:var(--app-bg)] py-6 text-[color:var(--app-text)] sm:py-8 lg:py-12">
+      <div className="mx-auto max-w-screen-lg px-4 md:px-8">
+        <div className="mb-6 sm:mb-10 lg:mb-16 flex justify-between items-center">
+          <h1 className="u-text-2xl u-font-bold u-text-gray-800 u-text-3xl-lg">Your Wishlist</h1>
+          {wishlist.length > 0 && (
+            <button className='btn btn-secondary btn-sm' onClick={() => dispatch(clearWishlist())}> {/* clear all items */}
+              Clear Wishlist
+            </button>
+          )}
+        </div>
+
+        <WishlistItemsList />
+      </div>
+    </div>
+  )
+}
+
+export default WishlistPage
