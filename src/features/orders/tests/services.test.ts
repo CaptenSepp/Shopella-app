@@ -3,6 +3,7 @@ import { createOrder, getOrders } from "../services"
 import type { Product } from "@/features/products/services"
 
 vi.mock("@/features/auth/auth-service", () => ({ getAccessToken: vi.fn().mockResolvedValue("test-token") }))
+vi.mock("@/features/auth/supabase-client", () => ({ isSupabaseConfigured: true }))
 
 const buildItem = (overrides?: Partial<Product & { quantity: number }>) => ({
   id: 1, title: "Phone", description: "Phone description", price: 99,

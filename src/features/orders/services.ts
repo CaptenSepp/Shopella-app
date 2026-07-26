@@ -1,6 +1,8 @@
 import type { Order, OrderCustomer } from './types' // order types
 import type { Product } from '@/features/products/services' // product type for cart
 import { getAccessToken } from '@/features/auth/auth-service'
+import { isSupabaseConfigured } from '@/features/auth/supabase-client'
+import { createDemoOrder, getDemoOrders } from './demo-orders-service'
 
 type CartItem = Product & { quantity: number } // cart item shape
 
@@ -19,6 +21,8 @@ const readErrorMessage = async (response: Response, fallback: string) => {
 }
 
 export const createOrder = async (items: CartItem[], customer: OrderCustomer): Promise<Order> => { // create order via API
+  if (!isSupabaseConfigured) return createDemoOrder(items, customer)
+
   const accessToken = await getAccessToken()
   const res = await fetch(endpoint('/api/orders'), { // request config
     method: 'POST', // HTTP method
@@ -30,6 +34,8 @@ export const createOrder = async (items: CartItem[], customer: OrderCustomer): P
 }
 
 export const getOrders = async (): Promise<Order[]> => { // load orders via API
+  if (!isSupabaseConfigured) return getDemoOrders()
+
   const accessToken = await getAccessToken()
   const res = await fetch(endpoint('/api/orders'), { headers: { Authorization: `Bearer ${accessToken}` } }) // GET private orders
   if (!res.ok) throw new Error(await readErrorMessage(res, 'Failed to fetch orders.')) // handle error

@@ -1,10 +1,7 @@
 import type { AuthChangeEvent, Session, User } from "@supabase/supabase-js"
 import { isSupabaseConfigured, supabase } from "./supabase-client"
 import type { AuthUser } from "./authSlice"
-
-const requireConfiguration = () => {
-  if (!isSupabaseConfigured) throw new Error("Supabase is not configured yet.")
-}
+import { getDemoUser, listenForDemoAuthChanges, signInDemo, signOutDemo, signUpDemo } from "./demo-auth-service"
 
 export const mapSupabaseUser = (user: User | null): AuthUser | null => {
   if (!user?.email) return null
@@ -13,21 +10,27 @@ export const mapSupabaseUser = (user: User | null): AuthUser | null => {
 }
 
 export const signIn = async (email: string, password: string) => {
-  requireConfiguration()
+  if (!isSupabaseConfigured) return signInDemo(email)
+
   const result = await supabase.auth.signInWithPassword({ email, password })
   if (result.error) throw result.error
   return mapSupabaseUser(result.data.user)
 }
 
 export const signUp = async (name: string, email: string, password: string) => {
-  requireConfiguration()
+  if (!isSupabaseConfigured) return signUpDemo(name, email)
+
   const result = await supabase.auth.signUp({ email, password, options: { data: { name } } })
   if (result.error) throw result.error
   return mapSupabaseUser(result.data.user)
 }
 
 export const signOut = async () => {
-  requireConfiguration()
+  if (!isSupabaseConfigured) {
+    signOutDemo()
+    return
+  }
+
   const result = await supabase.auth.signOut()
   if (result.error) throw result.error
 }
@@ -43,6 +46,17 @@ export const getAccessToken = async () => {
   const session = await getCurrentSession()
   if (!session?.access_token) throw new Error("Please sign in to continue.")
   return session.access_token
+}
+
+export const getCurrentUser = async () => {
+  if (!isSupabaseConfigured) return getDemoUser()
+  const session = await getCurrentSession()
+  return mapSupabaseUser(session?.user ?? null)
+}
+
+export const listenForAuthUserChanges = (callback: (user: AuthUser | null) => void) => {
+  if (!isSupabaseConfigured) return listenForDemoAuthChanges(callback)
+  return listenForAuthChanges((session) => callback(mapSupabaseUser(session?.user ?? null)))
 }
 
 export const listenForAuthChanges = (callback: (session: Session | null) => void) => {
