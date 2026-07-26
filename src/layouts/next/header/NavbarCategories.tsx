@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import Link from "next/link"
 import { usePathname, useSearchParams } from "next/navigation"
 import { categoryCards } from "@/features/products/data/categories"
@@ -33,7 +34,7 @@ const NavbarCategories = () => {
             <div className="grid grid-cols-2 gap-3">
               {categoryCards.slice(0, 4).map((card) => (
                 <Link key={card.id} href={card.href} className={`flex items-center gap-3 rounded-md p-2 hover:bg-[color:var(--app-surface-alt)] ${focusRingClass}`}>
-                  <img src={card.img} alt="" className="h-10 w-10 rounded object-cover" loading="lazy" />
+                  <Image src={card.img} alt="" width={40} height={40} className="h-10 w-10 rounded object-cover" />
                   <span className="u-font-medium">{card.label}</span>
                 </Link>
               ))}
