@@ -1,8 +1,9 @@
+import Image, { type StaticImageData } from "next/image";
 import Link from "next/link"; // client-side navigation links
 
 interface CategoryCardProps {
   id: string;
-  img: string;
+  img: string | StaticImageData;
   label: string;
   href: string;
 }
@@ -14,12 +15,12 @@ interface Props {
 const CategoryGridCard = ({ img, label, href }: CategoryCardProps) => { // single category card
   return (
     <div className="relative group h-96 sm:h-[30rem] overflow-hidden rounded-lg"> {/* bigger cards (1.5x) */}
-      <img
+      <Image
         src={img}
         alt={label}
         className="w-full h-full object-cover transition duration-300 group-hover:brightness-110"
-        loading="lazy" // lazy-load for performance
-        decoding="async" // async decode for smoother paint
+        fill
+        sizes="(min-width: 640px) 50vw, 50vw"
       />
       <Link
         href={href}

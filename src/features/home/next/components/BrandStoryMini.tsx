@@ -1,3 +1,4 @@
+import Image from "next/image";
 import philosophyImg from "@/assets/images/Banner-philosophy.png"; // philosophy image
 
 const BrandStoryMini = () => ( // condensed story section
@@ -12,7 +13,7 @@ const BrandStoryMini = () => ( // condensed story section
         <a className="brand-mini__link" href="/about">Learn more →</a> {/* about link */}
       </div>
       <div className="brand-mini__media"> {/* image column */}
-        <img src={philosophyImg} alt="Our Philosophy" className="brand-mini__image" loading="lazy" decoding="async" /> {/* defer this story image */}
+        <Image src={philosophyImg} alt="Our Philosophy" className="brand-mini__image" /> {/* Next resolves the static image URL. */}
       </div>
     </div>
   </section>
