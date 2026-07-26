@@ -1,0 +1,65 @@
+"use client"
+
+import Link from "next/link"
+import { useRouter } from "next/navigation"
+import { useSelector } from "react-redux"
+import { useAppDispatch, type RootState } from "@/app/store"
+import { clearCart } from "@/features/cart/cartSlice"
+import { useCreateOrder } from "@/features/orders/hooks"
+import CheckoutForm from "../components/CheckoutForm"
+import OrderSummary from "../components/OrderSummary"
+import CheckoutProgress from "../components/CheckoutProgress"
+import { loadStoredCustomer, saveStoredCustomer } from "@/features/checkout/checkout-tools"
+import { saveConfirmationOrder } from "../order-confirmation-storage"
+
+const Checkout = () => {
+  const dispatch = useAppDispatch()
+  const router = useRouter()
+  const items = useSelector((state: RootState) => state.cart.items)
+  const user = useSelector((state: RootState) => state.auth.user)
+  const createOrderMutation = useCreateOrder()
+  const storedCustomer = loadStoredCustomer()
+  const initialCustomer = {
+    ...storedCustomer,
+    name: user?.name ?? storedCustomer.name,
+    email: user?.email ?? storedCustomer.email,
+  } // Use signed-in browser data for name/email, but keep address from checkout storage.
+
+  return (
+    <div className="app-page-shell app-page-shell--wide">
+      <Link href="/cart" className="app-text-link">Back to cart</Link>
+      <CheckoutProgress />
+      <h1 className="checkout-page__title">Delivery details</h1>
+      <div className="checkout-page__content">
+        <CheckoutForm
+          apiError={createOrderMutation.error?.message}
+          hasItems={items.length > 0}
+          initialValues={initialCustomer} // Prefill once so the user does not need to retype saved checkout details.
+          isSubmitting={createOrderMutation.isPending}
+          onSubmit={async (values) => {
+            // Clean the values once here so every later step uses the same normalized customer data.
+            const trimmedCustomer = { name: values.name.trim(), email: values.email.trim().toLowerCase(), address: values.address.trim() }
+
+            // Create the order before clearing local state.
+            // That way a failed request does not erase the user's cart.
+            let order
+            try {
+              order = await createOrderMutation.mutateAsync([items, trimmedCustomer])
+            } catch {
+              return // The mutation keeps the useful API message visible and the cart unchanged.
+            }
+
+            // After success, keep the checkout details for next time and move the app into its "ordered" state.
+            saveStoredCustomer(trimmedCustomer)
+            dispatch(clearCart()) // Clear only after success so the cart is not lost on a failed order request.
+            saveConfirmationOrder(order)
+            router.replace(`/order-confirmation?orderId=${order.id}`)
+          }}
+        />
+        <OrderSummary items={items} />
+      </div>
+    </div>
+  )
+}
+
+export default Checkout

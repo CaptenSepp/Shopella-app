@@ -4,7 +4,9 @@ import { getAccessToken } from '@/features/auth/auth-service'
 
 type CartItem = Product & { quantity: number } // cart item shape
 
-const API_BASE = (import.meta.env.VITE_ORDERS_API_BASE_URL ?? '').replace(/\/$/, '') // optional deploy base
+const viteEnv = import.meta.env
+const nextApiBase = typeof process !== 'undefined' ? process.env.NEXT_PUBLIC_ORDERS_API_BASE_URL : undefined
+const API_BASE = (viteEnv?.VITE_ORDERS_API_BASE_URL ?? nextApiBase ?? '').replace(/\/$/, '') // optional deploy base
 const endpoint = (path: string) => `${API_BASE}${path}` // build full endpoint URL
 
 const readErrorMessage = async (response: Response, fallback: string) => {
