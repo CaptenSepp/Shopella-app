@@ -1,9 +1,11 @@
+"use client"
+
+import Link from 'next/link'
 import { useSelector } from 'react-redux'
-import { RootState, useAppDispatch } from '@/app/store'
+import { useAppDispatch, type RootState } from '@/app/store'
 import { addToCart } from '@/features/cart/cartSlice'
-import ProductPrice from '@/features/products/components/ProductPrice'
+import ProductPrice from '@/features/products/next/components/ProductPrice'
 import { toggleWishlist } from '@/features/wishlist/wishlistSlice'
-import { Link } from 'react-router-dom'
 
 const WishlistItemsList = () => {
   const dispatch = useAppDispatch() // dispatch actions
@@ -19,7 +21,7 @@ const WishlistItemsList = () => {
     <ul className="mb-6 flex flex-col gap-4 sm:mb-8 md:gap-6">
       {items.map((item) => ( // render wishlist items
         <li key={item.id} className="line-item">
-          <Link to={`/products/${item.id}`} className="media-thumb">
+          <Link href={`/products/${item.id}`} className="media-thumb">
             <img
               src={item.thumbnail}
               loading="lazy" // lazy-load thumbnail

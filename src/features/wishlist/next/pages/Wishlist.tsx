@@ -1,7 +1,9 @@
+"use client"
+
 import { useSelector } from 'react-redux'
-import { RootState, useAppDispatch } from '@/app/store'
+import { useAppDispatch, type RootState } from '@/app/store'
 import { clearWishlist } from '@/features/wishlist/wishlistSlice'
-import WishlistItemsList from '@/features/wishlist/components/WishlistItemsList'
+import WishlistItemsList from '@/features/wishlist/next/components/WishlistItemsList'
 
 const WishlistPage = () => { // wishlist page using store items
   const dispatch = useAppDispatch() // typed dispatch for sinding wishlist actions like clear

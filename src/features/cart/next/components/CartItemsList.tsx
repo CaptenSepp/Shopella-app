@@ -1,7 +1,9 @@
+"use client"
+
 import { useSelector } from 'react-redux'
-import { RootState, useAppDispatch } from '@/app/store'
+import { useAppDispatch, type RootState } from '@/app/store'
 import { addToCart, removeFromCart, updateQuantity } from '@/features/cart/cartSlice'
-import ProductPrice from '@/features/products/components/ProductPrice'
+import ProductPrice from '@/features/products/next/components/ProductPrice'
 
 const CartItemsList = () => {
   const dispatch = useAppDispatch(); // dispatch actions

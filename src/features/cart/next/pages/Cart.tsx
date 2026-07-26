@@ -1,5 +1,5 @@
-import CartItemsList from '@/features/cart/components/CartItemsList'
-import CartSummary from '@/features/cart/components/CartSummary'
+import CartItemsList from '@/features/cart/next/components/CartItemsList'
+import CartSummary from '@/features/cart/next/components/CartSummary'
 
 const CartPage = () => { // cart page with items and totals
   return (
