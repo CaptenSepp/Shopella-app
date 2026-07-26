@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "../src/App.css";
 import "../src/index.css";
+import ShopellaLayout from "@/layouts/next/ShopellaLayout";
 import Providers from "./providers";
 
 export const metadata: Metadata = {
@@ -15,7 +16,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body><Providers>{children}</Providers></body>
+      <body>
+        <Providers>
+          <ShopellaLayout>{children}</ShopellaLayout>
+        </Providers>
+      </body>
     </html>
   );
 }
