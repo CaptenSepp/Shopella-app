@@ -11,7 +11,7 @@ const cards = [ // featured collections
 
 const FeaturedCollectionGrid = () => ( // featured grid section
   <section className="featured-grid"> {/* section wrapper */}
-    <div className="featured-grid__title">Featured Collections</div> {/* section title */}
+    <h2 className="featured-grid__title">Featured Collections</h2> {/* section title */}
     <div className="featured-grid__cards"> {/* cards grid */}
       {cards.map((card) => (
         <article key={card.title} className="featured-card"> {/* collection card */}

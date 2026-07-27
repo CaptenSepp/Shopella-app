@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom"; // client-side navigation links
+import { ArrowUpRight } from "lucide-react"
+import { Link } from "react-router-dom"
 
 interface CategoryCardProps {
   id: string;
@@ -11,32 +12,22 @@ interface Props {
   cards: CategoryCardProps[];
 }
 
-const CategoryGridCard = ({ img, label, href }: CategoryCardProps) => { // single category card
-  return (
-    <div className="relative group h-96 sm:h-[30rem] overflow-hidden rounded-lg"> {/* bigger cards (1.5x) */}
-      <img
-        src={img}
-        alt={label}
-        className="w-full h-full object-cover transition duration-300 group-hover:brightness-110"
-        loading="lazy" // lazy-load for performance
-        decoding="async" // async decode for smoother paint
-      />
-      <Link
-        to={href}
-        className="absolute left-1/2 bottom-4 -translate-x-1/2 btn btn-primary btn-sm "
-      >
-        {label}
-      </Link>
-    </div>
-  );
-};
+const CategoryGridCard = ({ img, label, href }: CategoryCardProps) => (
+  <Link to={href} className="category-card">
+    <img src={img} alt="" className="category-card__image" loading="lazy" decoding="async" />
+    <span className="category-card__content">
+      <span className="category-card__title">{label}</span>
+      <ArrowUpRight size={20} aria-hidden="true" />
+    </span>
+  </Link>
+)
 
-const CategoryGrid = ({ cards }: Props) => ( // lays out cards in a two-column grid
-  <section className="grid__cards grid__cards--two-cols">
+const CategoryGrid = ({ cards }: Props) => (
+  <section className="grid__cards grid__cards--two-cols" aria-label="Shop by category">
     {cards.map((card) => (
       <CategoryGridCard key={card.id} {...card} />
     ))}
   </section>
-);
+)
 
-export default CategoryGrid;
+export default CategoryGrid
