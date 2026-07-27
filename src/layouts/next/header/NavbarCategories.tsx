@@ -8,7 +8,7 @@ import { focusRingClass, getNavLinkClassName } from "./header-tools"
 import SearchDrawer from "./SearchDrawer"
 
 const dropdownClassName =
-  "pointer-events-none fixed left-0 top-[calc(var(--header-total-h)-2.2rem)] z-50 hidden w-1/2 rounded-b-lg bg-[color:var(--app-surface)] p-4 text-[color:var(--app-text)] shadow-lg invisible opacity-0 transition-opacity md:block group-hover:pointer-events-auto group-hover:visible group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:visible group-focus-within:opacity-100" // shared desktop panel
+  "pointer-events-none fixed left-0 right-0 top-[var(--header-total-h)] z-50 hidden rounded-b-lg border-t border-[color:var(--app-border)] bg-[color:var(--app-surface)] p-4 text-[color:var(--app-text)] shadow-lg invisible opacity-0 transition-opacity md:block group-hover:pointer-events-auto group-hover:visible group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:visible group-focus-within:opacity-100" // shared desktop panel
 
 const NavbarCategories = () => {
   const pathname = usePathname()
