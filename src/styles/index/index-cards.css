@@ -157,3 +157,10 @@
     }
   }
 }
+
+/* Informational card hover hierarchy */
+@layer components {
+  .line-item:hover { transform: none; border-color: var(--border-color); box-shadow: var(--shadow-sm); }
+  [data-theme="dark"] .card:hover,
+  [data-theme="dark"] .card--product:hover { border-color: rgba(255, 255, 255, 0.22); }
+}
