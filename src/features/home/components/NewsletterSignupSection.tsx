@@ -25,8 +25,8 @@ const NewsletterSignupSection = () => {
             className="contact-form"
             onSubmit={(event) => event.preventDefault()} // Keep the current static demo behavior.
           >
-            <input className="contact-input" type="text" placeholder="Your name" />
-            <input className="contact-input" type="email" placeholder="Email address" />
+            <label className="contact-field"><span>Name</span><input className="contact-input" type="text" placeholder="Your name" /></label>
+            <label className="contact-field"><span>Email</span><input className="contact-input" type="email" placeholder="Email address" /></label>
             <button type="submit" className="btn btn-primary btn-sm">
               Subscribe
             </button>

@@ -17,7 +17,7 @@
   .home-page .contact-form {
     position: relative; /* stay above overlay */
     z-index: 1; /* keep form clickable */
-    max-width: 48rem; /* readable width */
+    max-width: 30rem; /* readable width */
     margin: 0; /* align with top-left content */
     padding: 0; /* compact form */
     background: transparent; /* match section background */
@@ -25,25 +25,25 @@
     backdrop-filter: blur(4px); /* soft blur */
     display: grid; /* simple grid */
     grid-template-columns: 1fr 1fr auto; /* two fields + button */
-    gap: 1.2rem; /* field gap */
+    gap: 0.75rem; /* field gap */
   }
 
   .home-page .contact-form-wrap {
     background: var(--shopella-surface-dark); /* keep section background */
-    padding: 2rem; /* keep spacing around form */
+    padding: 1.25rem; /* keep spacing around form */
     border: 1px solid var(--shopella-border-dark); /* clean edge */
     border-radius: var(--r-md); /* 8px radius */
     box-shadow: var(--home-card-shadow); /* subtle depth */
   }
 
   .home-page .contact-input {
-    min-height: 4rem; /* match compact home buttons */
+    min-height: 2.5rem; /* match compact home buttons */
     border: 1px solid var(--shopella-border-dark); /* field border */
     background: var(--shopella-elevated-dark); /* keep fields visible */
     border-radius: var(--r-md); /* simple radius */
-    padding: 0 1.2rem; /* field spacing */
+    padding: 0 0.75rem; /* field spacing */
     color: var(--shopella-text-dark); /* input text */
-    font-size: 1.3rem; /* readable input */
+    font-size: 0.8125rem; /* readable input */
   }
 
   .home-page .contact-input:focus {
@@ -54,11 +54,11 @@
 
   .home-page .contact-section__note {
     color: var(--shopella-muted-dark); /* quiet demo note */
-    font-size: 1.2rem; /* small helper text */
+    font-size: 0.75rem; /* small helper text */
   }
 
   .home-page .contact-section img {
-    max-height: 24rem; /* compact newsletter media */
+    max-height: 15rem; /* compact newsletter media */
     border-radius: var(--r-md); /* match radius */
     border: 1px solid var(--shopella-border-dark); /* clean edge */
   }
@@ -71,5 +71,19 @@
     .home-page .contact-form {
       grid-template-columns: 1fr; /* stack fields on phones */
     }
+  }
+}
+
+@layer components {
+  .home-page .contact-field {
+    display: grid;
+    gap: 0.3125rem;
+    color: var(--shopella-text-dark);
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-semibold);
+  }
+
+  .home-page .contact-input {
+    width: 100%;
   }
 }
