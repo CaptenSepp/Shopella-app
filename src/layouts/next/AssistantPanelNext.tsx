@@ -23,7 +23,7 @@ type AssistantPanelNextProps = {
 
 const AssistantPanelNext = ({ draftText, errorMessage, inputRef, isOpen, isWorking, messages, onClear, onClose, onDraftChange, onSend, onStop, onToggle, panelRef, triggerRef }: AssistantPanelNextProps) => (
   <div className="assistant-fab">
-    <div ref={panelRef} id="assistant-panel" role="dialog" aria-modal="true" aria-labelledby="assistant-panel-title" hidden={!isOpen} className={`assistant-panel ${isOpen ? "assistant-panel--open" : ""}`}>
+    <div ref={panelRef} id="assistant-panel" role="dialog" aria-modal="false" aria-hidden={!isOpen} aria-labelledby="assistant-panel-title" inert={!isOpen} className={`assistant-panel ${isOpen ? "assistant-panel--open" : ""}`}>
       <div className="assistant-panel__header">
         <span id="assistant-panel-title" className="assistant-panel__title">Shopella Assistant</span>
         <div className="assistant-panel__actions">

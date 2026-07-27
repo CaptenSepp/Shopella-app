@@ -17,7 +17,7 @@ const AssistantFab = () => {
   const isWorking = status === "submitted" || status === "streaming"
   const closePanel = useCallback(() => setIsOpen(false), [])
 
-  useDialogFocus({ containerRef: panelRef, isOpen, onClose: closePanel, triggerRef })
+  useDialogFocus({ containerRef: panelRef, isOpen, lockBodyScroll: false, onClose: closePanel, triggerRef })
 
   useEffect(() => {
     try { localStorage.setItem(ASSISTANT_DRAFT_KEY, draftText) } catch { return }

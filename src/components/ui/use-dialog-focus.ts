@@ -1,22 +1,23 @@
 import { useEffect, type RefObject } from "react"
 
-const focusableSelector = "a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex='-1'])"
+const focusableSelector = "a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex=\"-1\"])"
 
 type DialogFocusOptions = {
   containerRef: RefObject<HTMLElement | null>
   isOpen: boolean
+  lockBodyScroll?: boolean
   onClose: () => void
   triggerRef?: RefObject<HTMLElement | null>
 }
 
-export const useDialogFocus = ({ containerRef, isOpen, onClose, triggerRef }: DialogFocusOptions) => {
+export const useDialogFocus = ({ containerRef, isOpen, lockBodyScroll = true, onClose, triggerRef }: DialogFocusOptions) => {
   useEffect(() => {
     if (!isOpen) return
     const dialog = containerRef.current
     if (!dialog) return
     const previousOverflow = document.body.style.overflow
     const triggerElement = triggerRef?.current
-    document.body.style.overflow = "hidden"
+    if (lockBodyScroll) document.body.style.overflow = "hidden"
 
     const focusable = () => Array.from(dialog.querySelectorAll<HTMLElement>(focusableSelector))
     window.requestAnimationFrame(() => focusable()[0]?.focus())
@@ -34,9 +35,9 @@ export const useDialogFocus = ({ containerRef, isOpen, onClose, triggerRef }: Di
 
     window.addEventListener("keydown", handleKeyDown)
     return () => {
-      document.body.style.overflow = previousOverflow
+      if (lockBodyScroll) document.body.style.overflow = previousOverflow
       window.removeEventListener("keydown", handleKeyDown)
       triggerElement?.focus()
     }
-  }, [containerRef, isOpen, onClose, triggerRef])
+  }, [containerRef, isOpen, lockBodyScroll, onClose, triggerRef])
 }
