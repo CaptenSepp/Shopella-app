@@ -122,3 +122,26 @@
     padding-top: 2rem;
   }
 }
+
+/* Retailer finder experience */
+.retailers-page__demo-note { width: fit-content; margin-top: 1rem; padding: 0.625rem 0.75rem; border: 1px solid var(--app-border); border-radius: var(--r-md); background: var(--app-surface-alt); color: var(--app-text-muted); font-size: var(--fs-sm); }
+.retailers-page__layout { display: grid; grid-template-columns: minmax(17rem, 0.72fr) minmax(0, 1.5fr); gap: 1.5rem; align-items: start; }
+.retailers-page__list { display: grid; gap: 0.875rem; }
+.retailers-card { padding: 1rem; border: 1px solid var(--app-border); border-radius: var(--r-lg); background: var(--app-surface); box-shadow: var(--shadow-sm); transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease; }
+.retailers-card--selected { border-color: var(--brand-orange); box-shadow: 0 10px 26px rgba(255, 122, 26, 0.12); transform: translateX(0.25rem); }
+.retailers-card__heading { display: grid; grid-template-columns: auto 1fr auto; gap: 0.75rem; align-items: center; }
+.retailers-card__heading h2 { margin: 0; font-size: var(--fs-xl); }
+.retailers-card__heading p, .retailers-card__hours { color: var(--app-text-muted); font-size: var(--fs-sm); }
+.retailers-card__icon { display: grid; width: 2.5rem; height: 2.5rem; place-items: center; border-radius: var(--r-md); background: var(--brand-orange-100); color: var(--brand-orange); }
+.retailers-card__badge { padding: 0.25rem 0.5rem; border-radius: var(--r-pill); background: var(--app-surface-alt); color: var(--app-text-muted); font-size: var(--fs-sm); font-weight: var(--fw-bold); }
+.retailers-card__address { display: flex; gap: 0.5rem; align-items: flex-start; margin-top: 1rem; color: var(--app-text); }
+.retailers-card__address svg { flex: 0 0 auto; margin-top: 0.2rem; color: var(--brand-orange); }
+.retailers-card__hours { margin: 0.375rem 0 1rem 1.5rem; }
+.retailers-page__map-panel { position: sticky; top: calc(var(--header-total-h) + 1.5rem); overflow: hidden; border: 1px solid var(--app-border); border-radius: var(--r-xl); background: var(--app-surface); box-shadow: var(--shadow-md); }
+.retailers-page__map-heading { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1rem 1.25rem; }
+.retailers-page__map-heading p { color: var(--app-text-muted); font-size: var(--fs-sm); }
+.retailers-page__map-heading h2 { margin: 0.125rem 0 0; font-size: var(--fs-2xl); }
+.retailers-page__map-link { display: inline-flex; align-items: center; gap: 0.375rem; margin: 0; }
+.retailers-page__map { border-inline: 0; border-radius: 0; box-shadow: none; }
+.retailers-page__map-disclaimer { padding: 0.75rem 1.25rem 1rem; color: var(--app-text-muted); font-size: var(--fs-sm); }
+@media (max-width: 900px) { .retailers-page__layout { grid-template-columns: 1fr; } .retailers-page__map-panel { position: static; } }
