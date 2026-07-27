@@ -39,13 +39,7 @@
     --home-card-shadow: 0 10px 22px rgba(17, 17, 17, 0.08); /* lighter shadow */
   }
 
-  .home-page :focus-visible {
-    outline: 3px solid var(--shopella-orange); /* visible keyboard focus */
-    outline-offset: 3px; /* keep ring clear */
-  }
 
-  .home-hero::after,
-  .featured-card__overlay,
   .best-row__overlay,
   .brand-mini__overlay,
   .banner__overlay,
@@ -83,10 +77,11 @@
   }
 
   .home-hero::after {
-    content: none; /* remove hero overlay layer */
-    position: absolute; /* cover hero */
-    inset: 0; /* full overlay */
-    background: none; /* keep hero image clean */
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: linear-gradient(90deg, var(--shopella-overlay-strong), var(--shopella-overlay-medium) 46%, var(--shopella-overlay-clear) 76%);
+    content: "";
   }
 
   .home-hero__content {
@@ -107,31 +102,31 @@
   }
 
   .home-hero__eyebrow {
-    margin: 0 0 1.2rem; /* space before title */
+    margin: 0 0 0.75rem; /* space before title */
     color: var(--shopella-orange); /* accent label */
-    font-size: 1.35rem; /* compact label */
+    font-size: 0.8438rem; /* compact label */
     font-weight: var(--fw-bold); /* bold */
   }
 
   .banner__title.home-hero__title {
     max-width: 760px; /* keep headline readable */
-    margin-bottom: 1.6rem; /* title spacing */
+    margin-bottom: 1rem; /* title spacing */
     color: var(--shopella-text-dark); /* dark hero text */
-    font-size: clamp(3.6rem, 4.2vw, 5.2rem); /* responsive hero type */
+    font-size: clamp(2.25rem, 4.2vw, 3.25rem); /* responsive hero type */
     line-height: 1.04; /* readable headline */
   }
 
   .home-hero__subcopy {
     max-width: 560px; /* readable paragraph */
     color: var(--shopella-muted-dark); /* muted body */
-    font-size: 1.45rem; /* compact hero copy */
+    font-size: 0.9063rem; /* compact hero copy */
   }
 
   .home-hero__actions {
     display: flex; /* CTA row */
     flex-wrap: wrap; /* mobile wrap */
     gap: var(--shopella-card-gap-sm); /* button spacing */
-    margin-top: 2.4rem; /* space from text */
+    margin-top: 1.5rem; /* space from text */
   }
 
   .home-hero__cards {
@@ -164,25 +159,25 @@
   }
 
   .home-hero__card-body {
-    padding: 1rem; /* compact body */
+    padding: 0.625rem; /* compact body */
   }
 
   .home-hero__card-label {
     color: var(--shopella-orange); /* accent label */
-    font-size: 1.1rem; /* small label */
+    font-size: 0.6875rem; /* small label */
     font-weight: var(--fw-bold); /* bold */
   }
 
   .home-hero__card-title {
-    margin: 0.4rem 0 0; /* compact title */
+    margin: 0.25rem 0 0; /* compact title */
     color: var(--shopella-text-dark); /* readable title */
-    font-size: 1.4rem; /* card title size */
+    font-size: 0.875rem; /* card title size */
   }
 
   .home-page .btn-primary {
     background: var(--shopella-orange); /* solid accent */
     border-color: var(--shopella-orange); /* match button */
-    color: var(--shopella-text-dark); /* readable button text */
+    color: var(--brand-black-true); /* readable button text */
   }
 
   .home-page .btn-primary:hover {
@@ -203,8 +198,8 @@
   }
 
   .home-page .btn {
-    --btn-text-size: 1.35rem; /* smaller home button text */
-    min-height: 4rem; /* keep home buttons compact */
+    --btn-text-size: 0.8438rem; /* smaller home button text */
+    min-height: 2.5rem; /* keep home buttons compact */
   }
 
   .home-page > .flex-column__grid {
@@ -232,7 +227,7 @@
   }
 
   .home-page .grid__cards--two-cols > .relative {
-    height: clamp(22rem, 24vw, 26rem); /* compact category cards */
+    height: clamp(13.75rem, 24vw, 16.25rem); /* compact category cards */
   }
 
   .home-page > .grid__cards > .relative:hover {
@@ -244,7 +239,7 @@
   .richtext-topic {
     margin: 0; /* section title spacing lives on wrapper */
     color: var(--shopella-text-dark); /* title color */
-    font-size: clamp(2rem, 2vw, 2.4rem); /* compact section title */
+    font-size: clamp(1.25rem, 2vw, 1.5rem); /* compact section title */
     text-align: left; /* left-align titles */
   }
 
@@ -255,7 +250,7 @@
     display: grid; /* equal columns */
     grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); /* responsive */
     gap: var(--shopella-card-gap-sm); /* spacing */
-    padding: 1.6rem var(--home-full-inline); /* full-width padding */
+    padding: 1rem var(--home-full-inline); /* full-width padding */
     background: var(--shopella-surface-dark); /* dark shared card surface */
     border: 1px solid var(--shopella-border-dark); /* subtle border */
     border-radius: 0; /* full-width band */
@@ -266,12 +261,12 @@
   .trustbar__item {
     display: flex; /* icon + text */
     align-items: center; /* vertical align */
-    gap: 0.8rem; /* spacing */
+    gap: 0.5rem; /* spacing */
   }
 
   .trustbar__icon {
-    width: 2rem; /* icon size */
-    height: 2rem; /* icon size */
+    width: 1.25rem; /* icon size */
+    height: 1.25rem; /* icon size */
     color: var(--shopella-orange); /* accent */
   }
 
@@ -294,9 +289,9 @@
   }
 
   .featured-grid__title {
-    font-size: clamp(2rem, 2vw, 2.4rem); /* section title */
+    font-size: clamp(1.25rem, 2vw, 1.5rem); /* section title */
     font-weight: var(--fw-bold); /* bold */
-    margin-bottom: 2.4rem; /* spacing */
+    margin-bottom: 1.5rem; /* spacing */
     color: var(--shopella-text-dark); /* dark title */
     text-align: left; /* align section title */
   }
@@ -311,7 +306,7 @@
     position: relative; /* overlay */
     border-radius: var(--r-md); /* rounded */
     overflow: hidden; /* clip overlay */
-    min-height: 21rem; /* compact card */
+    min-height: 13.125rem; /* compact card */
     border: 1px solid var(--shopella-border-dark); /* card edge */
     box-shadow: var(--home-card-shadow); /* subtle depth */
     transition: transform 150ms ease, border-color 150ms ease, box-shadow 150ms ease; /* simple hover */
@@ -342,14 +337,15 @@
 
   .featured-card__content {
     position: absolute; /* place content */
-    top: 1.6rem; /* move content to top area */
-    left: 1.6rem; /* left pad */
-    right: 1.6rem; /* right pad */
-    bottom: 1.6rem; /* keep full vertical area for bottom button */
+    z-index: 1;
+    top: 1rem; /* move content to top area */
+    left: 1rem; /* left pad */
+    right: 1rem; /* right pad */
+    bottom: 1rem; /* keep full vertical area for bottom button */
     display: flex; /* stack */
     flex-direction: column; /* vertical */
     align-items: flex-start; /* keep badge and title on the left */
-    gap: 0.8rem; /* spacing */
+    gap: 0.5rem; /* spacing */
     color: var(--shopella-text-dark); /* light text */
   }
 
@@ -357,42 +353,35 @@
     display: inline-flex; /* compact badge */
     align-items: center; /* center text */
     width: fit-content; /* keep badge compact */
-    padding: 0.6rem 1rem; /* badge spacing */
+    padding: 0.375rem 0.625rem; /* badge spacing */
     border: 1px solid var(--shopella-border-dark); /* subtle edge */
     border-radius: var(--r-md); /* soft badge */
     background: var(--shopella-surface-dark); /* dark badge */
     backdrop-filter: blur(8px); /* premium glass effect */
     -webkit-backdrop-filter: blur(8px); /* Safari support */
-    font-size: 1.1rem; /* compact label */
+    font-size: 0.6875rem; /* compact label */
     letter-spacing: 0; /* normal spacing */
   }
 
   .featured-card__title {
-    font-size: 1.4rem; /* card title */
+    font-size: 0.875rem; /* card title */
     font-weight: var(--fw-bold); /* bold */
     text-shadow: 0 1px 12px var(--shopella-bg-dark); /* readable on image */
   }
 
   .featured-card__btn {
-    width: fit-content; /* keep button width based on its text */
-    align-self: center; /* keep compact button centered in the card */
-    margin-top: auto; /* push button to the bottom of the card content */
-    justify-content: center; /* keep label centered */
-    color: var(--shopella-muted-dark); /* soft text */
-    background: var(--shopella-soft-dark); /* dark base */
-    border: 1px solid var(--shopella-border-dark); /* outline */
-    box-shadow: none; /* remove active CTA feel */
-    cursor: not-allowed; /* clear inactive state */
-    backdrop-filter: blur(8px); /* match badge look */
-    -webkit-backdrop-filter: blur(8px); /* Safari support */
-    font-size: 1.15rem; /* compact button text */
-    min-height: 3.8rem; /* compact disabled button */
+    width: fit-content;
+    align-self: flex-start;
+    margin-top: auto;
+    color: var(--brand-black-true);
+    background: var(--brand-orange);
+    border-color: var(--brand-orange);
+    box-shadow: var(--shadow-sm);
   }
 
   .featured-card__btn:hover {
-    transform: none; /* no hover lift */
-    box-shadow: none; /* no action feedback */
-    background: var(--shopella-soft-dark); /* stay muted */
+    background: var(--brand-orange-hover);
+    border-color: var(--brand-orange-hover);
   }
 
   .best-row {
@@ -406,29 +395,29 @@
     display: flex; /* title + buttons */
     align-items: center; /* align */
     justify-content: space-between; /* space */
-    gap: 1.2rem; /* spacing */
-    margin-bottom: 2.4rem; /* spacing */
+    gap: 0.75rem; /* spacing */
+    margin-bottom: 1.5rem; /* spacing */
   }
 
   .best-row__title {
-    font-size: clamp(2rem, 2vw, 2.4rem); /* title */
+    font-size: clamp(1.25rem, 2vw, 1.5rem); /* title */
     font-weight: var(--fw-bold); /* bold */
     color: var(--shopella-text-dark); /* section title */
   }
 
   .best-row__subtitle {
-    font-size: 1.25rem; /* subtitle */
+    font-size: 0.7813rem; /* subtitle */
     color: var(--shopella-muted-dark); /* muted */
   }
 
   .best-row__actions {
     display: flex; /* button row */
-    gap: 0.6rem; /* spacing */
+    gap: 0.375rem; /* spacing */
   }
 
   .scroll-btn {
-    width: 3.8rem; /* compact round button */
-    height: 3.8rem; /* compact round button */
+    width: 2.375rem; /* compact round button */
+    height: 2.375rem; /* compact round button */
     border-radius: 9999px; /* full circle */
     border: 1px solid var(--shopella-border-dark); /* subtle border */
     background: var(--shopella-surface-dark); /* dark base */
@@ -450,18 +439,18 @@
   .scroll-btn__icon {
     width: 0; /* triangle using borders */
     height: 0; /* triangle using borders */
-    border-top: 0.6rem solid transparent; /* triangle top */
-    border-bottom: 0.6rem solid transparent; /* triangle bottom */
+    border-top: 0.375rem solid transparent; /* triangle top */
+    border-bottom: 0.375rem solid transparent; /* triangle bottom */
   }
 
   .scroll-btn__icon--right {
-    border-left: 0.9rem solid var(--shopella-orange); /* right triangle */
-    margin-left: 0.2rem; /* optical centering */
+    border-left: 0.5625rem solid var(--shopella-orange); /* right triangle */
+    margin-left: 0.125rem; /* optical centering */
   }
 
   .scroll-btn__icon--left {
-    border-right: 0.9rem solid var(--shopella-orange); /* left triangle */
-    margin-right: 0.2rem; /* optical centering */
+    border-right: 0.5625rem solid var(--shopella-orange); /* left triangle */
+    margin-right: 0.125rem; /* optical centering */
   }
 
   .best-row__list {
@@ -473,8 +462,8 @@
     touch-action: pan-x; /* allow native horizontal swipe scrolling */
     cursor: grab; /* show mouse users that the row can be dragged */
     user-select: none; /* stop selecting content while dragging the row */
-    padding: 0.4rem 0.8rem 0.8rem 0; /* avoid hover clipping */
-    scroll-padding-inline: 0.8rem; /* avoid clipping near row edges */
+    padding: 0.25rem 0.5rem 0.5rem 0; /* avoid hover clipping */
+    scroll-padding-inline: 0.5rem; /* avoid clipping near row edges */
     width: 100%; /* allow overflow */
   }
 
@@ -488,13 +477,13 @@
     flex-direction: column; /* vertical card layout */
     overflow: hidden; /* clip overlay */
     padding: 0; /* stop global .card padding on home rows */
-    min-width: clamp(16.8rem, 14vw, 19rem); /* show about six cards */
+    min-width: clamp(10.5rem, 14vw, 11.875rem); /* show about six cards */
     flex-shrink: 0; /* prevent shrink */
     scroll-snap-align: start; /* keep the left visible card fully shown */
     aspect-ratio: auto; /* stop global .card--product ratio */
     background-image: none; /* stop global product background image behavior */
     --best-row-card-extra: 30px; /* easy height test */
-    min-height: calc(26rem + var(--best-row-card-extra)); /* lower text only */
+    min-height: calc(16.25rem + var(--best-row-card-extra)); /* lower text only */
     background: transparent; /* image fills the card now */
     border: 1px solid var(--shopella-border-dark); /* subtle dark border */
     border-radius: var(--r-md); /* 8px radius */
@@ -513,13 +502,13 @@
 
   .best-row__badge {
     position: absolute; /* top badge */
-    top: 1rem; /* spacing */
-    left: 1rem; /* spacing */
+    top: 0.625rem; /* spacing */
+    left: 0.625rem; /* spacing */
     background: var(--brand-orange); /* accent */
     color: var(--brand-white); /* text */
     font-size: var(--fs-md); /* small */
     font-weight: var(--fw-bold); /* bold */
-    padding: 0.4rem 0.8rem; /* pill */
+    padding: 0.25rem 0.5rem; /* pill */
     border-radius: var(--r-pill); /* pill */
   }
 
@@ -532,31 +521,31 @@
   .best-row__content {
     position: relative; /* content over image */
     z-index: 1; /* keep text above blur */
-    min-height: 10.5rem; /* stable card body */
+    min-height: 6.5625rem; /* stable card body */
     margin-top: auto; /* place text at card bottom */
-    padding: 1.2rem 1.2rem 1.3rem; /* inner spacing */
+    padding: 0.75rem 0.75rem 0.8125rem; /* inner spacing */
     color: var(--shopella-text-dark); /* light text */
     display: grid; /* stack */
-    gap: 0.45rem; /* spacing */
+    gap: 0.2813rem; /* spacing */
     grid-template-rows: auto auto auto 1fr; /* footer sits low */
   }
 
   .best-row__name {
-    font-size: 1.35rem; /* product name */
+    font-size: 0.8438rem; /* product name */
     font-weight: var(--fw-bold); /* bold */
     line-height: 1.2; /* compact name */
   }
 
   .best-row__brand {
     color: var(--shopella-muted-dark); /* category text */
-    font-size: 1.15rem; /* compact meta */
+    font-size: 0.7188rem; /* compact meta */
   }
 
   .best-row__rating {
     display: inline-flex; /* star + text */
     align-items: center; /* align */
-    gap: 0.4rem; /* spacing */
-    font-size: 1.15rem; /* small */
+    gap: 0.25rem; /* spacing */
+    font-size: 0.7188rem; /* small */
   }
 
   .best-row__star {
@@ -568,7 +557,7 @@
   }
 
   .best-row__price {
-    font-size: 1.35rem; /* price size */
+    font-size: 0.8438rem; /* price size */
     font-weight: var(--fw-bold); /* bold */
     color: var(--shopella-orange); /* accent */
   }
@@ -611,7 +600,7 @@
     align-items: center; /* vertical align */
     justify-content: space-between; /* opposite sides */
     flex-wrap: wrap; /* prevent long price overflow */
-    gap: 0.8rem; /* spacing */
+    gap: 0.5rem; /* spacing */
     margin-top: auto; /* bottom row */
   }
 
@@ -619,16 +608,16 @@
     display: inline-flex; /* center text */
     align-items: center; /* center text */
     color: var(--shopella-orange); /* subtle link hint */
-    font-size: 1.15rem; /* compact */
+    font-size: 0.7188rem; /* compact */
     font-weight: var(--fw-bold); /* bold */
   }
 
   .best-row__loading {
-    margin: 1.2rem 0; /* spacing */
+    margin: 0.75rem 0; /* spacing */
   }
 
   .best-row__error {
-    margin: 1.2rem 0; /* spacing */
+    margin: 0.75rem 0; /* spacing */
   }
 
   .brand-mini {
@@ -649,7 +638,7 @@
     background: var(--shopella-surface-dark); /* match newsletter panel */
     border: 1px solid var(--shopella-border-dark); /* panel edge */
     border-radius: var(--r-md); /* 8px radius */
-    padding: 2rem; /* match newsletter spacing */
+    padding: 1.25rem; /* match newsletter spacing */
   }
 
   .brand-mini__label {
@@ -659,20 +648,20 @@
   }
 
   .brand-mini__headline {
-    font-size: clamp(2.2rem, 2.4vw, 2.6rem); /* headline */
+    font-size: clamp(1.375rem, 2.4vw, 1.625rem); /* headline */
     font-weight: var(--fw-bold); /* bold */
-    margin: 0.8rem 0; /* spacing */
+    margin: 0.5rem 0; /* spacing */
     color: var(--shopella-text-dark); /* heading */
   }
 
   .brand-mini__body {
-    font-size: 1.4rem; /* body */
+    font-size: 0.875rem; /* body */
     color: var(--shopella-muted-dark); /* muted */
   }
 
   .brand-mini__link {
     display: inline-block; /* link block */
-    margin-top: 1rem; /* spacing */
+    margin-top: 0.625rem; /* spacing */
     color: var(--shopella-orange); /* accent */
   }
 
@@ -685,7 +674,7 @@
   .brand-mini__image {
     width: 100%; /* full width */
     height: 100%; /* fill panel */
-    min-height: 24rem; /* match newsletter image */
+    min-height: 15rem; /* match newsletter image */
     object-fit: cover; /* crop */
     border: 1px solid var(--shopella-border-dark); /* image edge */
   }
@@ -704,9 +693,9 @@
   }
 
   .social-proof__title {
-    font-size: clamp(2rem, 2vw, 2.4rem); /* title */
+    font-size: clamp(1.25rem, 2vw, 1.5rem); /* title */
     font-weight: var(--fw-bold); /* bold */
-    margin-bottom: 1.2rem; /* spacing */
+    margin-bottom: 0.75rem; /* spacing */
     color: var(--shopella-text-dark); /* title color */
   }
 
@@ -720,7 +709,7 @@
     background: var(--shopella-surface-dark); /* dark shared card surface */
     border: 1px solid var(--shopella-border-dark); /* border */
     border-radius: var(--r-md); /* rounded */
-    padding: 1.6rem; /* spacing */
+    padding: 1rem; /* spacing */
     box-shadow: var(--home-card-shadow); /* subtle depth */
     transition: transform 150ms ease, border-color 150ms ease, box-shadow 150ms ease; /* simple hover */
   }
@@ -732,19 +721,19 @@
   }
 
   .social-proof__name {
-    font-size: 1.4rem; /* name size */
+    font-size: 0.875rem; /* name size */
     font-weight: var(--fw-bold); /* bold */
     color: var(--shopella-text-dark); /* readable on dark surface */
   }
 
   .social-proof__stars {
     color: var(--shopella-orange); /* star color */
-    font-size: 1.2rem; /* small */
-    margin: 0.4rem 0; /* spacing */
+    font-size: 0.75rem; /* small */
+    margin: 0.25rem 0; /* spacing */
   }
 
   .social-proof__text {
-    font-size: 1.3rem; /* text */
+    font-size: 0.8125rem; /* text */
     color: var(--shopella-muted-dark); /* softer white on dark surface */
   }
 
@@ -766,7 +755,7 @@
   .banner__subcopy {
     color: var(--shopella-muted-dark); /* hero text color */
     font-weight: var(--fw-semibold); /* semibold body */
-    font-size: 1.45rem; /* larger hero subcopy */
+    font-size: 0.9063rem; /* larger hero subcopy */
   }
 
   .category-card__overlay {
@@ -780,7 +769,7 @@
     display: block; /* link block */
     background-size: cover; /* image cover */
     background-position: center; /* center image */
-    min-width: clamp(16.8rem, 14vw, 19rem); /* keep width */
+    min-width: clamp(10.5rem, 14vw, 11.875rem); /* keep width */
     flex-shrink: 0; /* keep size */
   }
 
@@ -792,7 +781,7 @@
 
   .product-scroll__content {
     position: relative; /* above overlay */
-    padding: 1.2rem; /* inner spacing */
+    padding: 0.75rem; /* inner spacing */
     color: var(--brand-white); /* white text */
   }
 
@@ -811,12 +800,12 @@
 
   .home-page > .full-bleed .full-bleed__title {
     position: absolute; /* keep title inside image */
-    top: 2rem; /* image top padding */
-    left: calc(var(--home-full-inline) + 2rem); /* image left plus inner pad */
-    max-width: min(56rem, calc(100% - (var(--home-full-inline) * 2) - 4rem)); /* stay inside */
+    top: 1.25rem; /* image top padding */
+    left: calc(var(--home-full-inline) + 1.25rem); /* image left plus inner pad */
+    max-width: min(35rem, calc(100% - (var(--home-full-inline) * 2) - 2.5rem)); /* stay inside */
     margin: 0; /* no outside heading space */
     color: var(--shopella-text-light); /* readable on image */
-    font-size: clamp(3rem, 3.6vw, 4.8rem); /* hero-like title size */
+    font-size: clamp(1.875rem, 3.6vw, 3rem); /* hero-like title size */
     font-weight: var(--fw-black); /* strong hero style */
     line-height: 1.04; /* readable lines */
   }
@@ -833,7 +822,7 @@
     }
 
     .best-row__card {
-      min-width: clamp(16.8rem, 14vw, 19rem); /* desktop cards */
+      min-width: clamp(10.5rem, 14vw, 11.875rem); /* desktop cards */
     }
 
     .brand-mini__card {
@@ -865,7 +854,7 @@
     }
 
     .home-hero__title {
-      font-size: clamp(3.2rem, 10vw, 4rem); /* smaller mobile hero title */
+      font-size: clamp(2rem, 10vw, 2.5rem); /* smaller mobile hero title */
     }
 
     .home-hero__cards {
@@ -883,23 +872,23 @@
     }
 
     .banner__title {
-      font-size: clamp(3rem, 9vw, 3.8rem); /* make mobile hero title a bit smaller */
+      font-size: clamp(1.875rem, 9vw, 2.375rem); /* make mobile hero title a bit smaller */
       line-height: 1.02; /* readable mobile lines */
     }
 
     .home-hero__title {
-      font-size: clamp(3.2rem, 10vw, 4rem); /* keep hero title stronger than old banner */
+      font-size: clamp(2rem, 10vw, 2.5rem); /* keep hero title stronger than old banner */
     }
 
   
   .home-page > .full-bleed .full-bleed__title {
     position: absolute; /* keep title inside image */
-    top: 2rem; /* image top padding */
-    left: calc(var(--home-full-inline) + 2rem); /* image left plus inner pad */
-    max-width: min(56rem, calc(100% - (var(--home-full-inline) * 2) - 4rem)); /* stay inside */
+    top: 1.25rem; /* image top padding */
+    left: calc(var(--home-full-inline) + 1.25rem); /* image left plus inner pad */
+    max-width: min(35rem, calc(100% - (var(--home-full-inline) * 2) - 2.5rem)); /* stay inside */
     margin: 0; /* no outside heading space */
     color: var(--shopella-text-light); /* readable on image */
-    font-size: clamp(3rem, 3.6vw, 4.8rem); /* hero-like title size */
+    font-size: clamp(1.875rem, 3.6vw, 3rem); /* hero-like title size */
     font-weight: var(--fw-black); /* strong hero style */
     line-height: 1.04; /* readable lines */
   }
@@ -918,7 +907,7 @@
 
 .home-page .scroll-row__card {
   gap: var(--shopella-card-gap-sm); /* match best row card gap */
-  padding: 0 0.8rem 0.8rem 0; /* match best row list padding */
+  padding: 0 0.5rem 0.5rem 0; /* match best row list padding */
 }
 .home-page .featured-grid__title,
 .home-page .best-row__title,
@@ -934,3 +923,99 @@
 
 
 
+
+@layer components {
+  .category-card {
+    position: relative;
+    display: block;
+    height: clamp(13.75rem, 24vw, 16.25rem);
+    overflow: hidden;
+    border: 1px solid var(--shopella-border-dark);
+    border-radius: var(--r-md);
+    color: var(--shopella-text-dark);
+    box-shadow: var(--home-card-shadow);
+    text-decoration: none;
+    transition: transform 150ms ease, border-color 150ms ease, box-shadow 150ms ease;
+  }
+
+  .category-card::after {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, var(--shopella-overlay-clear) 35%, var(--shopella-overlay-strong));
+    content: "";
+  }
+
+  .category-card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 200ms ease;
+  }
+
+  .category-card__content {
+    position: absolute;
+    right: 1rem;
+    bottom: 1rem;
+    left: 1rem;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    font-family: var(--font-display);
+    font-size: clamp(1.25rem, 2vw, 1.625rem);
+    font-weight: var(--fw-bold);
+  }
+
+  .category-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--shopella-orange);
+    box-shadow: var(--home-card-shadow-hover);
+  }
+
+  .category-card:hover .category-card__image {
+    transform: scale(1.04);
+  }
+}
+@layer components {
+  .best-row__media::after {
+    background: linear-gradient(180deg, var(--shopella-overlay-clear) 42%, var(--shopella-overlay-strong));
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  @media (min-width: 768px) {
+    .trustbar__item:not(:last-child) {
+      border-right: 1px solid var(--shopella-border-dark);
+    }
+  }
+}
+@layer components {
+  .featured-card::after {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: linear-gradient(180deg, var(--shopella-overlay-soft), var(--shopella-overlay-strong));
+    content: "";
+  }
+}
+@layer components {
+  .home-hero__cards {
+    opacity: 0.92;
+  }
+
+  .home-hero__card {
+    backdrop-filter: saturate(0.9);
+  }
+
+  .home-hero__card-label {
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .best-row__card:focus-visible,
+  .category-card:focus-visible,
+  .featured-card:focus-within {
+    border-color: var(--brand-orange);
+  }
+}
