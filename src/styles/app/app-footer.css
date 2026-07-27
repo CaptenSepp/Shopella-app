@@ -26,9 +26,9 @@
   display: flex; /* split footer content */
   width: 100%; /* keep full width */
   flex-direction: column; /* stack on small screens */
-  gap: 1.5rem; /* section spacing */
-  padding-left: clamp(1rem, 3vw, 4rem); /* shared side padding */
-  padding-right: clamp(1rem, 3vw, 4rem); /* shared side padding */
+  gap: 0.9375rem; /* section spacing */
+  padding-left: clamp(0.625rem, 3vw, 2.5rem); /* shared side padding */
+  padding-right: clamp(0.625rem, 3vw, 2.5rem); /* shared side padding */
 }
 
 .footer__lead {
@@ -36,16 +36,16 @@
 }
 
 .footer__brand { font-size: var(--fs-3xl); font-weight: var(--fw-bold); text-align: left; }
-.footer__description { max-width: 38rem; margin-top: 0.8rem; color: var(--app-text-muted); text-align: left; line-height: 1.5; }
-.footer__links a { min-height: 4.4rem; display: inline-flex; align-items: center; color: var(--app-text); }
+.footer__description { max-width: 23.75rem; margin-top: 0.5rem; color: var(--app-text-muted); text-align: left; line-height: 1.5; }
+.footer__links a { min-height: 2.75rem; display: inline-flex; align-items: center; color: var(--app-text); }
 .footer__links a:hover { color: var(--brand-orange); }
 
 .footer__hours {
-  margin-top: 0.25rem; /* small gap before opening hours */
+  margin-top: 0.1563rem; /* small gap before opening hours */
 }
 
 .footer__note {
-  margin-bottom: 0.75rem; /* space before link grid */
+  margin-bottom: 0.4688rem; /* space before link grid */
   text-align: left; /* match footer link column */
   color: var(--app-text-muted); /* quiet demo note */
 }
@@ -53,7 +53,7 @@
 .footer__links {
   display: grid; /* links grid */
   grid-template-columns: repeat(2, minmax(0, 1fr)); /* two columns by default */
-  gap: 0.75rem; /* link spacing */
+  gap: 0.4688rem; /* link spacing */
 }
 
 .footer__demo-link {
@@ -61,7 +61,7 @@
 }
 
 .footer__meta {
-  padding-bottom: 1rem; /* Give the copyright line a little space from the bottom edge. */
+  padding-bottom: 0.625rem; /* Give the copyright line a little space from the bottom edge. */
 }
 
 @media (min-width: 768px) {
@@ -81,4 +81,35 @@
   .footer__links {
     grid-template-columns: repeat(3, minmax(0, 1fr)); /* three columns on desktop */
   }
+}
+
+.footer {
+  margin-top: auto;
+}
+
+.footer__section {
+  border-bottom: 1px solid var(--app-border);
+}
+
+.footer__brand {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+.footer__note {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.footer__links a {
+  border-radius: var(--r-sm);
+  transition: color 150ms ease, background 150ms ease;
+}
+
+.footer__meta {
+  color: var(--app-text-muted);
+  font-size: var(--fs-sm);
+  padding-top: 0.75rem;
 }

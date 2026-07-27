@@ -1,26 +1,26 @@
 @layer components {
   .about-page {
-    padding: 2.4rem 1.6rem; /* base page padding */
+    padding: 1.5rem 1rem; /* base page padding */
     color: var(--app-text); /* themed page text */
   }
 
   .about-hero {
-    min-height: 32rem; /* medium hero height */
+    min-height: 20rem; /* medium hero height */
     background: var(--brand-black); /* dark hero block */
     color: var(--brand-white); /* light text */
     border-radius: var(--r-lg); /* soft corners */
     display: flex; /* center content */
     align-items: center; /* vertical center */
-    padding: 3.2rem; /* roomy spacing */
+    padding: 2rem; /* roomy spacing */
   }
 
   .about-hero__content {
-    max-width: 68rem; /* readable width */
+    max-width: 42.5rem; /* readable width */
   }
 
   .about-hero__label {
     font-size: var(--fs-md); /* small label */
-    letter-spacing: 0.2rem; /* spaced label */
+    letter-spacing: 0.125rem; /* spaced label */
     opacity: 0.75; /* subtle label */
   }
 
@@ -31,56 +31,56 @@
   }
 
   .about-hero__intro {
-    margin-top: 1.2rem; /* spacing */
-    max-width: 56rem; /* readable paragraph */
+    margin-top: 0.75rem; /* spacing */
+    max-width: 35rem; /* readable paragraph */
     font-size: var(--fs-md); /* medium text */
     opacity: 0.9; /* softer tone */
   }
 
   .about-hero__actions {
-    margin-top: 1.6rem; /* spacing */
+    margin-top: 1rem; /* spacing */
     display: flex; /* button row */
     flex-wrap: wrap; /* wrap on small */
-    gap: 1.2rem; /* button gap */
+    gap: 0.75rem; /* button gap */
   }
 
   .about-divider {
     height: 1px; /* thin divider */
     background: var(--border-color); /* subtle line */
-    margin: 2.4rem 0; /* vertical space */
+    margin: 1.5rem 0; /* vertical space */
   }
 
   .about-section__title {
     font-size: var(--fs-2xl); /* section title */
     font-weight: var(--fw-bold); /* strong title */
-    margin-bottom: 1.2rem; /* spacing */
+    margin-bottom: 0.75rem; /* spacing */
   }
 
   .about-paragraph {
     font-size: var(--fs-md); /* body size */
     color: var(--text-muted); /* soft text */
-    margin-bottom: 1.2rem; /* spacing */
+    margin-bottom: 0.75rem; /* spacing */
   }
 
   .about-story {
     display: grid; /* two columns */
     grid-template-columns: 1fr; /* stacked by default */
-    gap: 2.4rem; /* column gap */
+    gap: 1.5rem; /* column gap */
     align-items: center; /* vertical align */
   }
 
   .about-story__image {
     width: 100%; /* full width */
     height: 100%; /* fill box */
-    max-height: 36rem; /* cap height */
+    max-height: 22.5rem; /* cap height */
     object-fit: cover; /* crop nicely */
     border-radius: var(--r-lg); /* soft edges */
     filter: saturate(1.05); /* subtle pop */
   }
 
   .about-values {
-    margin-top: 2.4rem; /* section spacing */
-    padding: 2.4rem; /* inner space */
+    margin-top: 1.5rem; /* section spacing */
+    padding: 1.5rem; /* inner space */
     background: var(--app-surface-alt); /* light section */
     border-radius: var(--r-lg); /* soft corners */
   }
@@ -88,14 +88,14 @@
   .about-values__grid {
     display: grid; /* grid layout */
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* responsive cards */
-    gap: 1.6rem; /* card gap */
+    gap: 1rem; /* card gap */
   }
 
   .about-card {
     background: var(--brand-gray-600); /* dark shared card surface */
     border: 1px solid var(--border-color); /* card border */
     border-radius: var(--r-lg); /* soft corners */
-    padding: 1.6rem; /* inner spacing */
+    padding: 1rem; /* inner spacing */
     height: 100%; /* equal height */
   }
 
@@ -103,7 +103,7 @@
     font-size: var(--fs-lg); /* card title */
     font-weight: var(--fw-bold); /* bold title */
     color: var(--brand-white); /* readable on dark surface */
-    margin-bottom: 0.6rem; /* spacing */
+    margin-bottom: 0.375rem; /* spacing */
   }
 
   .about-card__body {
@@ -112,17 +112,17 @@
   }
 
   .about-stats {
-    margin-top: 2.4rem; /* section spacing */
+    margin-top: 1.5rem; /* section spacing */
   }
 
   .about-stats__box {
     background: var(--brand-gray-600); /* dark shared card surface */
     border: 1px solid var(--border-color); /* border */
     border-radius: var(--r-lg); /* soft corners */
-    padding: 1.6rem; /* inner spacing */
+    padding: 1rem; /* inner spacing */
     display: grid; /* stats grid */
     grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); /* responsive columns */
-    gap: 1.2rem; /* spacing */
+    gap: 0.75rem; /* spacing */
   }
 
   .about-stats__value {
@@ -137,13 +137,13 @@
   }
 
   .about-team {
-    margin-top: 2.4rem; /* section spacing */
+    margin-top: 1.5rem; /* section spacing */
   }
 
   .about-team__grid {
     display: grid; /* team grid */
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* responsive cards */
-    gap: 1.6rem; /* spacing */
+    gap: 1rem; /* spacing */
   }
 
   .about-team__card {
@@ -151,11 +151,11 @@
   }
 
   .about-team__avatar {
-    width: 6rem; /* avatar size */
-    height: 6rem; /* avatar size */
+    width: 3.75rem; /* avatar size */
+    height: 3.75rem; /* avatar size */
     border-radius: 9999px; /* round avatar */
     background: var(--app-surface-alt); /* placeholder */
-    margin: 0 auto 1rem; /* center + space */
+    margin: 0 auto 0.625rem; /* center + space */
   }
 
   .about-team__name {
@@ -167,7 +167,7 @@
   .about-team__role {
     font-size: var(--fs-md); /* role size */
     color: rgba(255, 255, 255, 0.8); /* softer white on dark surface */
-    margin-bottom: 0.6rem; /* spacing */
+    margin-bottom: 0.375rem; /* spacing */
   }
 
   .about-team__quote {
@@ -177,23 +177,23 @@
   }
 
   .about-hq {
-    margin-top: 2.4rem; /* section spacing */
+    margin-top: 1.5rem; /* section spacing */
   }
 
   .about-hq__grid {
     display: grid; /* two cards */
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); /* responsive */
-    gap: 1.6rem; /* spacing */
+    gap: 1rem; /* spacing */
   }
 
   .about-cta {
-    margin-top: 2.4rem; /* section spacing */
+    margin-top: 1.5rem; /* section spacing */
   }
 
   .about-cta__box {
     border: 1px solid var(--border-color); /* border */
     border-radius: var(--r-lg); /* soft corners */
-    padding: 2.4rem; /* spacing */
+    padding: 1.5rem; /* spacing */
     background: var(--brand-gray-600); /* dark shared card surface */
   }
 
@@ -201,28 +201,72 @@
     font-size: var(--fs-2xl); /* strong headline */
     font-weight: var(--fw-bold); /* bold */
     color: var(--brand-white); /* readable on dark surface */
-    margin-bottom: 0.8rem; /* spacing */
+    margin-bottom: 0.5rem; /* spacing */
   }
 
   .about-cta__text {
     font-size: var(--fs-md); /* supporting text */
     color: rgba(255, 255, 255, 0.8); /* softer white on dark surface */
-    margin-bottom: 1.6rem; /* spacing */
+    margin-bottom: 1rem; /* spacing */
   }
 
   .about-cta__actions {
     display: flex; /* buttons row */
     flex-wrap: wrap; /* wrap on small */
-    gap: 1.2rem; /* spacing */
+    gap: 0.75rem; /* spacing */
   }
 
   @media (min-width: 768px) {
     .about-page {
-      padding: 3.2rem 2.4rem; /* bigger padding */
+      padding: 2rem 1.5rem; /* bigger padding */
     }
 
     .about-story {
       grid-template-columns: 1.1fr 1fr; /* two columns */
+    }
+  }
+}
+
+@layer components {
+  .about-page {
+    width: min(100% - 2rem, var(--shopella-content-width));
+    margin: 0 auto;
+    padding: 3rem 0 4rem;
+  }
+
+  .about-hero {
+    border: 1px solid var(--shopella-border-dark);
+    background: linear-gradient(135deg, var(--shopella-bg-dark), var(--shopella-surface-dark));
+    box-shadow: var(--shopella-shadow-soft);
+  }
+
+  .about-hero__label {
+    color: var(--brand-orange);
+    opacity: 1;
+  }
+
+  .about-values {
+    border: 1px solid var(--app-border);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .about-card,
+  .about-stats__box,
+  .about-cta__box {
+    background: var(--shopella-surface-dark);
+    border-color: var(--shopella-border-dark);
+    box-shadow: var(--shopella-shadow-soft);
+  }
+
+  @media (max-width: 767px) {
+    .about-page {
+      width: min(100% - 1.5rem, var(--shopella-content-width));
+      padding-top: 2rem;
+    }
+
+    .about-hero {
+      min-height: 17.5rem;
+      padding: 1.5rem;
     }
   }
 }
