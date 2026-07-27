@@ -1,6 +1,6 @@
 # Shopella
 
-Shopella is a portfolio storefront built with React 19, Vite, and TypeScript. It demonstrates a complete shopping journey: catalogue browsing, URL filters, product details, wishlist, cart, authenticated checkout, permanent order history, and a streamed AI shopping assistant.
+Shopella is a portfolio storefront built with React 19 and TypeScript. It keeps the original Vite application as the fast development reference while Next.js App Router is the production target. It demonstrates a complete shopping journey: catalogue browsing, URL filters, product details, wishlist, cart, checkout, orders, and a streamed AI shopping assistant.
 
 **Live demo:** `https://your-shopella-project.vercel.app` *(replace after deployment)*
 
@@ -12,10 +12,9 @@ Shopella is a portfolio storefront built with React 19, Vite, and TypeScript. It
 
 - Responsive home, catalogue, product gallery, cart, checkout, account, and orders pages
 - DummyJSON catalogue data with React Query caching, retries, and abort signals
-- Supabase email/password authentication with session restoration
+- Browser-local demo login and demo orders that work without a server or Supabase
+- Optional Supabase authentication and order persistence
 - Protected checkout, account, order history, and confirmation routes
-- Server-verified prices, discounts, stock, and authenticated order ownership
-- Supabase order persistence with Row Level Security and server-only table access
 - Streamed Groq shopping advice using AI SDK v6 and official AI Elements
 - Five assistant requests per minute using a hashed client fingerprint
 - Keyboard dialogs, focus trapping, skip navigation, reduced motion, and WCAG checks
@@ -24,18 +23,18 @@ Shopella is a portfolio storefront built with React 19, Vite, and TypeScript. It
 ## Architecture
 
 ```text
-React UI
+Shared React UI
 ├─ Redux Toolkit: cart, wishlist, safe mirrored user
 ├─ React Query: products, order reads, order mutations
-└─ Supabase browser client: authentication session
-        │ bearer access token
+└─ Vite development reference and Next.js App Router production target
+        │
         ▼
-Vercel TypeScript functions
-├─ /api/orders ── verifies user + DummyJSON products ── Supabase orders
-└─ /api/assistant ── validates + rate limits ── Groq GPT-OSS 120B
+Next.js API routes
+├─ /api/orders ── demo orders or optional Supabase persistence
+└─ /api/assistant ── streamed shopping advice
 ```
 
-The local Vite development adapter calls the same shared order and assistant handlers as Vercel. The archived Express server remains unchanged as project history and is not part of the active app.
+Use Vite for day-to-day UI and CSS work. Use Next.js to test App Router, API routes, and the production build. The archived Express server remains unchanged as project history and is not part of the active app.
 
 ## Project structure
 
@@ -45,22 +44,28 @@ The local Vite development adapter calls the same shared order and assistant han
 - `src/components/ui` — reusable loading, dialog-focus, toast, and assistant UI
 - `src/components/ai-elements` — official streamed conversation and message components
 - `src/styles` — purpose-specific CSS/BEM files and shared theme tokens
-- `api` — Vercel order and assistant functions plus shared server modules
+- `api` — Vite/Vercel API adapter and shared server modules
+- `app/api` — Next.js order and assistant API routes
 - `supabase/migrations` — orders, rate-limit storage, indexes, checks, and RLS
 - `e2e` — authenticated checkout, keyboard, and automated accessibility tests
 - `archive` — inactive historical Express backend
 
 ## Local setup
 
-Requirements: Node.js 20+, npm, a Supabase project, and a Groq API key.
+Requirements: Node.js 20+ and npm. Supabase and Groq configuration are optional for their respective live integrations; demo login and demo orders work without them.
 
 ```bash
 npm install
-copy .env.example .env.local
+npm run vite:dev
+```
+
+For Next.js development and production checks:
+
+```bash
 npm run dev
 ```
 
-Fill `.env.local` with:
+Optional live integrations use `.env.local`:
 
 ```env
 VITE_SUPABASE_URL=your_project_url
@@ -69,16 +74,16 @@ SUPABASE_SECRET_KEY=your_server_secret_key
 GROQ_API_KEY=your_groq_key
 ```
 
-Only variables beginning with `VITE_` are exposed to the browser. Keep the Supabase secret and Groq key only in local/Vercel server environment settings. Never commit `.env.local`.
+Keep Supabase secrets and the Groq key only in local/Vercel server environment settings. Never commit `.env.local`.
 
-## Supabase setup
+## Optional Supabase setup
 
 1. Create a Supabase project.
 2. Run [`supabase/migrations/202607190001_shopella_orders.sql`](./supabase/migrations/202607190001_shopella_orders.sql) in the Supabase SQL editor or with the Supabase CLI.
 3. For this portfolio flow, disable email confirmation so registration can sign in immediately.
 4. Add the browser and server environment values shown above.
 
-The browser cannot read or write the `orders` table directly. Vercel verifies the access token and uses the server secret for scoped reads and writes.
+The browser cannot read or write the `orders` table directly. When configured, the server verifies the access token and uses the server secret for scoped reads and writes.
 
 ## API contracts
 
@@ -106,13 +111,16 @@ Accepts AI SDK `UIMessage[]` and returns a streamed UI message response. It uses
 ## Commands
 
 ```bash
-npm run dev       # local Vite app and API adapter
+npm run vite:dev  # original Vite development app
+npm run dev       # Next.js development server
 npm run typecheck # TypeScript check
 npm run lint      # ESLint
 npm test          # Vitest unit/component tests with coverage
 npm run test:e2e  # Playwright checkout and accessibility flows
-npm run build     # production build
-npm run preview   # preview the production build
+npm run vite:build # Vite production build
+npm run build      # Next.js production build
+npm run start      # start the built Next.js production app
+npm run vite:preview # preview the Vite production build
 ```
 
 Playwright needs a browser once per machine:
@@ -131,5 +139,5 @@ This project was upgraded with AI assistance for architecture review, code gener
 - Checkout confirms a portfolio order; there is no payment processor or real fulfilment.
 - Email confirmation is intentionally disabled for immediate portfolio registration.
 - AI advice may be incomplete or imperfect and should not be treated as professional advice.
-- The rate limiter needs the Supabase migration and server credentials to work across Vercel instances.
+- Supabase persistence is optional; without it, demo login and orders stay browser-local.
 - A custom domain, newsletter provider, and separate active Express server are outside this project.
