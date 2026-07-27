@@ -15,14 +15,16 @@ describe('products services', () => {
         products: [
           { id: 1, title: 'Clean', description: 'Good', price: 10, discountPercentage: 0, rating: 4, stock: 5, brand: 'Brand', category: 'beauty', thumbnail: 'a.jpg', images: ['a.jpg'] },
           { id: 2, title: 99, description: 'Broken title', price: 20, discountPercentage: 0, rating: 4, stock: 5, brand: 'Brand', category: 'beauty', thumbnail: 'b.jpg', images: ['b.jpg'] },
+          { id: 3, title: 'Unbranded', description: 'Good', price: 30, discountPercentage: 0, rating: 4, stock: 5, category: 'groceries', thumbnail: 'c.jpg', images: ['c.jpg'] },
         ],
       }),
     }))
 
     const products = await getProducts() // load and validate products
 
-    expect(products).toHaveLength(2) // tolerant parsing keeps both items
+    expect(products).toHaveLength(3) // tolerant parsing keeps all usable items
     expect(products[1].title).toBe('Untitled product') // broken title gets fallback
+    expect(products[2].brand).toBe('Unknown brand') // missing optional brand gets the shared fallback
     expect(getLastProductsValidationWarnings()).toHaveLength(1) // warning stored for debug
     expect(consoleErrorSpy).toHaveBeenCalled() // warning logged once
   })

@@ -15,7 +15,7 @@ const Banner = () => { // hero banner section
   return (
     <div className="home-hero-wrap"> {/* keep wrapper for layout consistency */}
       <section className="home-hero full-bleed"> {/* premium dark hero */}
-        <Image src={topBannerImg} alt="" className="home-hero__bg" aria-hidden="true" fetchPriority="high" /> {/* load the main hero first */}
+        <Image src={topBannerImg} alt="" className="home-hero__bg" aria-hidden="true" fetchPriority="high" loading="eager" /> {/* load the main hero first */}
 
         <div className="home-hero__content"> {/* text and cards layout */}
           <div className="home-hero__copy"> {/* left hero copy */}
