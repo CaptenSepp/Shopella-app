@@ -1,12 +1,23 @@
-import React, { lazy, Suspense } from "react"
-import { NavLink } from "react-router-dom"
+import React, { lazy, Suspense, useEffect } from "react"
+import { NavLink, useLocation } from "react-router-dom"
 import Header from "@/layouts/Header"
 import Main from "@/layouts/Main"
 
 const AssistantFab = lazy(() => import("@/components/ui/AssistantFab")) // keep the AI interface in its own bundle
 
+const ScrollToTop = () => {
+  const { pathname, search } = useLocation()
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" })
+  }, [pathname, search])
+
+  return null
+}
+
 const Layout: React.FC = () => ( // app shell with header, main, footer
   <div className="layout">
+    <ScrollToTop />
     <a href="#main-content" className="skip-link">Skip to main content</a>
     <Header /> {/* site header */}
 
