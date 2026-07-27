@@ -1,10 +1,10 @@
 @layer utilities {
   .u-text-xs {
-    font-size: var(--fs-md); /* extra small */
+    font-size: var(--fs-sm); /* compact helper text */
   }
 
   .u-text-sm {
-    font-size: var(--fs-md); /* small */
+    font-size: var(--fs-sm); /* small */
   }
 
   .u-text-md {
@@ -36,11 +36,11 @@
   }
 
   .u-font-light {
-    font-weight: var(--fw-semibold); /* keep at least semibold */
+    font-weight: 400;
   }
 
   .u-font-medium {
-    font-weight: var(--fw-semibold); /* keep at least semibold */
+    font-weight: 500;
   }
 
   .u-font-semibold {

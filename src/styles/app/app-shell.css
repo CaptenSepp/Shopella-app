@@ -9,8 +9,8 @@
   display: flex;
   min-height: 100vh;
   flex-direction: column;
-  padding-left: 1rem;
-  padding-right: 1rem; /* sticky footer layout */
+  padding-left: 0.625rem;
+  padding-right: 0.625rem; /* sticky footer layout */
   gap: 0; /* keep zero vertical gap without unsupported utility */
   background: var(--app-layout-bg); /* global page background */
   padding-top: var(--header-total-h); /* offset the full fixed header */
@@ -30,15 +30,15 @@
 .app-page-shell {
   margin-left: auto; /* center page content */
   margin-right: auto; /* center page content */
-  padding: 1rem; /* shared page spacing */
+  padding: 0.625rem; /* shared page spacing */
 }
 
 .app-page-shell--narrow {
-  max-width: 28rem; /* compact state pages */
+  max-width: 17.5rem; /* compact state pages */
 }
 
 .app-page-shell--wide {
-  max-width: 64rem; /* standard content pages */
+  max-width: 40rem; /* standard content pages */
 }
 
 .app-page-shell--center {
@@ -48,13 +48,13 @@
 .app-state-panel__actions {
   display: flex; /* action row */
   justify-content: center; /* center buttons */
-  gap: 0.75rem; /* keep button spacing */
+  gap: 0.4688rem; /* keep button spacing */
 }
 
 @media (max-width: 640px) {
   .layout {
-    padding-left: 1.2rem; /* slightly tighter mobile shell */
-    padding-right: 1.2rem; /* slightly tighter mobile shell */
+    padding-left: 0.75rem; /* slightly tighter mobile shell */
+    padding-right: 0.75rem; /* slightly tighter mobile shell */
   }
 }
 
@@ -68,7 +68,7 @@
   display: flex;
   width: 100%;
   flex-direction: column;
-  padding: 1rem;
+  padding: 0.625rem;
 }
 
 .flex-column__banner {
@@ -84,24 +84,24 @@
 .scroll-row__card {
   display: flex;
   width: 100%;
-  gap: 1.5rem;
+  gap: 0.9375rem;
   overflow-x: auto;
   overflow-y: hidden;
-  padding-bottom: 0.5rem;
+  padding-bottom: 0.3125rem;
 }
 
 .scroll-row__card_img {
-  max-height: 3rem;
+  max-height: 1.875rem;
   object-fit: cover;
 }
 
 .btn-lg {
-  padding: 0.75rem 1.75rem;
+  padding: 0.4688rem 1.0938rem;
   font-size: var(--fs-lg);
 }
 
 .card--product_img {
   min-height: 180px;
-  border-radius: 0.5rem;
+  border-radius: 0.3125rem;
   object-fit: cover;
 }
