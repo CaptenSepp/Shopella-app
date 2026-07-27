@@ -23,7 +23,7 @@ const Header = () => (
     </header>
 
     {/* Reuse the existing mobile bottom-bar class name. */}
-    <NavbarIcons className="header-icons-bar--mobile md:hidden" />
+    <NavbarIcons mobile className="header-icons-bar--mobile md:hidden" />
   </div>
 )
 

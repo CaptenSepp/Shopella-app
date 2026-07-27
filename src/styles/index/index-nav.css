@@ -2,7 +2,7 @@
   .nav-link {
     @apply inline-flex items-center self-stretch rounded-md font-medium text-white; /* let the hover area reach the full header row height */
     color: var(--app-header-text); /* themed nav text */
-    padding: 0 0.55rem; /* use height for vertical sizing */
+    padding: 0 0.3438rem; /* use height for vertical sizing */
     white-space: nowrap; /* keep nav text on one line */
   }
 
@@ -28,7 +28,7 @@
   .nav-link__label {
     display: inline-flex; /* keep text and hover area together */
     align-items: center; /* vertical align text */
-    padding: 0.5rem 0.8rem; /* smaller visual hover area */
+    padding: 0.3125rem 0.5rem; /* smaller visual hover area */
     border-radius: var(--r-md); /* match button corners */
     transition: background 0.15s; /* smooth hover */
     white-space: nowrap; /* keep About Us on one line */
@@ -59,12 +59,12 @@
   }
 
   .footer-nav {
-    padding: 0.5rem; /* footer nav spacing */
+    padding: 0.3125rem; /* footer nav spacing */
     display: flex; /* footer nav row */
     flex-wrap: wrap; /* allow wrap */
-    gap: 0.5rem; /* link gap */
+    gap: 0.3125rem; /* link gap */
     justify-content: center; /* center footer links */
-    margin-bottom: 0.5rem; /* space below links */
+    margin-bottom: 0.3125rem; /* space below links */
   }
 
   .footer .nav-link {
@@ -82,12 +82,30 @@
 
   @media (max-width: 767px) {
     .nav-link {
-      padding: 0 0.9rem; /* add more space between top header nav buttons on phones */
+      padding: 0 0.5625rem; /* add more space between top header nav buttons on phones */
     }
 
     .nav-link__label {
-      padding: 0.35rem 0.18rem; /* keep shape but tighter */
-      font-size: 1.3rem; /* slightly smaller nav text on phones */
+      padding: 0.2188rem 0.1125rem; /* keep shape but tighter */
+      font-size: 0.8125rem; /* slightly smaller nav text on phones */
     }
+  }
+}
+
+@layer components {
+  .header-nav-bar__link.nav-link-active .nav-link__label {
+    position: relative;
+    color: var(--brand-orange);
+    font-weight: var(--fw-bold);
+  }
+
+  .header-nav-bar__link.nav-link-active .nav-link__label::after {
+    position: absolute;
+    right: 0.5rem;
+    bottom: 0;
+    left: 0.5rem;
+    height: 2px;
+    background: currentColor;
+    content: "";
   }
 }
