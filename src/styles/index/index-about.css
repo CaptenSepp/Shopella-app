@@ -270,3 +270,10 @@
     }
   }
 }
+
+/* About motion hierarchy */
+@layer components {
+  .about-card { transition: none; }
+  .about-card:hover { transform: none; border-color: var(--shopella-border-dark); box-shadow: var(--shopella-shadow-soft); }
+  .about-stats__value { font-variant-numeric: tabular-nums; }
+}

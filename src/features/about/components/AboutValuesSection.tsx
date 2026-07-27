@@ -1,4 +1,5 @@
 import { stats, values } from "../about-data"
+import AnimatedStatValue from "./AnimatedStatValue"
 
 const AboutValuesSection = () => (
   <>
@@ -17,7 +18,7 @@ const AboutValuesSection = () => (
       <div className="about-stats__box">
         {stats.map((statItem) => (
           <div key={statItem.label} className="about-stats__item">
-            <div className="about-stats__value">{statItem.value}</div>
+            <AnimatedStatValue value={statItem.value} />
             <div className="about-stats__label">{statItem.label}</div>
           </div>
         ))}
