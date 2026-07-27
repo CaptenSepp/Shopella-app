@@ -113,3 +113,7 @@
   font-size: var(--fs-sm);
   padding-top: 0.75rem;
 }
+
+/* Full-bleed footer shell */
+.footer { width: 100vw; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); }
+.footer__content { width: min(calc(100% - 2.5rem), var(--shopella-content-width)); margin-inline: auto; padding-inline: 0; }
