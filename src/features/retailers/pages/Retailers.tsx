@@ -1,22 +1,24 @@
 import React from "react";
 
-const Retailers: React.FC = () => ( // simple retailers page
-  <div className="flex flex-col gap-6 px-4 py-10"> {/* base page spacing */}
-    <div className="flex flex-col gap-2"> {/* heading block */}
-      <h1 className="u-text-2xl u-font-bold">Retailers</h1> {/* page title */}
-      <p className="text-[color:var(--text-muted)]">
-        Find nearby retailers on the map below.
-      </p>
+const Retailers: React.FC = () => (
+  <div className="retailers-page">
+    <div className="retailers-page__intro">
+      <p className="retailers-page__eyebrow">Find us locally</p>
+      <h1>Retailers</h1>
+      <p>Find nearby retailers on the map below.</p>
     </div>
 
-    <div className="rounded-lg border border-[color:var(--border-color)] overflow-hidden bg-[color:var(--app-surface)]"> {/* map frame */}
+    <div className="retailers-page__map">
       <iframe
         title="Retailers map"
         src="https://www.openstreetmap.org/export/embed.html?bbox=-122.516%2C37.706%2C-122.357%2C37.816&layer=mapnik"
-        className="w-full h-[420px]" // fixed height for map
-        loading="lazy" // load map only when visible
+        loading="lazy"
       />
     </div>
+
+    <a className="retailers-page__map-link" href="https://www.openstreetmap.org/" target="_blank" rel="noreferrer">
+      Open the map in a new tab
+    </a>
   </div>
 )
 
