@@ -14,34 +14,34 @@
   .products-filters-sheet__panel {
     position: absolute; /* anchor to viewport bottom */
     inset-inline: 0; /* full width */
-    top: calc(var(--header-h) + 0.8rem); /* always start below the fixed header */
+    top: calc(var(--header-h) + 0.5rem); /* always start below the fixed header */
     bottom: 0; /* slide up from bottom */
     max-height: none; /* let top/bottom control total height */
     overflow-y: auto; /* scroll when content is tall */
-    border-radius: 1.6rem 1.6rem 0 0; /* rounded top only */
+    border-radius: 1rem 1rem 0 0; /* rounded top only */
     background: var(--app-surface); /* clean sheet surface */
     color: var(--app-text); /* readable sheet text */
-    padding: 1.6rem; /* sheet inner spacing */
+    padding: 1rem; /* sheet inner spacing */
     box-shadow: var(--shadow-lg); /* clear elevation */
   }
 
   .products-filters-sheet__header {
     position: sticky; /* keep controls visible while scrolling */
-    top: -1.6rem; /* keep sticky header flush with panel top padding */
+    top: -1rem; /* keep sticky header flush with panel top padding */
     z-index: 1; /* keep above panel content */
     display: flex; /* title + close action */
     align-items: center; /* vertical align */
     justify-content: space-between; /* push close button right */
-    gap: 1.2rem; /* small spacing between title and button */
-    margin-bottom: 1.6rem; /* spacing below header */
-    padding: 1.6rem 0 1.2rem; /* rebuild panel top padding for sticky header */
+    gap: 0.75rem; /* small spacing between title and button */
+    margin-bottom: 1rem; /* spacing below header */
+    padding: 1rem 0 0.75rem; /* rebuild panel top padding for sticky header */
     background: var(--app-surface); /* cover content while sticky */
   }
 
   .products-filters-sheet__header-actions {
     display: flex; /* keep cancel and done in one row */
     align-items: center; /* vertical align */
-    gap: 0.8rem; /* spacing between actions */
+    gap: 0.5rem; /* spacing between actions */
   }
 
   .products-mobile-toolbar__filter-button:focus-visible {
@@ -52,13 +52,13 @@
 
   .sort-select {
     width: 100%; /* match sidebar width */
-    min-height: 3.2rem; /* fit the filter list height */
-    padding: 0 0.9rem; /* compact sidebar padding */
+    min-height: 2rem; /* fit the filter list height */
+    padding: 0 0.5625rem; /* compact sidebar padding */
     border-radius: var(--r-md); /* match app buttons */
     border: 1px solid var(--border-color); /* visible dropdown edge */
     background: var(--app-input-bg); /* clean dropdown surface */
     color: var(--app-text); /* readable dropdown text */
-    font-size: 1.2rem; /* match filter option text */
+    font-size: 0.75rem; /* match filter option text */
     box-shadow: var(--shadow-sm); /* modern light depth */
   }
 
@@ -66,7 +66,7 @@
     position: relative; /* keep action row above card overlay */
     z-index: 1; /* improve touch reliability */
     display: flex; /* action button row */
-    gap: 0.6rem; /* smaller gap keeps buttons inside narrow cards */
+    gap: 0.375rem; /* smaller gap keeps buttons inside narrow cards */
   }
 
   .products-card__action-btn {
@@ -75,32 +75,33 @@
   }
 
   .products-card__action-btn--disabled {
-    background: var(--brand-red); /* red state for out-of-stock items */
-    border-color: var(--brand-red); /* keep disabled button edge red */
-    cursor: not-allowed; /* show users the button cannot be clicked */
-    opacity: 1; /* keep the warning color visible */
-    pointer-events: auto; /* keep the blocked cursor visible on hover */
+    background: var(--app-surface-alt);
+    border-color: var(--app-border);
+    color: var(--app-text-muted);
+    cursor: not-allowed;
+    opacity: 1;
   }
 
   .products-card__action-btn--disabled:hover {
-    background: var(--brand-red); /* keep disabled state unchanged */
-    box-shadow: 0 10px 24px rgba(17, 17, 17, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.24); /* same as base */
-    transform: none; /* no hover lift for blocked button */
+    background: var(--app-surface-alt);
+    border-color: var(--app-border);
+    box-shadow: var(--shadow-sm);
+    transform: none;
   }
 
   .products-card__action-text {
-    font-size: 1.2rem; /* smaller desktop label so actions fit inside cards */
+    font-size: 0.75rem; /* smaller desktop label so actions fit inside cards */
   }
 
   .products-card__stock-tooltip {
     position: fixed; /* follow the mouse position from React */
     z-index: 100; /* show above product cards */
-    max-width: 18rem; /* keep the message small */
-    padding: 0.6rem 0.8rem; /* compact tooltip spacing */
+    max-width: 11.25rem; /* keep the message small */
+    padding: 0.375rem 0.5rem; /* compact tooltip spacing */
     border-radius: var(--r-md); /* match app small surfaces */
     background: var(--brand-black); /* readable tooltip background */
     color: var(--brand-white); /* readable tooltip text */
-    font-size: 1rem; /* smaller helper text */
+    font-size: 0.625rem; /* smaller helper text */
     font-weight: 400; /* keep tooltip text normal */
     pointer-events: none; /* never block the hovered button */
   }
@@ -108,7 +109,7 @@
   @media (min-width: 768px) {
     .products-card__action-btn {
       min-height: auto; /* let product action buttons fit their content */
-      padding: 0.7rem 0.7rem; /* smaller desktop button padding inside cards */
+      padding: 0.4375rem 0.4375rem; /* smaller desktop button padding inside cards */
     }
   }
 
@@ -123,8 +124,35 @@
       justify-content: center; /* center icon + label */
     }
 
-    .products-card__action-text {
-      display: none; /* keep only the action icons on phones */
+    .products-card__action-text--wish {
+      display: none; /* keep Wishlist icon-only on phones */
     }
+  }
+}
+
+@layer components {
+  .products-page__header {
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--app-border);
+  }
+
+  .products-page__eyebrow {
+    color: var(--brand-orange);
+    font-weight: var(--fw-bold);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .products-page__active-filters {
+    border-radius: var(--r-lg);
+    background: var(--app-surface-alt);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .sort-select:focus-visible {
+    border-color: var(--brand-orange);
+    outline: 2px solid var(--shopella-focus-ring-inner);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px var(--shopella-focus-ring);
   }
 }

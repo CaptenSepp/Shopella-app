@@ -45,11 +45,11 @@ const ProductCard = ({ product }: { product: Product }) => {
           <div className="products-card__actions">
             <button type="button" aria-label={`Add ${product.title} to cart`} aria-disabled={isOutOfStock} className={`btn btn-primary btn-sm btn-square products-card__action-btn ${isOutOfStock ? "products-card__action-btn--disabled" : ""} ${focusRingClass}`} onClick={handleAddToCart} onMouseMove={handleStockTooltipMove} onMouseLeave={() => setStockTooltip(null)}>
               <ShoppingCart size={14} />
-              <span className="products-card__action-text">Add</span>
+              <span className="products-card__action-text products-card__action-text--add">Add</span>
             </button>
             <button type="button" aria-label={`Add ${product.title} to wishlist`} className={`btn btn-secondary btn-sm btn-square products-card__action-btn ${focusRingClass}`} onClick={handleToggleWishlist}>
               <Heart size={14} />
-              <span className="products-card__action-text">Wish</span>
+              <span className="products-card__action-text products-card__action-text--wish">Wish</span>
             </button>
           </div>
         </div>

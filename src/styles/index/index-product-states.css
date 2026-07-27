@@ -1,16 +1,16 @@
 @layer components {
   .products-page {
-    width: min(100% - 3.2rem, var(--shopella-content-width));
+    width: min(100% - 2rem, var(--shopella-content-width));
     margin: 0 auto;
-    padding: 3.2rem 0 5.6rem;
+    padding: 2rem 0 3.5rem;
   }
 
   .products-page__header {
     display: flex;
     align-items: end;
     justify-content: space-between;
-    gap: 1.6rem;
-    margin-bottom: 1.6rem;
+    gap: 1rem;
+    margin-bottom: 1rem;
   }
 
   .products-page__eyebrow,
@@ -19,16 +19,16 @@
     font-size: var(--fs-sm);
   }
 
-  .products-page__title { font-size: clamp(3rem, 5vw, 5rem); }
-  .products-page__content { display: flex; gap: 2.4rem; }
+  .products-page__title { font-size: clamp(1.875rem, 5vw, 3.125rem); }
+  .products-page__content { display: flex; gap: 1.5rem; }
 
   .products-page__active-filters {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 1.2rem;
-    margin-bottom: 1.6rem;
-    padding: 1.2rem 1.6rem;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    padding: 0.75rem 1rem;
     border: 1px solid var(--app-border);
     border-radius: var(--r-md);
     background: var(--app-surface);
@@ -39,14 +39,14 @@
 
   .products-state__skeleton-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
-    gap: 2rem;
-    width: min(100% - 3.2rem, var(--shopella-content-width));
-    margin: 3.2rem auto;
+    grid-template-columns: repeat(auto-fit, minmax(12.5rem, 1fr));
+    gap: 1.25rem;
+    width: min(100% - 2rem, var(--shopella-content-width));
+    margin: 2rem auto;
   }
 
   .product-skeleton {
-    padding: 1.2rem;
+    padding: 0.75rem;
     border: 1px solid var(--app-border);
     border-radius: var(--r-lg);
     background: var(--app-surface);
@@ -60,7 +60,7 @@
   }
 
   .product-skeleton__image { aspect-ratio: 1; border-radius: var(--r-md); }
-  .product-skeleton__line { width: 55%; height: 1.4rem; margin-top: 1.2rem; border-radius: var(--r-pill); }
+  .product-skeleton__line { width: 55%; height: 0.875rem; margin-top: 0.75rem; border-radius: var(--r-pill); }
   .product-skeleton__line--wide { width: 85%; }
 
   @keyframes skeleton-loading {
@@ -69,10 +69,25 @@
   }
 
   @media (max-width: 767px) {
-    .products-page { width: min(100% - 2.4rem, var(--shopella-content-width)); padding-top: 2rem; }
+    .products-page { width: min(100% - 1.5rem, var(--shopella-content-width)); padding-top: 1.25rem; }
     .products-page__content { display: block; }
     .products-page__header { align-items: center; }
     .products-page__header > .products-page__count { display: none; }
     .products-page__active-filters { align-items: flex-start; flex-direction: column; }
+  }
+}
+
+@layer components {
+  .products-state,
+  .products-empty-state {
+    padding: 2rem;
+    border: 1px solid var(--app-border);
+    border-radius: var(--r-xl);
+    background: var(--app-surface);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .product-skeleton {
+    box-shadow: var(--shadow-sm);
   }
 }
