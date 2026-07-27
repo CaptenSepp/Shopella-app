@@ -1,4 +1,5 @@
 import React from "react"
+import { ChevronLeft, ChevronRight } from "lucide-react"
 import { useProducts } from "@/features/products/hooks"
 import type { Product } from "@/features/products/services"
 import ProductMediaCard from "./ProductMediaCard"
@@ -95,10 +96,10 @@ const HomeProductScroller = ({ title, subtitle, limit = 8, offset = 0 }: HomePro
         </div>
         <div className="best-row__actions">
           <button type="button" className="scroll-btn" aria-label="Scroll left" onClick={() => scrollByOneCard(-1)}>
-            <span className="scroll-btn__icon scroll-btn__icon--left" aria-hidden="true" />
+            <ChevronLeft size={18} aria-hidden="true" />
           </button>
           <button type="button" className="scroll-btn" aria-label="Scroll right" onClick={() => scrollByOneCard(1)}>
-            <span className="scroll-btn__icon scroll-btn__icon--right" aria-hidden="true" />
+            <ChevronRight size={18} aria-hidden="true" />
           </button>
         </div>
       </div>
