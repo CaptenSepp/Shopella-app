@@ -22,7 +22,7 @@
   .card--product {
     padding: var(--space-5); /* consistent spacing */
     border-radius: var(--r-xl); /* larger radius for product cards */
-    min-height: 16rem; /* keep product card height */
+    min-height: 10rem; /* keep product card height */
     max-width: none; /* let grid control width */
     aspect-ratio: 4 / 5; /* taller card ratio */
     background-position: center; /* center product media */
@@ -75,7 +75,7 @@
   .product-price {
     display: flex; /* keep old and new price in one row */
     align-items: baseline; /* align mixed price sizes */
-    gap: 0.6rem; /* small space between prices */
+    gap: 0.375rem; /* small space between prices */
   }
 
   .product-price__old {
@@ -124,8 +124,10 @@
   }
 
   .surface-card {
-    background: var(--surface); /* Reuse the same soft panel background across summary blocks. */
-    border-radius: var(--r-lg); /* Match the card corner style used in the app. */
+    background: var(--app-surface);
+    border: 1px solid var(--app-border);
+    border-radius: var(--r-lg);
+    box-shadow: var(--shadow-sm);
   }
 
   @media (max-width: 767px) {
@@ -142,7 +144,16 @@
     .line-item__actions {
       flex-direction: column; /* stack actions to avoid overlap on phones */
       align-items: stretch; /* let controls use full row width */
-      gap: 1.2rem; /* add clean spacing between control rows */
+      gap: 0.75rem; /* add clean spacing between control rows */
+    }
+  }
+}
+
+@layer components {
+  @media (min-width: 1024px) {
+    .cart-page .surface-card {
+      position: sticky;
+      top: calc(var(--header-total-h) + 1.5rem);
     }
   }
 }
