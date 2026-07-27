@@ -35,3 +35,11 @@
     .shop-cta__content { margin: 0 1rem; }
   }
 }
+
+/* Contained final homepage CTA */
+@layer components {
+  .shopping-steps, .shop-cta { width: min(calc(100% - (clamp(1.25rem, 4vw, 4rem) * 2)), var(--shopella-content-width)); margin-inline: auto; }
+  .shop-cta { border: 1px solid var(--app-border); border-radius: var(--r-xl); box-shadow: var(--shadow-lg); }
+  .shop-cta__content { margin-left: clamp(1.5rem, 5vw, 4rem); }
+  @media (max-width: 767px) { .shop-cta__content { margin-inline: 1.5rem; } }
+}

@@ -9,18 +9,20 @@ const items = [ // trust bar items
 
 const TrustBar = () => ( // USP strip
   <section className="trustbar"> {/* full-width strip */}
-    {items.map((item) => { // render items
-      const Icon = item.icon; // icon component
-      return (
-        <div key={item.title} className="trustbar__item"> {/* single item */}
-          <Icon className="trustbar__icon" aria-hidden="true" /> {/* icon */}
-          <div className="trustbar__text"> {/* text block */}
-            <div className="trustbar__title">{item.title}</div> {/* bold title */}
-            <div className="trustbar__sub">{item.text}</div> {/* small text */}
+    <div className="trustbar__inner">
+      {items.map((item) => { // render items
+        const Icon = item.icon; // icon component
+        return (
+          <div key={item.title} className="trustbar__item"> {/* single item */}
+            <Icon className="trustbar__icon" aria-hidden="true" /> {/* icon */}
+            <div className="trustbar__text"> {/* text block */}
+              <div className="trustbar__title">{item.title}</div> {/* bold title */}
+              <div className="trustbar__sub">{item.text}</div> {/* small text */}
+            </div>
           </div>
-        </div>
-      );
-    })}
+        );
+      })}
+    </div>
   </section>
 );
 

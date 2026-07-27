@@ -1,42 +1,25 @@
+"use client"
+
+import { useRef } from "react"
+import { useViewportReveal } from "@/components/ui/use-viewport-reveal"
 import { categoryCards } from "@/features/products/data/categories"
-import middleBannerImg from "@/assets/images/Banner-middle.png"
-import {
-  Banner,
-  BestSellersRow,
-  BrandStoryMini,
-  CategoryGrid,
-  FeaturedCollectionGrid,
-  FullBleedImage,
-  RichText,
-  Scrollbar,
-  ShopCtaSection,
-  ShoppingStepsSection,
-  TrustBar,
-} from "@/features/home/next/components"
-import { HOME_SECTION_TITLES } from "@/features/home/next/components/HomeSections"
+import { Banner, BestSellersRow, BrandStoryMini, CategoryGrid, FeaturedCollectionGrid, FreshPicksSection, Scrollbar, ShopCtaSection, ShoppingStepsSection, TrustBar } from "@/features/home/next/components"
 
 const Home = () => {
+  const pageRef = useRef<HTMLDivElement | null>(null)
+  useViewportReveal(pageRef)
+
   return (
-    <div className="home-page flex-column pb-10">
+    <div ref={pageRef} className="home-page flex-column pb-10">
       <Banner />
       <TrustBar />
       <CategoryGrid cards={categoryCards} />
-
-      <BestSellersRow
-        title="Best sellers this week"
-        subtitle="Most loved picks right now"
-      />
-
+      <BestSellersRow title="Best sellers this week" subtitle="Most loved picks right now" />
       <FeaturedCollectionGrid />
-
       <BrandStoryMini />
-
-      <FullBleedImage src={middleBannerImg} alt="Middle banner" title={HOME_SECTION_TITLES.freshPicks} />
-      <Scrollbar offset={0} title="Best picks for you" />
-
-      <RichText>{HOME_SECTION_TITLES.topRatedDeals}</RichText>
-      <Scrollbar offset={8} title="Best sellers from your region" />
-
+      <FreshPicksSection />
+      <Scrollbar offset={0} title="The Fresh Picks edit" subtitle="Highly rated arrivals worth a closer look" />
+      <Scrollbar offset={8} title="Top-rated deals near you" subtitle="Popular value picks from the wider catalogue" />
       <ShoppingStepsSection />
       <ShopCtaSection />
     </div>

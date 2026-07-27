@@ -3,12 +3,10 @@ import Link from "next/link";
 import topBannerImg from "@/assets/images/Banner-top.png"; // top banner image
 import beautyImg from "@/assets/images/beauty.jpg"; // static hero card image
 import fragrancesImg from "@/assets/images/fragrances.jpg"; // static hero card image
-import groceriesImg from "@/assets/images/groceries.jpg"; // static hero card image
 
 const heroCards = [ // quick attention cards
   { label: "Best seller", title: "Beauty Edit", image: beautyImg, href: "/products?cat=beauty" },
   { label: "New arrival", title: "Fragrance Drop", image: fragrancesImg, href: "/products?cat=fragrances" },
-  { label: "Top rated", title: "Daily Goods", image: groceriesImg, href: "/products?cat=groceries" },
 ];
 
 const Banner = () => { // hero banner section
