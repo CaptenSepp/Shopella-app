@@ -6,10 +6,10 @@ export const values = [
 ] // about value cards
 
 export const stats = [
-  { value: "120k+", label: "Orders Shipped" },
-  { value: "24 hrs", label: "Avg Dispatch" },
-  { value: "30 days", label: "Return Window" },
-  { value: "7 days", label: "Support Week" },
+  { value: "120000+", label: "Orders Shipped", delay: 500, duration: 8000 },
+  { value: "24 hrs", label: "Avg Dispatch", delay: 700, duration: 4800 },
+  { value: "30 days", label: "Return Window", delay: 350, duration: 5800 },
+  { value: "7 days", label: "Support Week", delay: 900, duration: 6000 },
 ] // quick stats strip
 
 export const team = [

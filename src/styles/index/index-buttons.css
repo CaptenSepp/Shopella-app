@@ -1,6 +1,6 @@
 @layer components {
   .btn {
-    @apply inline-flex items-center gap-2 font-medium transition disabled:pointer-events-none disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 touch-manipulation; /* shared button base */
+    @apply inline-flex items-center gap-2 font-medium transition disabled:pointer-events-none disabled:opacity-50 touch-manipulation; /* shared button base */
     font-size: var(--btn-text-size); /* unified button text size */
     font-weight: var(--fw-bold); /* bold button text */
     min-height: var(--control-h); /* consistent button height */

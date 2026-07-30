@@ -18,10 +18,10 @@
   .app-route-loading__spinner { width: 2rem; height: 2rem; border: 3px solid var(--app-border); border-top-color: var(--brand-orange); border-radius: 50%; animation: route-spin 0.8s linear infinite; }
   @keyframes route-spin { to { transform: rotate(360deg); } }
 
-  :where(a, button, input, select, textarea):focus-visible {
-    outline: 2px solid var(--shopella-focus-ring-inner);
-    outline-offset: 2px;
-    box-shadow: 0 0 0 4px var(--shopella-focus-ring);
+  :where(a, button, input, select, textarea, [tabindex], [contenteditable="true"]):focus-visible,
+  :where(input, select, textarea):focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(255, 122, 26, 0.38), 0 0 0.75rem 0.25rem rgba(255, 122, 26, 0.48);
   }
 
   @media (prefers-reduced-motion: reduce) {

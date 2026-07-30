@@ -18,7 +18,7 @@ const AboutValuesSection = () => (
       <div className="about-stats__box">
         {stats.map((statItem) => (
           <div key={statItem.label} className="about-stats__item">
-            <AnimatedStatValue value={statItem.value} />
+            <AnimatedStatValue value={statItem.value} delay={statItem.delay} duration={statItem.duration} />
             <div className="about-stats__label">{statItem.label}</div>
           </div>
         ))}

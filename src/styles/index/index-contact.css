@@ -46,12 +46,6 @@
     font-size: 0.8125rem; /* readable input */
   }
 
-  .home-page .contact-input:focus {
-    outline: none; /* remove browser outline */
-    border-color: var(--shopella-orange); /* accent border on focus */
-    box-shadow: 0 0 0 3px var(--shopella-focus-ring); /* soft focus ring */
-  }
-
   .home-page .contact-section__note {
     color: var(--shopella-muted-dark); /* quiet demo note */
     font-size: 0.75rem; /* small helper text */

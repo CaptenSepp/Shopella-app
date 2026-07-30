@@ -6,11 +6,6 @@
     color: var(--app-text); /* readable input text */
   }
 
-  .input-field:focus {
-    border-color: var(--brand-orange); /* accent border on focus */
-    box-shadow: 0 0 0 3px var(--brand-orange-100); /* soft focus ring */
-  }
-
   .input-field-error {
     border-color: var(--brand-red); /* shared invalid field border */
   }

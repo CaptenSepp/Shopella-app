@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react"
 
-const AnimatedStatValue = ({ value }: { value: string }) => {
+const AnimatedStatValue = ({ value, delay, duration }: { value: string; delay: number; duration: number }) => {
   const match = value.match(/^(\d+(?:\.\d+)?)(.*)$/)
   const target = Number(match?.[1] ?? 0)
   const suffix = match?.[2] ?? ""
@@ -13,6 +13,7 @@ const AnimatedStatValue = ({ value }: { value: string }) => {
     const element = valueRef.current
     if (!element) return
     let animationFrame = 0
+    let delayTimer = 0
     const showFinalValue = () => setDisplayValue(target)
 
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
@@ -22,22 +23,23 @@ const AnimatedStatValue = ({ value }: { value: string }) => {
 
     const observer = new IntersectionObserver(([entry]) => {
       if (!entry.isIntersecting) return
-      const startedAt = performance.now()
-      const animate = (now: number) => {
-        const progress = Math.min((now - startedAt) / 900, 1)
-        const easedProgress = 1 - Math.pow(1 - progress, 3)
-        setDisplayValue(Math.round(target * easedProgress))
-        if (progress < 1) animationFrame = window.requestAnimationFrame(animate)
-      }
-      animationFrame = window.requestAnimationFrame(animate)
+      delayTimer = window.setTimeout(() => {
+        const startedAt = performance.now()
+        const animate = (now: number) => {
+          const progress = Math.min((now - startedAt) / duration, 1)
+          setDisplayValue(Math.round(target * progress))
+          if (progress < 1) animationFrame = window.requestAnimationFrame(animate)
+        }
+        animationFrame = window.requestAnimationFrame(animate)
+      }, delay)
       observer.disconnect()
     }, { threshold: 0.45 })
 
     observer.observe(element)
-    return () => { observer.disconnect(); window.cancelAnimationFrame(animationFrame) }
-  }, [target])
+    return () => { observer.disconnect(); window.clearTimeout(delayTimer); window.cancelAnimationFrame(animationFrame) }
+  }, [delay, duration, target])
 
-  return <div ref={valueRef} className="about-stats__value" aria-label={value}><span aria-hidden="true">{displayValue}{suffix}</span></div>
+  return <div ref={valueRef} className="about-stats__value" aria-label={value}><span aria-hidden="true">{displayValue.toLocaleString("en-US")}{suffix}</span></div>
 }
 
 export default AnimatedStatValue
