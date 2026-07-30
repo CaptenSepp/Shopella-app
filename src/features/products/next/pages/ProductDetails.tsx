@@ -49,7 +49,7 @@ const ProductDetailsContent = ({ productIdNumber }: { productIdNumber: number })
   }
   if (!product) return <ProductDetailsState title="Product not found" message="The requested product is unavailable." /> // missing data state
 
-  const galleryImages = Array.from(new Set([product.thumbnail, ...product.images])).filter(Boolean)
+  const galleryImages = product.images.length ? product.images : [product.thumbnail]
   const relatedProducts = products.filter((item) => item.id !== product.id && item.category === product.category).slice(0, 4)
 
   return (
