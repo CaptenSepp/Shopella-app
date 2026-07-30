@@ -44,22 +44,106 @@
     gap: 0.5rem; /* spacing between actions */
   }
 
-  .products-mobile-toolbar__filter-button:focus-visible {
-    --tw-ring-color: #d1d5db; /* light gray keyboard focus */
-    --tw-ring-offset-width: 0px; /* remove the hard outside line */
-    box-shadow: 0 0 0 4px rgba(209, 213, 219, 0.65); /* soft focus shadow */
+  .sort-select {
+    position: relative;
+    width: 100%; /* match sidebar width */
+    font-size: 0.75rem; /* match filter option text */
   }
 
-  .sort-select {
-    width: 100%; /* match sidebar width */
-    min-height: 2rem; /* fit the filter list height */
-    padding: 0 0.5625rem; /* compact sidebar padding */
+  .sort-select__trigger {
+    display: flex;
+    width: 100%;
+    min-height: 2rem;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0 0.5625rem;
     border-radius: var(--r-md); /* match app buttons */
     border: 1px solid var(--border-color); /* visible dropdown edge */
     background: var(--app-input-bg); /* clean dropdown surface */
     color: var(--app-text); /* readable dropdown text */
-    font-size: 0.75rem; /* match filter option text */
     box-shadow: var(--shadow-sm); /* modern light depth */
+    cursor: pointer;
+  }
+
+  .sort-select__menu {
+    position: absolute;
+    z-index: 10;
+    top: calc(100% + 0.375rem);
+    inset-inline: 0;
+    display: grid;
+    gap: 0.125rem;
+    padding: 0.375rem;
+    border: 1px solid var(--app-border);
+    border-radius: var(--r-md);
+    background: var(--app-surface);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .sort-select__option {
+    padding: 0.5rem 0.625rem;
+    border-radius: calc(var(--r-md) - 0.125rem);
+    color: var(--app-text-muted);
+    text-align: left;
+    cursor: pointer;
+  }
+
+  .sort-select__option:hover,
+  .sort-select__option:focus-visible {
+    outline: none;
+    background: var(--app-surface-alt);
+    color: var(--app-text);
+  }
+
+  .sort-select__option--selected {
+    background: var(--app-surface-alt);
+    color: var(--brand-orange);
+    font-weight: var(--fw-semibold);
+  }
+
+  .product-filters__fieldset {
+    display: grid;
+    gap: 0.25rem;
+  }
+
+  .product-filters__option {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    padding: 0.4375rem 0.625rem;
+    border: 1px solid transparent;
+    border-radius: var(--r-md);
+    color: var(--app-text-muted);
+    cursor: pointer;
+    transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease;
+  }
+
+  .product-filters__option:hover {
+    background: var(--app-surface-alt);
+    color: var(--app-text);
+  }
+
+  .product-filters__option:has(.product-filters__radio:checked) {
+    border-color: var(--brand-orange);
+    background: var(--app-surface-alt);
+    color: var(--app-text);
+    font-weight: var(--fw-semibold);
+  }
+
+  .product-filters__radio {
+    width: 1rem;
+    height: 1rem;
+    flex: 0 0 auto;
+    margin: 0;
+    border: 2px solid var(--app-border);
+    border-radius: 50%;
+    appearance: none;
+    background: var(--app-surface);
+    cursor: pointer;
+  }
+
+  .product-filters__radio:checked {
+    border: 0.3125rem solid var(--brand-orange);
   }
 
   .products-card__actions {
@@ -74,25 +158,12 @@
     z-index: 1; /* keep button above decorative layers */
   }
 
-  .products-card__action-btn--disabled {
-    background: var(--app-surface-alt);
-    border-color: var(--app-border);
-    color: var(--app-text-muted);
-    cursor: not-allowed;
-    opacity: 1;
-  }
 
-  .products-card__action-btn--disabled:hover {
-    background: var(--app-surface-alt);
-    border-color: var(--app-border);
-    box-shadow: var(--shadow-sm);
-    transform: none;
+  .products-card__action-btn.btn-secondary {
+    background: var(--shopella-soft-dark);
+    border-color: var(--shopella-border-dark);
+    color: var(--shopella-text-dark);
   }
-
-  .products-card__action-text {
-    font-size: 0.75rem; /* smaller desktop label so actions fit inside cards */
-  }
-
   .products-card__stock-tooltip {
     position: fixed; /* follow the mouse position from React */
     z-index: 100; /* show above product cards */
@@ -149,10 +220,4 @@
     box-shadow: var(--shadow-sm);
   }
 
-  .sort-select:focus-visible {
-    border-color: var(--brand-orange);
-    outline: 2px solid var(--shopella-focus-ring-inner);
-    outline-offset: 2px;
-    box-shadow: 0 0 0 4px var(--shopella-focus-ring);
-  }
 }

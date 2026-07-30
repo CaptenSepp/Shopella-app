@@ -28,28 +28,28 @@ const ProductFilters = ({
     <div className="space-y-4">
       <h2 className="u-text-lg u-font-semibold mb-0">{title}</h2>
       <div className="space-y-2 u-text-sm">
-        <fieldset>
+        <fieldset className="product-filters__fieldset">
           <legend className="mb-2 u-text-sm u-font-medium">Category</legend> {/* explicit group label */}
-          <label className="flex items-center gap-2">
+          <label className="product-filters__option">
             <input
               type="radio"
               name="cat"
               value=""
               checked={selectedCategory === ""}
-              className={focusRingClass}
+              className={`product-filters__radio ${focusRingClass}`}
               onChange={() => onCategoryChange("")} // selecting "All" clears the category
             />
             All
           </label>
 
           {availableCategories.map((category) => ( // category option from API or fallback list
-            <label key={category.slug} className="flex items-center gap-2">
+            <label key={category.slug} className="product-filters__option">
               <input
                 type="radio"
                 name="cat"
                 value={category.slug}
                 checked={selectedCategory === category.slug}
-                className={focusRingClass}
+                className={`product-filters__radio ${focusRingClass}`}
                 onChange={() => onCategoryChange(category.slug)} // selecting a category updates page logic
               />
               {category.name}

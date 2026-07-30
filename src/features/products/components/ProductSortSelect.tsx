@@ -17,20 +17,62 @@ const sortOptions: SortOption[] = [ // shared sort options list
   { value: "title-asc", label: "Title A-Z" },
 ]
 
-const ProductSortSelect = ({ value, focusRingClass, onChange }: ProductSortSelectProps) => { // native select keeps keyboard behavior
+const ProductSortSelect = ({ value, onChange }: ProductSortSelectProps) => {
+  const [isOpen, setIsOpen] = useState(false)
+  const containerRef = useRef<HTMLDivElement>(null)
+  const selectedOption = sortOptions.find((option) => option.value === value) || sortOptions[0]
+
+  useEffect(() => {
+    const closeOnOutsideClick = (event: PointerEvent) => {
+      if (!containerRef.current?.contains(event.target as Node)) setIsOpen(false)
+    }
+
+    document.addEventListener("pointerdown", closeOnOutsideClick)
+    return () => document.removeEventListener("pointerdown", closeOnOutsideClick)
+  }, [])
+
   return (
-    <select
-      className={`sort-select ${focusRingClass}`}
-      value={value}
-      onChange={(event) => onChange(event.target.value)}
-    >
-      {sortOptions.map((option) => ( // render native sort options
-        <option key={option.value} value={option.value}>
-          {option.label}
-        </option>
-      ))}
-    </select>
+    <div ref={containerRef} className="sort-select">
+      <button
+        type="button"
+        className="sort-select__trigger"
+        aria-haspopup="listbox"
+        aria-expanded={isOpen}
+        onClick={() => setIsOpen((current) => !current)}
+        onKeyDown={(event) => {
+          if (event.key === "Escape") setIsOpen(false)
+          if (event.key === "ArrowDown") {
+            event.preventDefault()
+            setIsOpen(true)
+          }
+        }}
+      >
+        {selectedOption.label}
+        <ChevronDown size={15} aria-hidden="true" />
+      </button>
+      {isOpen ? (
+        <div className="sort-select__menu" role="listbox" aria-label="Sort by">
+          {sortOptions.map((option) => (
+            <button
+              key={option.value}
+              type="button"
+              role="option"
+              aria-selected={option.value === value}
+              className={`sort-select__option ${option.value === value ? "sort-select__option--selected" : ""}`}
+              onClick={() => {
+                onChange(option.value)
+                setIsOpen(false)
+              }}
+            >
+              {option.label}
+            </button>
+          ))}
+        </div>
+      ) : null}
+    </div>
   )
 }
 
 export default ProductSortSelect
+import { ChevronDown } from "lucide-react"
+import { useEffect, useRef, useState } from "react"
