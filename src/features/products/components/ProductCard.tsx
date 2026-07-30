@@ -1,7 +1,8 @@
+"use client"
+
 import { Heart, ShoppingCart } from "lucide-react"
-import type { MouseEvent } from "react"
+import type { ComponentPropsWithoutRef, ComponentType, MouseEvent } from "react"
 import { useState } from "react"
-import { Link } from "react-router-dom"
 import { useAppDispatch } from "@/app/store"
 import { useToast } from "@/components/ui/toastContext"
 import { addToCart } from "@/features/cart/cartSlice"
@@ -10,7 +11,18 @@ import ProductPrice from "@/features/products/components/ProductPrice"
 import { toggleWishlist } from "@/features/wishlist/wishlistSlice"
 import { focusRingClass } from "@/features/products/products-page-tools"
 
-const ProductCard = ({ product }: { product: Product }) => {
+export type ProductLinkProps = Omit<ComponentPropsWithoutRef<"a">, "href"> & {
+  href: string
+}
+
+export type ProductLinkComponent = ComponentType<ProductLinkProps>
+
+type ProductCardProps = {
+  LinkComponent: ProductLinkComponent
+  product: Product
+}
+
+const ProductCard = ({ LinkComponent, product }: ProductCardProps) => {
   const dispatch = useAppDispatch() // dispatch product actions
   const { notify } = useToast() // show quick feedback
   const isOutOfStock = product.stock <= 0 // disable buying when no stock is left
@@ -40,7 +52,7 @@ const ProductCard = ({ product }: { product: Product }) => {
 
   return (
     <div className="flex flex-col">
-      <Link to={`/products/${product.id}`} className={`card card--product ${productImageClass} bg-center relative block`} style={{ backgroundImage: `url(${productImageUrl})` }} aria-label={`View ${product.title}`}>
+      <LinkComponent href={`/products/${product.id}`} className={`card card--product ${productImageClass} bg-center relative block`} style={{ backgroundImage: `url(${productImageUrl})` }} aria-label={`View ${product.title}`}>
         <div className="relative flex h-full flex-col justify-end">
           <div className="products-card__actions">
             <button type="button" aria-label={`Add ${product.title} to cart`} aria-disabled={isOutOfStock} className={`btn btn-primary btn-sm btn-square products-card__action-btn ${isOutOfStock ? "products-card__action-btn--disabled" : ""} ${focusRingClass}`} onClick={handleAddToCart} onMouseMove={handleStockTooltipMove} onMouseLeave={() => setStockTooltip(null)}>
@@ -53,7 +65,7 @@ const ProductCard = ({ product }: { product: Product }) => {
             </button>
           </div>
         </div>
-      </Link>
+      </LinkComponent>
       {stockTooltip && (
         <span className="products-card__stock-tooltip" style={{ left: stockTooltip.x, top: stockTooltip.y }}>
           This product is out of stock and can't go to the cart.

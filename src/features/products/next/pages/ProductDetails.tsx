@@ -9,8 +9,9 @@ import { useToast } from '@/components/ui/toastContext'
 import ProductPrice from '@/features/products/components/ProductPrice'
 import type { Product } from '@/features/products/services'
 import ProductGallery from '@/features/products/components/ProductGallery'
-import RelatedProducts from '@/features/products/next/components/RelatedProducts'
+import RelatedProducts from '@/features/products/components/RelatedProducts'
 import RouteLoadingState from '@/components/ui/RouteLoadingState'
+import NextLink from '@/features/products/next/components/NextLink'
 
 const ProductDetails = ({ productId }: { productId: string }) => {
   const productIdNumber = Number(productId) // coerce to number for API hook
@@ -67,7 +68,7 @@ const ProductDetailsContent = ({ productIdNumber }: { productIdNumber: number })
           onToggleWishlist={handleToggleWishlist}
         />
       </div>
-      <RelatedProducts products={relatedProducts} />
+      <RelatedProducts LinkComponent={NextLink} products={relatedProducts} />
     </div>
   )
 }

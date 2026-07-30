@@ -6,6 +6,7 @@ import ProductsErrorState from "@/features/products/components/ProductsErrorStat
 import ProductsGrid from "@/features/products/components/ProductsGrid"
 import ProductsEmptyState from "@/features/products/components/ProductsEmptyState"
 import ProductsLoadingState from "@/features/products/components/ProductsLoadingState"
+import ViteLink from "@/vite/components/ViteLink"
 import { useCategories, useProducts } from "@/features/products/hooks"
 import { buildProductSearchParams, fallbackCategories, focusRingClass, getFilteredProducts, getSaleMode } from "@/features/products/products-page-tools"
 
@@ -113,7 +114,7 @@ const ProductsPage = () => {
           onCategoryChange={handleCategoryChange}
           onSortChange={handleSortChange}
         />
-        {filteredProducts.length > 0 ? <ProductsGrid products={filteredProducts} /> : <ProductsEmptyState onClear={clearFilters} />}
+        {filteredProducts.length > 0 ? <ProductsGrid LinkComponent={ViteLink} products={filteredProducts} /> : <ProductsEmptyState onClear={clearFilters} />}
       </div>
       {isMobileFiltersOpen && (
         <MobileFiltersSheet

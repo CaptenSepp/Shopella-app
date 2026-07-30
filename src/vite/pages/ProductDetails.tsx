@@ -9,6 +9,7 @@ import type { Product } from '@/features/products/services'
 import ProductGallery from '@/features/products/components/ProductGallery'
 import RelatedProducts from '@/features/products/components/RelatedProducts'
 import RouteLoadingState from '@/components/ui/RouteLoadingState'
+import ViteLink from '@/vite/components/ViteLink'
 
 const ProductDetails = () => {
   const { productId } = useParams<{ productId: string }>() // read id from URL
@@ -66,7 +67,7 @@ const ProductDetailsContent = ({ productIdNumber }: { productIdNumber: number })
           onToggleWishlist={handleToggleWishlist}
         />
       </div>
-      <RelatedProducts products={relatedProducts} />
+      <RelatedProducts LinkComponent={ViteLink} products={relatedProducts} />
     </div>
   )
 }

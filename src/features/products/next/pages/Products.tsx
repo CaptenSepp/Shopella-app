@@ -5,11 +5,12 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import ProductFilters from "@/features/products/components/ProductFilters"
 import MobileFiltersSheet from "@/features/products/components/MobileFiltersSheet"
 import ProductsErrorState from "@/features/products/components/ProductsErrorState"
-import ProductsGrid from "@/features/products/next/components/ProductsGrid"
+import ProductsGrid from "@/features/products/components/ProductsGrid"
 import ProductsEmptyState from "@/features/products/components/ProductsEmptyState"
 import ProductsLoadingState from "@/features/products/components/ProductsLoadingState"
 import { useCategories, useProducts } from "@/features/products/hooks"
 import { buildProductSearchParams, fallbackCategories, focusRingClass, getFilteredProducts, getSaleMode } from "@/features/products/products-page-tools"
+import NextLink from "@/features/products/next/components/NextLink"
 
 const ProductsPage = () => {
   const pathname = usePathname()
@@ -121,7 +122,7 @@ const ProductsPage = () => {
           onCategoryChange={handleCategoryChange}
           onSortChange={handleSortChange}
         />
-        {filteredProducts.length > 0 ? <ProductsGrid products={filteredProducts} /> : <ProductsEmptyState onClear={clearFilters} />}
+        {filteredProducts.length > 0 ? <ProductsGrid LinkComponent={NextLink} products={filteredProducts} /> : <ProductsEmptyState onClear={clearFilters} />}
       </div>
       {isMobileFiltersOpen && (
         <MobileFiltersSheet
