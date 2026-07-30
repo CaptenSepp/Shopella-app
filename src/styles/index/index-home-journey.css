@@ -16,11 +16,20 @@
     border: 1px solid var(--app-border);
     border-radius: var(--r-xl);
     background: var(--app-surface);
+    transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
   }
 
+  .shopping-steps__card:hover { transform: translateY(-0.625rem); border-color: var(--brand-orange); box-shadow: var(--shadow-lg); }
   .shopping-steps__card h3 { margin-top: 1rem; font-size: var(--fs-2xl); }
   .shopping-steps__card p { margin-top: 0.5rem; color: var(--app-text-muted); }
-  .shopping-steps__icon { width: 2rem; height: 2rem; color: var(--brand-orange); }
+  .shopping-steps__icon { width: 2rem; height: 2rem; color: var(--brand-orange); transition: transform 260ms cubic-bezier(0.2, 0.8, 0.2, 1); }
+  .shopping-steps__card:nth-child(1):hover .shopping-steps__icon { animation: shopping-steps-icon-rotate 700ms ease-in-out; }
+  .shopping-steps__card:nth-child(2):hover .shopping-steps__icon { animation: shopping-steps-icon-flip 700ms ease-in-out; }
+  .shopping-steps__card:nth-child(3):hover .shopping-steps__icon { animation: shopping-steps-icon-bounce 700ms ease-in-out; }
+
+  @keyframes shopping-steps-icon-rotate { 50% { transform: rotate(35deg) scale(1.12); } }
+  @keyframes shopping-steps-icon-flip { 50% { transform: scaleX(-1) scale(1.12); } }
+  @keyframes shopping-steps-icon-bounce { 35% { transform: translateY(-0.625rem); } 65% { transform: translateY(0.1875rem); } }
 
   .shop-cta { position: relative; display: grid; min-height: 26.25rem; overflow: hidden; background: var(--brand-black); color: var(--brand-white); }
   .shop-cta__image { grid-area: 1 / 1; width: 100%; height: 100%; object-fit: cover; opacity: 0.48; }
