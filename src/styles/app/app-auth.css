@@ -28,12 +28,27 @@
 
 .auth-form__tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 0.375rem; margin-bottom: 1rem; }
 .auth-form__tab { min-height: 2.75rem; padding: 0.5rem; border: 1px solid var(--app-border); border-radius: var(--r-md); color: var(--app-text-muted); }
-.auth-form__tab--active { border-color: var(--brand-orange); color: var(--app-text); background: var(--brand-orange-100); }
+.auth-form__tab--active { border-color: var(--brand-orange); color: var(--brand-black-true); background: var(--brand-orange); }
 .auth-form__error { margin-bottom: 0.75rem; padding: 0.625rem; color: var(--status-danger); background: var(--status-danger-soft); border-radius: var(--r-md); }
 .auth-form .submit-button { width: 100%; min-height: 2.75rem; }
-.account-drawer-content { padding: 1rem; border-radius: var(--r-md); background: var(--app-surface-alt); }
+.account-drawer-content { overflow: hidden; border: 1px solid var(--app-border); border-radius: var(--r-xl); background: var(--app-surface); box-shadow: var(--shadow-sm); }
+.account-drawer-content__demo { display: flex; gap: 0.625rem; align-items: center; padding: 0.75rem 1rem; border-bottom: 1px solid var(--app-border); background: var(--status-success-soft); color: var(--status-success); }
+.account-drawer-content__demo > svg { width: 1.25rem; flex: 0 0 auto; }
+.account-drawer-content__demo div { display: grid; }
+.account-drawer-content__demo span { color: var(--app-text-muted); font-size: var(--fs-sm); }
+.account-drawer-content__profile { display: flex; gap: 0.875rem; align-items: center; padding: 1rem; }
+.account-drawer-content__avatar { display: grid; width: 3rem; height: 3rem; flex: 0 0 auto; place-items: center; border-radius: 50%; background: var(--brand-orange); color: var(--brand-black-true); font-weight: var(--fw-bold); }
 .account-drawer-content__name { font-size: var(--fs-xl); font-weight: var(--fw-semibold); }
 .account-drawer-content__email { margin-top: 0.25rem; color: var(--app-text-muted); overflow-wrap: anywhere; }
+.account-drawer-content__nav { display: grid; padding: 0.375rem; border-block: 1px solid var(--app-border); background: var(--app-surface-alt); }
+.account-drawer-content__nav a { display: grid; grid-template-columns: auto 1fr; gap: 0.75rem; align-items: center; padding: 0.75rem; border-radius: var(--r-md); color: var(--app-text); text-decoration: none; }
+.account-drawer-content__nav a:hover { background: var(--app-surface); color: var(--app-text); }
+.account-drawer-content__nav svg { width: 1.25rem; color: var(--brand-orange-text); }
+.account-drawer-content__nav span { display: grid; }
+.account-drawer-content__nav small { color: var(--app-text-muted); }
+.account-drawer-content__signout { display: flex; width: 100%; gap: 0.5rem; align-items: center; padding: 0.875rem 1rem; color: var(--status-danger); font-weight: var(--fw-semibold); }
+.account-drawer-content__signout:hover { background: var(--status-danger-soft); }
+.account-drawer-content__signout svg { width: 1.125rem; }
 
 @media (min-width: 640px) {
   .login-logo {
@@ -145,3 +160,14 @@
 .retailers-page__map { border-inline: 0; border-radius: 0; box-shadow: none; }
 .retailers-page__map-disclaimer { padding: 0.75rem 1.25rem 1rem; color: var(--app-text-muted); font-size: var(--fs-sm); }
 @media (max-width: 900px) { .retailers-page__layout { grid-template-columns: 1fr; } .retailers-page__map-panel { position: static; } }
+
+.auth-form__demo {
+  display: grid;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.auth-form__admin-demo {
+  width: 100%;
+  justify-content: center;
+}

@@ -1,7 +1,6 @@
 "use client"
 
 import { User } from "lucide-react"
-import Link from "next/link"
 import { useSelector } from "react-redux"
 import type { RootState } from "@/app/store"
 import AuthForm from "@/features/auth/components/AuthForm"
@@ -40,18 +39,15 @@ const LoginDrawer = () => {
         role="dialog"
         aria-modal="true"
         aria-labelledby="login-drawer-title"
-        hidden={!isDrawerOpen}
-        className={`fixed right-0 top-0 z-50 h-screen w-full max-w-md bg-[color:var(--app-surface)] text-[color:var(--app-text)] shadow-lg transition-transform duration-300 ${isDrawerOpen ? "translate-x-0" : "translate-x-full"}`}
+        aria-hidden={!isDrawerOpen}
+        inert={!isDrawerOpen}
+        className={`fixed right-0 top-0 z-50 h-screen w-full max-w-md bg-[color:var(--app-surface)] text-[color:var(--app-text)] shadow-lg transition-opacity duration-200 ${isDrawerOpen ? "opacity-100" : "pointer-events-none opacity-0"}`}
       >
         <button type="button" onClick={closeDrawer} className={`absolute right-4 top-4 u-text-2xl ${focusRingClass}`} aria-label="Close login drawer">×</button>
         <div className="space-y-4 p-6">
           <h2 id="login-drawer-title" className="u-text-xl u-font-semibold">Shopella account</h2>
-          {user ? <AccountDrawerContent user={user} onSignedOut={closeDrawer} /> : <AuthForm onSuccess={closeDrawer} />}
-          <div>
-            <Link href={user ? "/account" : "/login"} className={`btn btn-primary btn-sm ${focusRingClass}`} onClick={closeDrawer}>
-              {user ? "Open Account" : "Open Login Page"}
-            </Link>
-          </div>
+          {user ? <AccountDrawerContent user={user} onSignedOut={closeDrawer} /> : <AuthForm onAdminSuccess={closeDrawer} onSuccess={closeDrawer} />}
+          {!user ? <a href="/login" className={`btn btn-primary btn-sm ${focusRingClass}`} onClick={closeDrawer}>Open Login Page</a> : null}
         </div>
       </aside>
     </>
