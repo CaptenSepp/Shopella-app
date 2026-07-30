@@ -8,7 +8,7 @@ import { useAppDispatch } from "@/app/store"
 import { useToast } from "@/components/ui/toastContext"
 import { addToCart } from "@/features/cart/cartSlice"
 import type { Product } from "@/features/products/services"
-import ProductPrice from "@/features/products/next/components/ProductPrice"
+import ProductPrice from "@/features/products/components/ProductPrice"
 import { toggleWishlist } from "@/features/wishlist/wishlistSlice"
 import { focusRingClass } from "@/features/products/products-page-tools"
 

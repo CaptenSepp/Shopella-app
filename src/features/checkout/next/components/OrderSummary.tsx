@@ -1,5 +1,5 @@
 import type { Product } from "@/features/products/services"
-import ProductPrice from "@/features/products/next/components/ProductPrice"
+import ProductPrice from "@/features/products/components/ProductPrice"
 import { calculateOrderTotals } from "@/features/orders/order-calculations"
 
 type OrderSummaryProps = {

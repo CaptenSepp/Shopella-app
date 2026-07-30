@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import type { Order } from '@/features/orders/types'
-import ProductPrice from '@/features/products/next/components/ProductPrice'
+import ProductPrice from '@/features/products/components/ProductPrice'
 import { loadConfirmationOrder } from '../order-confirmation-storage'
 
 const OrderConfirmation = () => { // post-order confirmation screen

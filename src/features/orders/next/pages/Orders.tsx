@@ -4,7 +4,7 @@ import Link from 'next/link' // router links
 import { useSelector } from 'react-redux' // redux selector
 import type { RootState } from '@/app/store' // root state type
 import { useOrders } from '@/features/orders/hooks'
-import ProductPrice from '@/features/products/next/components/ProductPrice'
+import ProductPrice from '@/features/products/components/ProductPrice'
 
 type OrdersPageProps = {
   showAccountHeader?: boolean

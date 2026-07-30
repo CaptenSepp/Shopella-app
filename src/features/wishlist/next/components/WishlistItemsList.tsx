@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { useSelector } from 'react-redux'
 import { useAppDispatch, type RootState } from '@/app/store'
 import { addToCart } from '@/features/cart/cartSlice'
-import ProductPrice from '@/features/products/next/components/ProductPrice'
+import ProductPrice from '@/features/products/components/ProductPrice'
 import { toggleWishlist } from '@/features/wishlist/wishlistSlice'
 
 const WishlistItemsList = () => {

@@ -4,7 +4,7 @@ import React from "react"
 import { useProducts } from "@/features/products/hooks"
 import type { Product } from "@/features/products/services"
 import ProductMediaCard from "./ProductMediaCard"
-import { animateScrollLeft, getCardTargetLeft, getNearestCardLeft } from "./product-row-tools"
+import { animateScrollLeft, getCardTargetLeft, getNearestCardLeft } from "@/features/home/components/product-row-tools"
 
 type HomeProductScrollerProps = { // shared home product row props
   title?: string

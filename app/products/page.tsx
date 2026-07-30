@@ -1,5 +1,5 @@
 import { Suspense } from "react"
-import ProductsLoadingState from "@/features/products/next/components/ProductsLoadingState"
+import ProductsLoadingState from "@/features/products/components/ProductsLoadingState"
 import ProductsPage from "@/features/products/next/pages/Products"
 
 export default function ProductsRoute() {
