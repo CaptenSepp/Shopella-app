@@ -4,12 +4,14 @@ import type { AuthUser } from "./authSlice"
 import { getDemoUser, listenForDemoAuthChanges, signInDemo, signOutDemo, signUpDemo } from "./demo-auth-service"
 
 export const mapSupabaseUser = (user: User | null): AuthUser | null => {
+  // Reduce the provider-specific user record to the shape consumed by Redux.
   if (!user?.email) return null
   const savedName = String(user.user_metadata?.name ?? "").trim()
   return { id: user.id, name: savedName || user.email.split("@")[0], email: user.email }
 }
 
 export const signIn = async (email: string, password: string) => {
+  // Local demo auth is the fallback when Supabase environment variables are absent.
   if (!isSupabaseConfigured) return signInDemo(email)
 
   const result = await supabase.auth.signInWithPassword({ email, password })
@@ -18,6 +20,7 @@ export const signIn = async (email: string, password: string) => {
 }
 
 export const signUp = async (name: string, email: string, password: string) => {
+  // Store the display name as provider metadata during registration.
   if (!isSupabaseConfigured) return signUpDemo(name, email)
 
   const result = await supabase.auth.signUp({ email, password, options: { data: { name } } })
@@ -43,6 +46,7 @@ export const getCurrentSession = async () => {
 }
 
 export const getAccessToken = async () => {
+  // API services use this helper to consistently reject anonymous requests.
   const session = await getCurrentSession()
   if (!session?.access_token) throw new Error("Please sign in to continue.")
   return session.access_token
@@ -55,6 +59,7 @@ export const getCurrentUser = async () => {
 }
 
 export const listenForAuthUserChanges = (callback: (user: AuthUser | null) => void) => {
+  // Normalize both demo and Supabase events before exposing them to React.
   if (!isSupabaseConfigured) return listenForDemoAuthChanges(callback)
   return listenForAuthChanges((session) => callback(mapSupabaseUser(session?.user ?? null)))
 }

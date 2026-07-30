@@ -4,6 +4,7 @@ const DEMO_AUTH_STORAGE_KEY = "shopella-demo-user"
 const DEMO_AUTH_EVENT = "shopella-demo-auth-change"
 
 export const getDemoUser = (): AuthUser | null => {
+  // Read the browser-only session defensively because storage may be malformed.
   if (typeof window === "undefined") return null
 
   try {
@@ -15,6 +16,7 @@ export const getDemoUser = (): AuthUser | null => {
 }
 
 const saveDemoUser = (user: AuthUser | null) => {
+  // Emit a same-window event because the native storage event only reaches other tabs.
   if (typeof window === "undefined") return
 
   if (user) window.localStorage.setItem(DEMO_AUTH_STORAGE_KEY, JSON.stringify(user))
@@ -23,6 +25,7 @@ const saveDemoUser = (user: AuthUser | null) => {
 }
 
 export const signInDemo = (email: string): AuthUser => {
+  // Reuse a saved display name when the same demo email signs in again.
   const savedUser = getDemoUser()
   const normalizedEmail = email.trim().toLowerCase()
   const name = savedUser?.email === normalizedEmail ? savedUser.name : normalizedEmail.split("@")[0]
@@ -40,9 +43,31 @@ export const signUpDemo = (name: string, email: string): AuthUser => {
   return user
 }
 
+export const signInCustomerDemo = (): AuthUser => {
+  const user = { id: "demo-customer@shopella.demo", name: "Demo Customer", email: "customer@shopella.demo" }
+  saveDemoUser(user)
+
+  const profileKey = `shopella-account-profile:${user.id}`
+  if (!window.localStorage.getItem(profileKey)) {
+    window.localStorage.setItem(profileKey, JSON.stringify({
+      name: user.name,
+      email: user.email,
+      phone: "+1 555 010 2040",
+      address: "24 Market Street, Portland, OR 97205",
+    }))
+  }
+  window.sessionStorage.setItem("checkout-customer-session", JSON.stringify({
+    name: user.name,
+    email: user.email,
+    address: "24 Market Street, Portland, OR 97205",
+  }))
+  return user
+}
+
 export const signOutDemo = () => saveDemoUser(null)
 
 export const listenForDemoAuthChanges = (callback: (user: AuthUser | null) => void) => {
+  // Listen for both same-window changes and cross-tab storage updates.
   if (typeof window === "undefined") return () => undefined
 
   const syncUser = () => callback(getDemoUser())

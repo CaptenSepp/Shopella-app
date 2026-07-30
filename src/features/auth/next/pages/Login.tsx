@@ -15,10 +15,11 @@ const LoginPage = ({ onSuccess }: LoginPageProps) => {
       <div className="login-box">
         <h1 className="login-box__title">Your Shopella account</h1>
         <p className="login-box__note">Sign in to check out and view your saved orders.</p>
-        <AuthForm onSuccess={() => { onSuccess?.(); router.replace(redirectPath) }} />
+        <AuthForm onAdminSuccess={() => { onSuccess?.(); router.replace("/admin") }} onSuccess={() => { onSuccess?.(); router.replace(redirectPath) }} />
       </div>
     </div>
   )
 }
 
 export default LoginPage
+
