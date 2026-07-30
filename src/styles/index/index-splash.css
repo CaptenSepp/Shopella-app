@@ -1,0 +1,115 @@
+@layer components {
+  .splash-screen {
+    position: fixed;
+    z-index: 200;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background: var(--shopella-bg-dark);
+    color: var(--shopella-text-dark);
+    opacity: 1;
+    transition: opacity 500ms ease, visibility 500ms ease;
+  }
+
+  .splash-screen--leaving {
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  .splash-screen__glow {
+    position: absolute;
+    width: min(85vw, 42rem);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--shopella-orange) 20%, transparent);
+    filter: blur(110px);
+  }
+
+  .splash-screen__content {
+    position: relative;
+    display: grid;
+    justify-items: center;
+    padding: 2rem;
+    text-align: center;
+    animation: splash-screen-enter 600ms ease both;
+  }
+
+  .splash-screen__mark {
+    display: grid;
+    width: 3.25rem;
+    height: 3.25rem;
+    margin-bottom: 1.4rem;
+    place-items: center;
+    border: 1px solid color-mix(in srgb, var(--shopella-orange) 55%, transparent);
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--shopella-orange) 12%, transparent);
+    color: var(--shopella-orange);
+  }
+
+  .splash-screen__mark svg {
+    width: 1.35rem;
+  }
+
+  .splash-screen__eyebrow {
+    margin: 0 0 0.55rem;
+    color: var(--shopella-orange);
+    font-size: 0.7rem;
+    font-weight: var(--fw-bold);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .splash-screen__brand {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(3.75rem, 10vw, 6.5rem);
+    letter-spacing: -0.045em;
+    line-height: 0.95;
+  }
+
+  .splash-screen__message {
+    margin: 1rem 0 1.75rem;
+    color: var(--shopella-muted-dark);
+    font-family: var(--font-display);
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    font-style: italic;
+  }
+
+  .splash-screen__progress {
+    position: relative;
+    overflow: hidden;
+    width: 8rem;
+    height: 2px;
+    background: var(--shopella-border-dark);
+  }
+
+  .splash-screen__progress::after {
+    position: absolute;
+    inset: 0;
+    background: var(--shopella-orange);
+    content: "";
+    transform-origin: left;
+    animation: splash-screen-progress 1500ms ease-out both;
+  }
+
+  @keyframes splash-screen-enter {
+    from { opacity: 0; transform: translateY(12px); }
+  }
+
+  @keyframes splash-screen-progress {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .splash-screen {
+      transition-duration: 150ms;
+    }
+
+    .splash-screen__content,
+    .splash-screen__progress::after {
+      animation: none;
+    }
+  }
+}
