@@ -2,6 +2,7 @@ import type { ApiRequest, ApiResponse } from "../../../api/_lib/http"
 import { handleOrdersRequest } from "../../../api/_lib/orders-handler"
 
 const handleRequest = async (request: Request) => {
+  // Adapt the Web Request API to the small request/response interface used by the shared handler.
   let body: unknown
 
   if (request.method === "POST") {
@@ -25,6 +26,7 @@ const handleRequest = async (request: Request) => {
   const responseHeaders = new Headers()
 
   const apiResponse = {
+    // Capture the shared handler's status, headers, and JSON payload for NextResponse.
     get statusCode() {
       return responseStatus
     },
@@ -50,4 +52,5 @@ const handleRequest = async (request: Request) => {
 }
 
 export const GET = handleRequest
+// Both HTTP methods intentionally pass through the same authenticated dispatcher.
 export const POST = handleRequest

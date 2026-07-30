@@ -1,8 +1,8 @@
-import type { Order, OrderCustomer } from './types' // order types
+import type { Order, OrderCustomer, OrderStatus } from './types' // order types
 import type { Product } from '@/features/products/services' // product type for cart
 import { getAccessToken } from '@/features/auth/auth-service'
 import { isSupabaseConfigured } from '@/features/auth/supabase-client'
-import { createDemoOrder, getDemoOrders } from './demo-orders-service'
+import { createDemoOrder, getDemoOrders, updateDemoOrderStatus } from './demo-orders-service'
 
 type CartItem = Product & { quantity: number } // cart item shape
 
@@ -41,3 +41,21 @@ export const getOrders = async (): Promise<Order[]> => { // load orders via API
   if (!res.ok) throw new Error(await readErrorMessage(res, 'Failed to fetch orders.')) // handle error
   return res.json() as Promise<Order[]> // return orders list
 }
+
+export const startOrderPayment = async (order: Order): Promise<Order | null> => {
+  if (!isSupabaseConfigured) return updateDemoOrderStatus(order.id, "paid")
+
+  const accessToken = await getAccessToken()
+  const res = await fetch(endpoint("/api/payments/checkout"), {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Authorization: `Bearer ${accessToken}` },
+    body: JSON.stringify({ orderId: order.id }),
+  })
+  if (!res.ok) throw new Error(await readErrorMessage(res, "Payment could not be started."))
+  const body = await res.json() as { url: string }
+  window.location.assign(body.url)
+  return null
+}
+
+export const setDemoOrderStatus = async (orderId: string, status: OrderStatus) =>
+  updateDemoOrderStatus(orderId, status)
