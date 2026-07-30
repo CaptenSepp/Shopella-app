@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux' // redux selector
 import { RootState } from '@/app/store' // root state type
 import { useOrders } from '@/features/orders/hooks'
 import ProductPrice from '@/features/products/components/ProductPrice'
+import { isSupabaseConfigured } from '@/features/auth/supabase-client'
 
 type OrdersPageProps = {
   showAccountHeader?: boolean
@@ -62,12 +63,14 @@ const OrdersPage = ({ showAccountHeader = false }: OrdersPageProps) => { // orde
       <div className="space-y-6">
         {orders.map((order) => ( // render each order
           <article key={order.id} className="surface-card p-4">
+            {!isSupabaseConfigured ? <p className="order-demo-label">Demo order · no real charge</p> : null}
             <header className="flex flex-wrap items-center justify-between gap-2 mb-4">
               <div>
                 <div className="u-text-sm text-muted">Order ID</div>
                 <div className="u-font-semibold">{order.id}</div>
               </div>
               <div className="text-right">
+                <div className={`order-status order-status--${order.status ?? "pending"}`}>{order.status ?? "pending"}</div>
                 <div className="u-text-sm text-muted">Total</div>
                 <div className="u-font-semibold">${order.totals.total.toFixed(2)} USD</div>
               </div>
@@ -80,6 +83,23 @@ const OrdersPage = ({ showAccountHeader = false }: OrdersPageProps) => { // orde
                 </div>
               ))}
             </div>
+            {order.receipt ? (
+              <p className="u-text-sm mt-3">
+                Receipt <strong>{order.receipt.number}</strong>
+                {order.receipt.url ? <> · <a className="app-text-link" href={order.receipt.url} target="_blank" rel="noreferrer">View Stripe receipt</a></> : null}
+              </p>
+            ) : null}
+            {(order.statusHistory?.length ?? 0) > 0 ? (
+              <ol className="order-history mt-4" aria-label="Order status history">
+                {order.statusHistory.map((entry) => (
+                  <li key={entry.id}>
+                    <strong>{entry.status}</strong>
+                    <time dateTime={entry.createdAt}>{new Date(entry.createdAt).toLocaleString()}</time>
+                    {entry.note ? <span>{entry.note}</span> : null}
+                  </li>
+                ))}
+              </ol>
+            ) : null}
           </article>
         ))}
       </div>
