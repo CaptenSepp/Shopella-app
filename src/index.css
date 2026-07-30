@@ -6,6 +6,8 @@
 @import "./styles/index/index-cards.css";
 @import "./styles/index/index-forms.css";
 @import "./styles/index/index-home.css";
+@import "./styles/index/index-modern-hero.css";
+@import "./styles/index/index-splash.css";
 @import "./styles/index/index-about.css";
 @import "./styles/index/index-contact.css";
 @import "./styles/index/index-products-filters.css";
@@ -14,6 +16,9 @@
 @import "./styles/index/index-home-journey.css";
 @import "./styles/index/index-assistant.css";
 @import "./styles/app/app-checkout.css";
+@import "./styles/app/app-account.css";
 @import "./styles/app/app-accessibility.css";
 @import "./styles/index/index-text-utilities.css";
 @import "./styles/index/index-layout-utilities.css";
+@import "./styles/app/app-admin.css";
+
