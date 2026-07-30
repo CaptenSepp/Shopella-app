@@ -1,7 +1,7 @@
 import { lazy, Suspense, type KeyboardEvent, type RefObject } from "react"
 import type { UIMessage } from "ai"
 import { MessageCircle, Square, X } from "lucide-react"
-import { Conversation, ConversationContent, ConversationEmptyState, ConversationScrollButton } from "@/components/ai-elements/conversation"
+import { Conversation, ConversationAutoScroll, ConversationContent, ConversationEmptyState, ConversationScrollButton } from "@/components/ai-elements/conversation"
 
 const AssistantMessage = lazy(() => import("./AssistantMessage"))
 
@@ -37,12 +37,13 @@ const AssistantPanel = ({ draftText, errorMessage, inputRef, isOpen, isWorking, 
         <ConversationContent className="assistant-panel__messages">
           {messages.length === 0 ? <ConversationEmptyState title="Ask for shopping advice" description="Try: Which beauty product is highly rated?" /> : (
             <Suspense fallback={null}>
-              {messages.map((message) => <AssistantMessage key={message.id} message={message} />)}
+              {messages.filter((message, index) => !(isWorking && index === messages.length - 1 && message.role === "assistant")).map((message) => <AssistantMessage key={message.id} message={message} />)}
             </Suspense>
           )}
           {isWorking ? <p className="assistant-panel__status" role="status">Finding useful suggestions...</p> : null}
           {errorMessage ? <p className="assistant-panel__error" role="alert">{errorMessage}</p> : null}
         </ConversationContent>
+        <ConversationAutoScroll scrollKey={`${messages.length}-${isWorking}`} />
         <ConversationScrollButton />
       </Conversation>
 

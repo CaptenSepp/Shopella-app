@@ -5,14 +5,14 @@ import { cn } from "@/lib/utils";
 import type { UIMessage } from "ai";
 import { ArrowDownIcon, DownloadIcon } from "lucide-react";
 import type { ComponentProps } from "react";
-import { useCallback } from "react";
+import { useCallback, useLayoutEffect } from "react";
 import { StickToBottom, useStickToBottomContext } from "use-stick-to-bottom";
 
 export type ConversationProps = ComponentProps<typeof StickToBottom>;
 
 export const Conversation = ({ className, ...props }: ConversationProps) => (
   <StickToBottom
-    className={cn("relative flex-1 overflow-y-hidden", className)}
+    className={cn("relative flex-1 overflow-y-auto", className)}
     initial="smooth"
     resize="smooth"
     role="log"
@@ -98,6 +98,20 @@ export const ConversationScrollButton = ({
       </Button>
     )
   );
+};
+
+export const ConversationAutoScroll = ({ scrollKey }: { scrollKey: string }) => {
+  const { scrollToBottom } = useStickToBottomContext();
+
+  useLayoutEffect(() => {
+    if (scrollKey.startsWith("0-")) return;
+    void scrollToBottom({
+      animation: { damping: 0.9, stiffness: 0.3, mass: 0.3 },
+      ignoreEscapes: true,
+    });
+  }, [scrollKey, scrollToBottom]);
+
+  return null;
 };
 
 const getMessageText = (message: UIMessage): string =>
