@@ -3,10 +3,10 @@ import { Link, useNavigate } from "react-router-dom"
 import { RootState, useAppDispatch } from "@/app/store"
 import { clearCart } from "@/features/cart/cartSlice"
 import { useCreateOrder } from "@/features/orders/hooks"
-import CheckoutForm from "../components/CheckoutForm"
-import OrderSummary from "../components/OrderSummary"
-import CheckoutProgress from "../components/CheckoutProgress"
-import { loadStoredCustomer, saveStoredCustomer } from "../checkout-tools"
+import CheckoutForm from "@/features/checkout/components/CheckoutForm"
+import OrderSummary from "@/features/checkout/components/OrderSummary"
+import CheckoutProgress from "@/features/checkout/components/CheckoutProgress"
+import { loadStoredCustomer, saveStoredCustomer } from "@/features/checkout/checkout-tools"
 
 const Checkout = () => {
   const dispatch = useAppDispatch()

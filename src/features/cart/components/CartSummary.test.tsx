@@ -9,14 +9,6 @@ import type { Product } from '@/features/products/services' // product type
 
 const navigateMock = vi.fn() // capture navigation calls
 
-vi.mock('react-router-dom', async () => { // mock useNavigate only
-  const actual = await vi.importActual<typeof import('react-router-dom')>('react-router-dom') // keep real exports
-  return {
-    ...actual,
-    useNavigate: () => navigateMock, // swap useNavigate
-  }
-})
-
 const buildItem = (overrides?: Partial<Product> & { quantity?: number }) => ({ // helper for cart items
   id: 1,
   title: 'Item',
@@ -42,7 +34,7 @@ const renderWithStore = (items: Array<Product & { quantity: number }>) => { // r
     store,
     ...render(
     <Provider store={store}>
-      <CartSummary />
+      <CartSummary onCheckout={navigateMock} />
     </Provider>
     ),
   }
@@ -77,7 +69,7 @@ describe('CartSummary navigation', () => {
     const user = userEvent.setup() // user event setup
     renderWithStore([buildItem()]) // ensure button is enabled
     await user.click(screen.getByRole('button', { name: /check out/i })) // click checkout
-    expect(navigateMock).toHaveBeenCalledWith('/checkout') // route to checkout
+    expect(navigateMock).toHaveBeenCalledOnce() // platform page owns the destination
   })
 })
 

@@ -5,8 +5,8 @@ import Image from "next/image"
 import Link from "next/link"
 import storyImg from "@/assets/images/Banner-middle.png"
 import { useViewportReveal } from "@/components/ui/use-viewport-reveal"
-import AboutTeamSection from "../next/components/AboutTeamSection"
-import AboutValuesSection from "../components/AboutValuesSection"
+import AboutTeamSection from "../components/AboutTeamSection"
+import AboutValuesSection from "../../components/AboutValuesSection"
 
 const About: React.FC = () => {
   const pageRef = useRef<HTMLDivElement | null>(null)

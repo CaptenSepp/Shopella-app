@@ -38,9 +38,10 @@ Use Vite for day-to-day UI and CSS work. Use Next.js to test App Router, API rou
 
 ## Project structure
 
-- `src/app` — router, Redux store, React Query client, and theme wiring
-- `src/layouts` — shared header, main landmark, footer, and drawers
-- `src/features` — feature services, hooks, helpers, pages, and components
+- `src/app` — shared Redux store, React Query client, and theme wiring
+- `src/vite` — Vite entry point, React Router routes, pages, authentication wrapper, and layout shell
+- `src/layouts/next` — Next.js layout shell, navigation, footer, drawers, and assistant loader
+- `src/features` — shared feature UI and business logic, with `next` folders only for App Router pages or Next-optimized image/navigation variants
 - `src/components/ui` — reusable loading, dialog-focus, toast, and assistant UI
 - `src/components/ai-elements` — official streamed conversation and message components
 - `src/styles` — purpose-specific CSS/BEM files and shared theme tokens

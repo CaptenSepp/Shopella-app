@@ -1,4 +1,4 @@
-import { focusRingClass } from "../login-tools"
+import { focusRingClass } from "@/features/auth/login-tools"
 
 type LoginFieldProps = {
   describedBy?: string

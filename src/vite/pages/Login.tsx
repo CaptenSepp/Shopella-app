@@ -1,5 +1,5 @@
 import { useNavigate, useSearchParams } from "react-router-dom"
-import AuthForm from "../components/AuthForm"
+import AuthForm from "@/features/auth/components/AuthForm"
 
 type LoginPageProps = { onSuccess?: () => void }
 

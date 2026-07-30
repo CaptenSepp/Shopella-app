@@ -1,6 +1,8 @@
+"use client"
+
 import { Minus, Plus, Trash2 } from 'lucide-react'
 import { useSelector } from 'react-redux'
-import { RootState, useAppDispatch } from '@/app/store'
+import { type RootState, useAppDispatch } from '@/app/store'
 import { addToCart, removeFromCart, updateQuantity } from '@/features/cart/cartSlice'
 import ProductPrice from '@/features/products/components/ProductPrice'
 
@@ -17,7 +19,11 @@ const CartItemsList = () => {
       {items.map((item) => (
         <li key={item.id} className="line-item">
           <div className="media-thumb">
-            <img src={item.thumbnail} loading="lazy" alt={item.title} className="media-thumb__img" />
+            {item.thumbnail ? (
+              <img src={item.thumbnail} loading="lazy" alt={item.title} className="media-thumb__img" />
+            ) : (
+              <span className="media-thumb__img" aria-hidden="true" />
+            )}
           </div>
 
           <div className="flex flex-1 flex-col justify-between py-2">

@@ -1,5 +1,7 @@
+"use client"
+
 import { useRef, useState } from "react"
-import { CheckoutFormErrors, CheckoutFormValues, focusRingClass, validateCheckoutForm } from "../checkout-tools"
+import { type CheckoutFormErrors, type CheckoutFormValues, focusRingClass, validateCheckoutForm } from "../checkout-tools"
 
 type CheckoutFormProps = {
   apiError?: string

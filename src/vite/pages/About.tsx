@@ -2,8 +2,8 @@ import React, { useRef } from "react"
 import { Link } from "react-router-dom"
 import storyImg from "@/assets/images/Banner-middle.png"
 import { useViewportReveal } from "@/components/ui/use-viewport-reveal"
-import AboutTeamSection from "../components/AboutTeamSection"
-import AboutValuesSection from "../components/AboutValuesSection"
+import AboutTeamSection from "@/features/about/components/AboutTeamSection"
+import AboutValuesSection from "@/features/about/components/AboutValuesSection"
 
 const About: React.FC = () => {
   const pageRef = useRef<HTMLDivElement | null>(null)

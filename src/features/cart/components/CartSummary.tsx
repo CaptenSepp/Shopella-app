@@ -1,15 +1,15 @@
+"use client"
+
 import { useSelector } from 'react-redux'
-import { RootState } from '../../../app/store'
-import { useNavigate } from 'react-router-dom'
+import type { RootState } from '@/app/store'
 import { calculateOrderTotals } from '@/features/orders/order-calculations'
 
-const CartSummary = () => {
+const CartSummary = ({ onCheckout }: { onCheckout: () => void }) => {
   const items = useSelector((state: RootState) => state.cart.items); // read cart items
-  const navigate = useNavigate(); // programmatic navigation
   const { subtotal, shipping, total } = calculateOrderTotals(items); // shared discounted totals
 
   const handleCheckout = () => {
-    navigate('/checkout') // Keep navigation in a named handler so the button JSX stays simple.
+    onCheckout() // Keep navigation in the platform page while this UI stays shared.
   }
 
   return (

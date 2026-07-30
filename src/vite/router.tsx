@@ -20,7 +20,7 @@ const OrderConfirmation = lazy(() => import("@/vite/pages/OrderConfirmation"))
 const OrdersPage = lazy(() => import("@/vite/pages/Orders"))
 const ProductDetails = lazy(() => import("@/vite/pages/ProductDetails"))
 const ProductsPage = lazy(() => import("@/vite/pages/Products"))
-const Retailers = lazy(() => import("@/vite/pages/Retailers"))
+const Retailers = lazy(() => import("@/features/retailers/pages/Retailers"))
 const Wishlist = lazy(() => import("@/vite/pages/Wishlist"))
 
 const page = (PageComponent: LazyExoticComponent<ComponentType>) => (

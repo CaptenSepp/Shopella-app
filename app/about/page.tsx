@@ -1,1 +1,1 @@
-export { default } from "@/features/about/pages/AboutNext"
+export { default } from "@/features/about/next/pages/About"

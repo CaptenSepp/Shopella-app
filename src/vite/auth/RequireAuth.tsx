@@ -2,7 +2,7 @@ import { useSelector } from "react-redux"
 import { Navigate, Outlet, useLocation } from "react-router-dom"
 import type { RootState } from "@/app/store"
 import RouteLoadingState from "@/components/ui/RouteLoadingState"
-import { useAuthSession } from "./auth-session-context"
+import { useAuthSession } from "@/features/auth/auth-session-context"
 
 const RequireAuth = () => {
   const location = useLocation()

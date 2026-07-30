@@ -2,6 +2,7 @@ import { useSelector } from 'react-redux'
 import { RootState, useAppDispatch } from '@/app/store'
 import { clearWishlist } from '@/features/wishlist/wishlistSlice'
 import WishlistItemsList from '@/features/wishlist/components/WishlistItemsList'
+import ViteLink from '@/vite/components/ViteLink'
 
 const WishlistPage = () => { // wishlist page using store items
   const dispatch = useAppDispatch() // typed dispatch for sinding wishlist actions like clear
@@ -19,7 +20,7 @@ const WishlistPage = () => { // wishlist page using store items
           )}
         </div>
 
-        <WishlistItemsList />
+        <WishlistItemsList LinkComponent={ViteLink} />
       </div>
     </div>
   )

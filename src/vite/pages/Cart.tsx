@@ -1,7 +1,10 @@
+import { useNavigate } from 'react-router-dom'
 import CartItemsList from '@/features/cart/components/CartItemsList'
 import CartSummary from '@/features/cart/components/CartSummary'
 
 const CartPage = () => { // cart page with items and totals
+  const navigate = useNavigate()
+
   return (
     <div className="cart-page bg-[color:var(--app-bg)] py-6 text-[color:var(--app-text)] sm:py-8 lg:py-12">
       <div className="mx-auto max-w-screen-lg px-4 md:px-8">
@@ -10,7 +13,7 @@ const CartPage = () => { // cart page with items and totals
         </div>
 
         <CartItemsList /> {/* list all cart items */}
-        <CartSummary /> {/* subtotal, shipping, total */}
+        <CartSummary onCheckout={() => navigate('/checkout')} /> {/* subtotal, shipping, total */}
       </div>
     </div>
   )

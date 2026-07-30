@@ -1,4 +1,5 @@
 import '@testing-library/jest-dom/vitest' // jest-dom matchers for Vitest
+import { vi } from 'vitest'
 
 // Global test setup stays minimal to keep tests deterministic.
 class TestResizeObserver {
@@ -8,3 +9,4 @@ class TestResizeObserver {
 }
 
 globalThis.ResizeObserver = TestResizeObserver as typeof ResizeObserver
+vi.stubGlobal('scrollTo', vi.fn())

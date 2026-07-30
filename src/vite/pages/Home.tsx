@@ -13,6 +13,7 @@ import {
   ShoppingStepsSection,
   TrustBar,
 } from "@/features/home/components"
+import ViteLink from "@/vite/components/ViteLink"
 
 const Home = () => {
   const pageRef = useRef<HTMLDivElement | null>(null)
@@ -25,6 +26,7 @@ const Home = () => {
       <CategoryGrid cards={categoryCards} />
 
       <BestSellersRow
+        LinkComponent={ViteLink}
         title="Best sellers this week"
         subtitle="Most loved picks right now"
       />
@@ -33,8 +35,8 @@ const Home = () => {
       <BrandStoryMini />
 
       <FreshPicksSection />
-      <Scrollbar offset={0} title="The Fresh Picks edit" subtitle="Highly rated arrivals worth a closer look" />
-      <Scrollbar offset={8} title="Top-rated deals near you" subtitle="Popular value picks from the wider catalogue" />
+      <Scrollbar LinkComponent={ViteLink} offset={0} title="The Fresh Picks edit" subtitle="Highly rated arrivals worth a closer look" />
+      <Scrollbar LinkComponent={ViteLink} offset={8} title="Top-rated deals near you" subtitle="Popular value picks from the wider catalogue" />
 
       <ShoppingStepsSection />
       <ShopCtaSection />

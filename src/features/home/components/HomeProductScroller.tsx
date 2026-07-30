@@ -1,18 +1,22 @@
+"use client"
+
 import React from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { useProducts } from "@/features/products/hooks"
 import type { Product } from "@/features/products/services"
 import ProductMediaCard from "./ProductMediaCard"
 import { animateScrollLeft, getCardTargetLeft, getNearestCardLeft } from "./product-row-tools"
+import type { ProductLinkComponent } from "@/features/products/components/ProductCard"
 
 type HomeProductScrollerProps = { // shared home product row props
+  LinkComponent: ProductLinkComponent
   title?: string
   subtitle?: string
   limit?: number
   offset?: number
 }
 
-const HomeProductScroller = ({ title, subtitle, limit = 8, offset = 0 }: HomeProductScrollerProps) => {
+const HomeProductScroller = ({ LinkComponent, title, subtitle, limit = 8, offset = 0 }: HomeProductScrollerProps) => {
   const { data: products = [], isLoading, error, refetch } = useProducts() // load product row data
   const listRef = React.useRef<HTMLDivElement | null>(null) // scroll container ref
   const dragStateRef = React.useRef({ isDragging: false, didDrag: false, startX: 0, startScrollLeft: 0 }) // drag state
@@ -106,7 +110,7 @@ const HomeProductScroller = ({ title, subtitle, limit = 8, offset = 0 }: HomePro
 
       <div ref={listRef} className="best-row__list no-scrollbar" onWheel={handleWheelScroll} onMouseDown={handleMouseDown} onMouseMove={handleMouseMove} onMouseUp={stopMouseDrag} onMouseLeave={stopMouseDrag}>
         {visibleProducts.map((product: Product) => (
-          <ProductMediaCard key={product.id} product={product} onClick={handleCardClick} />
+          <ProductMediaCard key={product.id} LinkComponent={LinkComponent} product={product} onClick={handleCardClick} />
         ))}
       </div>
     </section>

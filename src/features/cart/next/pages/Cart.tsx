@@ -1,7 +1,12 @@
-import CartItemsList from '@/features/cart/next/components/CartItemsList'
-import CartSummary from '@/features/cart/next/components/CartSummary'
+"use client"
+
+import { useRouter } from 'next/navigation'
+import CartItemsList from '@/features/cart/components/CartItemsList'
+import CartSummary from '@/features/cart/components/CartSummary'
 
 const CartPage = () => { // cart page with items and totals
+  const router = useRouter()
+
   return (
     <div className="bg-[color:var(--app-bg)] py-6 text-[color:var(--app-text)] sm:py-8 lg:py-12">
       <div className="mx-auto max-w-screen-lg px-4 md:px-8">
@@ -10,7 +15,7 @@ const CartPage = () => { // cart page with items and totals
         </div>
 
         <CartItemsList /> {/* list all cart items */}
-        <CartSummary /> {/* subtotal, shipping, total */}
+        <CartSummary onCheckout={() => router.push('/checkout')} /> {/* subtotal, shipping, total */}
       </div>
     </div>
   )

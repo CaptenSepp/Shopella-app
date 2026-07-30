@@ -1,9 +1,11 @@
+"use client"
+
 import { useRef, useState } from "react"
 import { useAppDispatch } from "@/app/store"
 import { setUser } from "@/features/auth/authSlice"
 import { signIn, signUp } from "@/features/auth/auth-service"
 import LoginField from "./LoginField"
-import { focusRingClass, type LoginFormErrors, type LoginFormValues, validateLoginForm } from "../login-tools"
+import { focusRingClass, type LoginFormErrors, type LoginFormValues, validateLoginForm } from "@/features/auth/login-tools"
 
 type AuthMode = "sign-in" | "sign-up"
 

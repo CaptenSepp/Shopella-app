@@ -1,18 +1,19 @@
 import type { MouseEvent } from "react"
 import { Star } from "lucide-react"
-import { Link } from "react-router-dom"
 import type { Product } from "@/features/products/services"
 import ProductPrice from "@/features/products/components/ProductPrice"
+import type { ProductLinkComponent } from "@/features/products/components/ProductCard"
 
 type ProductMediaCardProps = {
+  LinkComponent: ProductLinkComponent
   product: Product
   onClick: (event: MouseEvent<HTMLAnchorElement>) => void
 }
 
-const ProductMediaCard = ({ product, onClick }: ProductMediaCardProps) => {
+const ProductMediaCard = ({ LinkComponent, product, onClick }: ProductMediaCardProps) => {
   return (
-    <Link
-      to={`/products/${product.id}`}
+    <LinkComponent
+      href={`/products/${product.id}`}
       className="best-row__card card card--product"
       aria-label={`View ${product.title}`}
       draggable={false}
@@ -34,7 +35,7 @@ const ProductMediaCard = ({ product, onClick }: ProductMediaCardProps) => {
           <span className="best-row__action" aria-hidden="true">View</span>
         </div>
       </div>
-    </Link>
+    </LinkComponent>
   )
 }
 

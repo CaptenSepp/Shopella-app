@@ -35,6 +35,7 @@
     --brand-black-true: #000000; /* true black for deep hover */
     --brand-orange: #ff7d1a;        /* primary */
     --brand-orange-hover: #ff8a2a;  /* brighter hover */
+    --brand-orange-text: #b54708;   /* accessible orange text on light surfaces */
     --brand-red: #e11d48; /* accent red */
 
     /* Shopella Obsidian Orange palette */
@@ -206,6 +207,7 @@
     --app-header-bg: var(--brand-black);
     --app-header-text: var(--brand-white);
     --app-header-border: var(--shopella-border-dark);
+    --brand-orange-text: var(--brand-orange);
     --status-danger: #f97066;
     --status-danger-soft: #321313;
     --status-success: #47cd89;

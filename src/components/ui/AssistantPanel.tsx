@@ -1,8 +1,9 @@
-import type { KeyboardEvent, RefObject } from "react"
+import { lazy, Suspense, type KeyboardEvent, type RefObject } from "react"
 import type { UIMessage } from "ai"
 import { MessageCircle, Square, X } from "lucide-react"
 import { Conversation, ConversationContent, ConversationEmptyState, ConversationScrollButton } from "@/components/ai-elements/conversation"
-import { Message, MessageContent, MessageResponse } from "@/components/ai-elements/message"
+
+const AssistantMessage = lazy(() => import("./AssistantMessage"))
 
 type AssistantPanelProps = {
   draftText: string
@@ -34,13 +35,11 @@ const AssistantPanel = ({ draftText, errorMessage, inputRef, isOpen, isWorking, 
 
       <Conversation className="assistant-panel__conversation">
         <ConversationContent className="assistant-panel__messages">
-          {messages.length === 0 ? <ConversationEmptyState title="Ask for shopping advice" description="Try: Which beauty product is highly rated?" /> : messages.map((message) => (
-            <Message key={message.id} from={message.role}>
-              <MessageContent>
-                {message.parts.filter((part) => part.type === "text").map((part, index) => <MessageResponse key={`${message.id}-${index}`}>{part.text}</MessageResponse>)}
-              </MessageContent>
-            </Message>
-          ))}
+          {messages.length === 0 ? <ConversationEmptyState title="Ask for shopping advice" description="Try: Which beauty product is highly rated?" /> : (
+            <Suspense fallback={null}>
+              {messages.map((message) => <AssistantMessage key={message.id} message={message} />)}
+            </Suspense>
+          )}
           {isWorking ? <p className="assistant-panel__status" role="status">Finding useful suggestions...</p> : null}
           {errorMessage ? <p className="assistant-panel__error" role="alert">{errorMessage}</p> : null}
         </ConversationContent>

@@ -1,5 +1,5 @@
-import type { AuthUser } from "../authSlice"
-import { signOut } from "../auth-service"
+import type { AuthUser } from "@/features/auth/authSlice"
+import { signOut } from "@/features/auth/auth-service"
 
 const AccountDrawerContent = ({ onSignedOut, user }: { onSignedOut: () => void; user: AuthUser }) => (
   <div className="account-drawer-content">
