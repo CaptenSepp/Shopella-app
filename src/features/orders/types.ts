@@ -18,10 +18,28 @@ export type OrderTotals = { // order totals snapshot
   total: number
 }
 
+export const ORDER_STATUSES = ["pending", "paid", "processing", "shipped", "cancelled", "refunded"] as const
+export type OrderStatus = typeof ORDER_STATUSES[number]
+
+export type OrderStatusEntry = {
+  id: string
+  status: OrderStatus
+  createdAt: string
+  note?: string
+}
+
+export type OrderReceipt = {
+  number: string
+  url?: string
+}
+
 export type Order = { // persisted order shape
   id: string
   createdAt: string
   customer: OrderCustomer
   items: OrderItem[]
   totals: OrderTotals
+  status: OrderStatus
+  statusHistory: OrderStatusEntry[]
+  receipt?: OrderReceipt
 }
