@@ -41,7 +41,8 @@
   }
 
   .badge-counter {
-    @apply absolute leading-none text-white;
+    @apply absolute leading-none;
+    color: var(--brand-black-true);
     top: 0; /* anchor to icon corner */
     right: 0; /* anchor to icon corner */
     transform: translate(50%, -50%); /* move outside icon */

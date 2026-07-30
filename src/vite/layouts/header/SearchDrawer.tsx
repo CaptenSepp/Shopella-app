@@ -41,7 +41,7 @@ const SearchDrawer = () => {
         type="button"
         ref={openButtonRef}
         onClick={openDrawer}
-        className={`icon-button header-nav-bar__item header-nav-bar__icon transition cursor-pointer md:hidden ${isDrawerOpen ? "bg-brand-orange u-text-white" : "text-[color:var(--app-header-text)]"} ${focusRingClass}`}
+        className={`icon-button header-nav-bar__item header-nav-bar__icon transition cursor-pointer md:hidden ${isDrawerOpen ? "bg-brand-orange text-[color:var(--brand-black-true)]" : "text-[color:var(--app-header-text)]"} ${focusRingClass}`}
         aria-pressed={isDrawerOpen}
         aria-haspopup="dialog"
         aria-controls="search-drawer"

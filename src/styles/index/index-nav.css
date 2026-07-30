@@ -28,6 +28,25 @@
     color: var(--brand-orange); /* hovered nav item turns orange */
   }
 
+  .header-nav-bar__link:hover .nav-link__label {
+    transform: translateY(-0.1875rem);
+  }
+
+  .header-nav-bar__icon:hover svg {
+    animation: header-search-hover 650ms ease-in-out;
+  }
+
+  .header-logo__link:hover img {
+    animation: header-logo-hover 700ms ease-in-out;
+  }
+
+  @keyframes header-search-hover { 50% { transform: rotate(35deg) scale(1.1); } }
+  @keyframes header-logo-hover {
+    25% { transform: translate(-0.625rem, -0.1875rem) rotate(-7deg); }
+    50% { transform: translate(0.625rem, 0.125rem) rotate(7deg); }
+    75% { transform: translate(-0.3125rem, -0.125rem) rotate(-4deg); }
+  }
+
   .header-nav-bar__link.nav-link-active {
     color: var(--app-header-text); /* text nav follows theme */
   }
@@ -41,7 +60,7 @@
     align-items: center; /* vertical align text */
     padding: 0.3125rem 0.5rem; /* smaller visual hover area */
     border-radius: var(--r-md); /* match button corners */
-    transition: background 0.15s; /* smooth hover */
+    transition: background 0.15s, transform 0.2s ease; /* smooth hover */
     white-space: nowrap; /* keep About Us on one line */
   }
 
@@ -88,7 +107,7 @@
 
   .footer .nav-link-active {
     background: var(--brand-orange); /* footer active background */
-    color: var(--brand-white); /* footer active text */
+    color: var(--brand-black-true); /* footer active text */
   }
 
   @media (max-width: 767px) {
