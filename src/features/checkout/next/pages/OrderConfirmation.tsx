@@ -5,16 +5,20 @@ import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import type { Order } from '@/features/orders/types'
 import ProductPrice from '@/features/products/components/ProductPrice'
+import { useAppDispatch } from '@/app/store'
+import { clearCart } from '@/features/cart/cartSlice'
 import { loadConfirmationOrder } from '../order-confirmation-storage'
 
 const OrderConfirmation = () => { // post-order confirmation screen
   const searchParams = useSearchParams() // read query params
+  const dispatch = useAppDispatch()
   const orderId = searchParams.get('orderId') // read order id from URL
   const [order, setOrder] = useState<Order | null>(null)
 
   useEffect(() => {
     setOrder(loadConfirmationOrder())
-  }, [])
+    if (searchParams.get("payment") === "success") dispatch(clearCart())
+  }, [dispatch, searchParams])
 
   return (
     <div className="app-page-shell app-page-shell--narrow app-page-shell--center">

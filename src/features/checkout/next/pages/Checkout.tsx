@@ -6,6 +6,7 @@ import { useSelector } from "react-redux"
 import { useAppDispatch, type RootState } from "@/app/store"
 import { clearCart } from "@/features/cart/cartSlice"
 import { useCreateOrder } from "@/features/orders/hooks"
+import { startOrderPayment } from "@/features/orders/services"
 import CheckoutForm from "@/features/checkout/components/CheckoutForm"
 import OrderSummary from "@/features/checkout/components/OrderSummary"
 import CheckoutProgress from "@/features/checkout/components/CheckoutProgress"
@@ -51,8 +52,16 @@ const Checkout = () => {
 
             // After success, keep the checkout details for next time and move the app into its "ordered" state.
             saveStoredCustomer(trimmedCustomer)
-            dispatch(clearCart()) // Clear only after success so the cart is not lost on a failed order request.
-            saveConfirmationOrder(order)
+            let paidOrder
+            try {
+              saveConfirmationOrder(order)
+              paidOrder = await startOrderPayment(order)
+            } catch {
+              return
+            }
+            if (!paidOrder) return
+            dispatch(clearCart())
+            saveConfirmationOrder(paidOrder)
             router.replace(`/order-confirmation?orderId=${order.id}`)
           }}
         />
