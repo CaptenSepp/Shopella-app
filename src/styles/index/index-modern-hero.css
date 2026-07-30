@@ -1,0 +1,260 @@
+@layer components {
+  .modern-hero {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(300px, 0.82fr) minmax(480px, 1.18fr);
+    gap: clamp(2rem, 5vw, 6rem);
+    align-items: center;
+    overflow: hidden;
+    width: 100%;
+    min-height: clamp(560px, 72vh, 760px);
+    padding: clamp(3.5rem, 8vh, 6rem) var(--home-full-inline);
+    background: var(--shopella-bg-dark);
+    color: var(--shopella-text-dark);
+  }
+
+  .modern-hero__glow {
+    position: absolute;
+    top: 2%;
+    left: 34%;
+    width: 38rem;
+    height: 38rem;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--shopella-orange) 16%, transparent);
+    filter: blur(100px);
+    pointer-events: none;
+  }
+
+  .modern-hero__copy,
+  .modern-hero__showcase {
+    position: relative;
+    z-index: 1;
+  }
+
+  .modern-hero__eyebrow {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    margin: 0 0 1.25rem;
+    color: var(--shopella-orange);
+    font-size: 0.75rem;
+    font-weight: var(--fw-bold);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .modern-hero__eyebrow svg,
+  .modern-hero__button svg {
+    width: 1rem;
+  }
+
+  .modern-hero__title {
+    max-width: 650px;
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(3.3rem, 6.4vw, 6.5rem);
+    font-weight: 400;
+    letter-spacing: -0.045em;
+    line-height: 0.91;
+  }
+
+  .modern-hero__title em {
+    color: var(--shopella-orange);
+    font-weight: 400;
+  }
+
+  .modern-hero__intro {
+    max-width: 540px;
+    margin: 1.75rem 0 0;
+    color: var(--shopella-muted-dark);
+    font-size: clamp(0.95rem, 1.2vw, 1.075rem);
+    line-height: 1.75;
+  }
+
+  .modern-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 2rem;
+  }
+
+  .modern-hero__button {
+    display: inline-flex;
+    gap: 0.65rem;
+    align-items: center;
+    justify-content: center;
+    min-height: 3rem;
+    padding: 0.75rem 1.25rem;
+    border: 1px solid var(--shopella-border-dark);
+    border-radius: var(--r-pill);
+    color: var(--shopella-text-dark);
+    font-size: 0.85rem;
+    font-weight: var(--fw-bold);
+    text-decoration: none;
+    transition: 160ms ease;
+  }
+
+  .modern-hero__button:hover {
+    transform: translateY(-2px);
+    border-color: var(--shopella-orange);
+  }
+
+  .modern-hero__button--primary {
+    border-color: var(--shopella-orange);
+    background: var(--shopella-orange);
+    color: var(--brand-black-true);
+  }
+
+  .modern-hero__button--primary:hover {
+    background: var(--shopella-orange-hover);
+  }
+
+  .modern-hero__assurances {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin: 2.25rem 0 0;
+    padding: 0;
+    color: var(--shopella-muted-dark);
+    font-size: 0.75rem;
+    list-style: none;
+  }
+
+  .modern-hero__assurances li {
+    display: flex;
+    gap: 0.45rem;
+    align-items: center;
+  }
+
+  .modern-hero__assurances svg {
+    width: 1rem;
+    color: var(--shopella-orange);
+  }
+
+  .modern-hero__showcase-label {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 0 0.75rem;
+    color: var(--shopella-muted-dark);
+    font-size: 0.68rem;
+    font-weight: var(--fw-bold);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .modern-hero__cards {
+    display: grid;
+    grid-template-columns: 0.82fr 1.15fr 0.82fr;
+    gap: 0.75rem;
+    align-items: center;
+  }
+
+  .modern-hero__card {
+    position: relative;
+    overflow: hidden;
+    min-height: 350px;
+    border: 1px solid var(--shopella-border-dark);
+    border-radius: var(--r-xl);
+    background: var(--shopella-surface-dark);
+    color: var(--brand-white);
+    box-shadow: var(--shopella-shadow-soft);
+    text-decoration: none;
+  }
+
+  .modern-hero__card:nth-child(2) {
+    min-height: 460px;
+  }
+
+  .modern-hero__card-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 500ms ease;
+  }
+
+  .modern-hero__card-shade {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 44%, rgba(7, 7, 7, 0.88));
+  }
+
+  .modern-hero__card-copy {
+    position: absolute;
+    right: 1rem;
+    bottom: 1.15rem;
+    left: 1rem;
+    display: grid;
+    gap: 0.15rem;
+  }
+
+  .modern-hero__card-copy small {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.68rem;
+    text-transform: uppercase;
+  }
+
+  .modern-hero__card-copy strong {
+    font-family: var(--font-display);
+    font-size: clamp(1.25rem, 2.2vw, 1.8rem);
+    font-weight: 400;
+  }
+
+  .modern-hero__card-icon {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 1.15rem;
+    padding: 0.3rem;
+    box-sizing: content-box;
+    border-radius: 50%;
+    background: rgba(7, 7, 7, 0.58);
+  }
+
+  .modern-hero__card:hover .modern-hero__card-image {
+    transform: scale(1.04);
+  }
+
+  @media (max-width: 900px) {
+    .modern-hero {
+      grid-template-columns: 1fr;
+      padding-block: 3.5rem;
+    }
+
+    .modern-hero__copy {
+      max-width: 680px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .modern-hero {
+      gap: 3rem;
+      padding-block: 2.75rem;
+    }
+
+    .modern-hero__title {
+      font-size: clamp(3.1rem, 15vw, 4.8rem);
+    }
+
+    .modern-hero__cards {
+      grid-template-columns: repeat(3, minmax(150px, 1fr));
+      overflow-x: auto;
+      margin-inline: calc(var(--home-full-inline) * -1);
+      padding: 0 var(--home-full-inline) 0.75rem;
+      scrollbar-width: none;
+    }
+
+    .modern-hero__card,
+    .modern-hero__card:nth-child(2) {
+      min-height: 290px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .modern-hero__button,
+    .modern-hero__card-image {
+      transition: none;
+    }
+  }
+}
