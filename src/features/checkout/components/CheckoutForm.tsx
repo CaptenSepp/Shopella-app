@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react"
 import { type CheckoutFormErrors, type CheckoutFormValues, focusRingClass, validateCheckoutForm } from "../checkout-tools"
+import { isSupabaseConfigured } from "@/features/auth/supabase-client"
 
 type CheckoutFormProps = {
   apiError?: string
@@ -63,7 +64,21 @@ const CheckoutForm = ({ apiError, hasItems, initialValues, isSubmitting = false,
         <textarea id="checkout-address" ref={addressInputRef} className={`input-field ${focusRingClass} ${touched.address && errors.address ? "input-field-error" : ""}`} value={values.address} onChange={(event) => updateField("address", event.target.value)} onBlur={() => touchField("address")} aria-invalid={Boolean(touched.address && errors.address)} aria-describedby={touched.address && errors.address ? "checkout-address-error" : undefined} rows={3} />
         {touched.address && errors.address ? <p id="checkout-address-error" className="mt-1 u-text-sm u-text-danger" role="alert">{errors.address}</p> : null}
       </div>
-      <button type="submit" className={`btn btn-primary ${focusRingClass}`} disabled={isSubmitting || !hasItems}>{isSubmitting ? "Placing order..." : "Place order"}</button>
+      {!isSupabaseConfigured ? (
+        <fieldset className="checkout-payment">
+          <legend>Payment</legend>
+          <div className="checkout-payment__demo"><strong>Demo payment</strong><span>Test details only. No card is charged.</span></div>
+          <label htmlFor="checkout-card">Card number</label>
+          <input id="checkout-card" className="input-field" value="4242 4242 4242 4242" readOnly />
+          <div className="checkout-payment__row">
+            <label htmlFor="checkout-expiry">Expiry<input id="checkout-expiry" className="input-field" value="12/30" readOnly /></label>
+            <label htmlFor="checkout-cvc">CVC<input id="checkout-cvc" className="input-field" value="123" readOnly /></label>
+          </div>
+        </fieldset>
+      ) : null}
+      <button type="submit" className={`btn btn-primary ${focusRingClass}`} disabled={isSubmitting || !hasItems}>
+        {isSubmitting ? "Processing..." : isSupabaseConfigured ? "Continue to secure payment" : "Place order · Demo payment"}
+      </button>
     </form>
   )
 }

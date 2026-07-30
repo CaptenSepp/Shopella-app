@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom"
 import { RootState, useAppDispatch } from "@/app/store"
 import { clearCart } from "@/features/cart/cartSlice"
 import { useCreateOrder } from "@/features/orders/hooks"
+import { startOrderPayment } from "@/features/orders/services"
 import CheckoutForm from "@/features/checkout/components/CheckoutForm"
 import OrderSummary from "@/features/checkout/components/OrderSummary"
 import CheckoutProgress from "@/features/checkout/components/CheckoutProgress"
@@ -47,8 +48,15 @@ const Checkout = () => {
 
             // After success, keep the checkout details for next time and move the app into its "ordered" state.
             saveStoredCustomer(trimmedCustomer)
+            let paidOrder
+            try {
+              paidOrder = await startOrderPayment(order)
+            } catch {
+              return
+            }
+            if (!paidOrder) return
             dispatch(clearCart()) // Clear only after success so the cart is not lost on a failed order request.
-            navigate(`/order-confirmation?orderId=${order.id}`, { replace: true, state: { order } }) // Send the created order along with navigation so the confirmation page can render immediately.
+            navigate(`/order-confirmation?orderId=${order.id}`, { replace: true, state: { order: paidOrder } }) // Send the created order along with navigation so the confirmation page can render immediately.
           }}
         />
         <OrderSummary items={items} />

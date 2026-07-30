@@ -7,16 +7,19 @@ import { addToCart, removeFromCart, updateQuantity } from '@/features/cart/cartS
 import ProductPrice from '@/features/products/components/ProductPrice'
 
 const CartItemsList = () => {
+  // This shared component reads and updates the persisted Redux cart.
   const dispatch = useAppDispatch()
   const items = useSelector((state: RootState) => state.cart.items)
 
   if (!items.length) {
+    // Keep the empty state outside the list so no empty list semantics are announced.
     return <div className="empty-state">Your cart is empty.</div>
   }
 
   return (
     <ul className="mb-6 flex flex-col gap-4 sm:mb-8 md:gap-6">
       {items.map((item) => (
+        // Each row combines product metadata with cart-specific quantity controls.
         <li key={item.id} className="line-item">
           <div className="media-thumb">
             {item.thumbnail ? (
@@ -44,6 +47,7 @@ const CartItemsList = () => {
                 type="button"
                 className="btn btn-secondary btn-sm"
                 onClick={() => {
+                  // A decrement from one removes the line instead of retaining zero quantity.
                   const quantity = item.quantity - 1
                   if (quantity <= 0) dispatch(removeFromCart(item.id))
                   else dispatch(updateQuantity({ id: item.id, quantity }))
@@ -66,6 +70,7 @@ const CartItemsList = () => {
 
             <div className="flex items-center gap-3">
               <span className="block u-font-bold text-brand-black u-text-lg-md">
+                {/* Quantity is included here to display the complete line total. */}
                 <ProductPrice price={item.price} discountPercentage={item.discountPercentage} quantity={item.quantity} />
               </span>
               <button type="button" className="btn btn-danger btn-sm" onClick={() => dispatch(removeFromCart(item.id))}>
