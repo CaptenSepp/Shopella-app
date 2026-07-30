@@ -4,8 +4,8 @@ import { getQueryClient } from '@/app/queryClient';
 
 import { QueryClientProvider } from '@tanstack/react-query';
 import { Provider } from 'react-redux';
-import App from '@/App';
-import '@/App.css';
+import App from '@/vite/App';
+import '@/vite/App.css';
 import '@/index.css';
 import { store } from '@/app/store';
 import { ToastProvider } from '@/components/ui/Toast';

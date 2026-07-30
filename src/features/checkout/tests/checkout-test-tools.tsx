@@ -6,7 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import authReducer from "@/features/auth/authSlice"
 import cartReducer from "@/features/cart/cartSlice"
 import type { Product } from "@/features/products/services"
-import Checkout from "@/features/checkout/pages/Checkout"
+import Checkout from "@/vite/pages/Checkout"
 
 export const buildItem = (overrides?: Partial<Product> & { quantity?: number }) => ({
   id: 202,

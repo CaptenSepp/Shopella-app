@@ -6,10 +6,10 @@ import { configureStore } from '@reduxjs/toolkit' // test store setup
 import { createMemoryRouter, RouterProvider } from 'react-router-dom' // memory router
 import cartReducer from '@/features/cart/cartSlice' // cart reducer
 import wishlistReducer from '@/features/wishlist/wishlistSlice' // wishlist reducer
-import Layout from '@/layouts/RootLayout' // layout shell
-import ProductsPage from '@/features/products/pages/Products' // products page
-import CartPage from '@/features/cart/pages/Cart' // cart page
-import Checkout from '@/features/checkout/pages/Checkout' // checkout page
+import Layout from '@/vite/layouts/RootLayout' // layout shell
+import ProductsPage from '@/vite/pages/Products' // products page
+import CartPage from '@/vite/pages/Cart' // cart page
+import Checkout from '@/vite/pages/Checkout' // checkout page
 import { ToastContext } from '@/components/ui/toastContext' // toast provider
 import authReducer from '@/features/auth/authSlice' // auth reducer for layout
 import type { Product, Category } from '@/features/products/services' // product types

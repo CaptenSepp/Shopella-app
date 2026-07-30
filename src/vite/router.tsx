@@ -4,24 +4,24 @@ import {
   Route,
 } from "react-router-dom";
 import { lazy, Suspense, type ComponentType, type LazyExoticComponent } from "react";
-import Layout from "@/layouts/RootLayout";
-import ErrorPage from "@/features/error/pages/ErrorPage";
-import RequireAuth from "@/features/auth/RequireAuth";
+import Layout from "@/vite/layouts/RootLayout";
+import ErrorPage from "@/vite/pages/ErrorPage";
+import RequireAuth from "@/vite/auth/RequireAuth";
 import RouteLoadingState from "@/components/ui/RouteLoadingState";
 
-const About = lazy(() => import("@/features/about/pages/About"))
-const Account = lazy(() => import("@/features/account/pages/Account"))
-const Cart = lazy(() => import("@/features/cart/pages/Cart"))
-const Checkout = lazy(() => import("@/features/checkout/pages/Checkout"))
-const Home = lazy(() => import("@/features/home/pages/Home"))
-const LoginPage = lazy(() => import("@/features/auth/pages/Login"))
-const NotFoundPage = lazy(() => import("@/features/error/pages/NotFound"))
-const OrderConfirmation = lazy(() => import("@/features/checkout/pages/OrderConfirmation"))
-const OrdersPage = lazy(() => import("@/features/orders/pages/Orders"))
-const ProductDetails = lazy(() => import("@/features/products/pages/ProductDetails"))
-const ProductsPage = lazy(() => import("@/features/products/pages/Products"))
-const Retailers = lazy(() => import("@/features/retailers/pages/Retailers"))
-const Wishlist = lazy(() => import("@/features/wishlist/pages/Wishlist"))
+const About = lazy(() => import("@/vite/pages/About"))
+const Account = lazy(() => import("@/vite/pages/Account"))
+const Cart = lazy(() => import("@/vite/pages/Cart"))
+const Checkout = lazy(() => import("@/vite/pages/Checkout"))
+const Home = lazy(() => import("@/vite/pages/Home"))
+const LoginPage = lazy(() => import("@/vite/pages/Login"))
+const NotFoundPage = lazy(() => import("@/vite/pages/NotFound"))
+const OrderConfirmation = lazy(() => import("@/vite/pages/OrderConfirmation"))
+const OrdersPage = lazy(() => import("@/vite/pages/Orders"))
+const ProductDetails = lazy(() => import("@/vite/pages/ProductDetails"))
+const ProductsPage = lazy(() => import("@/vite/pages/Products"))
+const Retailers = lazy(() => import("@/vite/pages/Retailers"))
+const Wishlist = lazy(() => import("@/vite/pages/Wishlist"))
 
 const page = (PageComponent: LazyExoticComponent<ComponentType>) => (
   <Suspense fallback={<RouteLoadingState />}><PageComponent /></Suspense>

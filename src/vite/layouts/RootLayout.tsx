@@ -1,7 +1,7 @@
 import React, { lazy, Suspense, useEffect } from "react"
 import { NavLink, useLocation } from "react-router-dom"
-import Header from "@/layouts/Header"
-import Main from "@/layouts/Main"
+import Header from "@/vite/layouts/Header"
+import Main from "@/vite/layouts/Main"
 
 const AssistantFab = lazy(() => import("@/components/ui/AssistantFab")) // keep the AI interface in its own bundle
 

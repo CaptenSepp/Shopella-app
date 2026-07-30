@@ -7,7 +7,7 @@ import { ToastContext } from "@/components/ui/toastContext"
 import cartReducer from "@/features/cart/cartSlice"
 import type { Category, Product } from "@/features/products/services"
 import wishlistReducer from "@/features/wishlist/wishlistSlice"
-import ProductsPage from "@/features/products/pages/Products"
+import ProductsPage from "@/vite/pages/Products"
 
 export const buildProduct = (overrides?: Partial<Product>): Product => ({
   id: 1,

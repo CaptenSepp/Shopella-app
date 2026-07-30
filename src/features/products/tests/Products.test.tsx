@@ -6,7 +6,7 @@ import { MemoryRouter } from "react-router-dom"
 import { ToastContext } from "@/components/ui/toastContext"
 import cartReducer from "@/features/cart/cartSlice"
 import wishlistReducer from "@/features/wishlist/wishlistSlice"
-import ProductsPage from "@/features/products/pages/Products"
+import ProductsPage from "@/vite/pages/Products"
 import { buildCategory, buildProduct, renderProductsPage } from "./products-test-tools"
 
 const useProductsMock = vi.fn() // controlled products hook mock

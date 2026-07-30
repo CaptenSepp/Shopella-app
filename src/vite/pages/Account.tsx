@@ -1,4 +1,4 @@
-import OrdersPage from "@/features/orders/pages/Orders"
+import OrdersPage from "@/vite/pages/Orders"
 
 const Account = () => (
   <OrdersPage showAccountHeader />
