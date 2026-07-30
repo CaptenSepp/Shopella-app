@@ -1,8 +1,10 @@
 import type { KeyboardEvent, RefObject } from "react"
 import type { UIMessage } from "ai"
+import { motion } from "framer-motion"
 import { MessageCircle, Square, X } from "lucide-react"
 import { Streamdown } from "streamdown"
-import { Conversation, ConversationContent, ConversationEmptyState, ConversationScrollButton } from "@/components/ai-elements/conversation"
+import { Conversation, ConversationAutoScroll, ConversationContent, ConversationEmptyState, ConversationScrollButton } from "@/components/ai-elements/conversation"
+import { assistantBoxMotion } from "@/components/ui/motion-presets"
 
 type AssistantPanelNextProps = {
   draftText: string
@@ -34,16 +36,21 @@ const AssistantPanelNext = ({ draftText, errorMessage, inputRef, isOpen, isWorki
 
       <Conversation className="assistant-panel__conversation">
         <ConversationContent className="assistant-panel__messages">
-          {messages.length === 0 ? <ConversationEmptyState title="Ask for shopping advice" description="Try: Which beauty product is highly rated?" /> : messages.map((message) => (
-            <div key={message.id} className={`group flex w-full max-w-[95%] flex-col gap-2 ${message.role === "user" ? "is-user ml-auto justify-end" : "is-assistant"}`}>
-              <div className="is-user:dark flex w-fit min-w-0 max-w-full flex-col gap-2 overflow-hidden text-sm group-[.is-user]:ml-auto group-[.is-user]:rounded-lg group-[.is-user]:bg-secondary group-[.is-user]:px-4 group-[.is-user]:py-3 group-[.is-user]:text-foreground group-[.is-assistant]:text-foreground">
-                {message.parts.filter((part) => part.type === "text").map((part, index) => <Streamdown key={`${message.id}-${index}`} className="size-full [&>*:first-child]:mt-0 [&>*:last-child]:mb-0">{part.text}</Streamdown>)}
-              </div>
+          {messages.length === 0 ? <ConversationEmptyState title="Ask for shopping advice" description="Try: Which beauty product is highly rated?" /> : messages.filter((message, index) => !(isWorking && index === messages.length - 1 && message.role === "assistant")).map((message) => (
+            <div key={message.id} className={`group w-full max-w-[95%] ${message.role === "user" ? "is-user ml-auto" : "is-assistant"}`}>
+              <motion.div className="flex flex-col gap-2" {...assistantBoxMotion}>
+                <div className={`flex h-auto w-fit min-w-0 max-w-full flex-col gap-2 overflow-visible rounded-lg border border-white/60 px-4 py-3 text-sm text-white ${message.role === "user" ? "ml-auto bg-[#34343a]" : "bg-[#202024]"}`}>
+                  <motion.div className="h-auto w-full overflow-visible" initial={{ color: "rgba(255, 255, 255, 0)" }} animate={{ color: "rgba(255, 255, 255, 1)" }} transition={{ delay: 3.55, duration: 0.72 }}>
+                    {message.parts.filter((part) => part.type === "text").map((part, index) => <Streamdown key={`${message.id}-${index}`} className="h-auto w-full overflow-visible [&>*:first-child]:mt-0 [&>*:last-child]:mb-0">{part.text}</Streamdown>)}
+                  </motion.div>
+                </div>
+              </motion.div>
             </div>
           ))}
           {isWorking ? <p className="assistant-panel__status" role="status">Finding useful suggestions...</p> : null}
           {errorMessage ? <p className="assistant-panel__error" role="alert">{errorMessage}</p> : null}
         </ConversationContent>
+        <ConversationAutoScroll scrollKey={`${messages.length}-${isWorking}`} />
         <ConversationScrollButton />
       </Conversation>
 
