@@ -10,6 +10,7 @@ import RequireAuth from "@/vite/auth/RequireAuth";
 import RouteLoadingState from "@/components/ui/RouteLoadingState";
 
 const About = lazy(() => import("@/vite/pages/About"))
+const Admin = lazy(() => import("@/features/admin/AdminPage"))
 const Account = lazy(() => import("@/vite/pages/Account"))
 const Cart = lazy(() => import("@/vite/pages/Cart"))
 const Checkout = lazy(() => import("@/vite/pages/Checkout"))
@@ -51,6 +52,7 @@ const router = createBrowserRouter( // central route tree for the SPA
         element={page(Cart)}
       />
       <Route element={<RequireAuth />}>
+        <Route path="admin" element={page(Admin)} />
         <Route path="checkout" element={page(Checkout)} />
         <Route path="account" element={page(Account)} />
         <Route path="orders" element={page(OrdersPage)} />
@@ -82,3 +84,4 @@ const router = createBrowserRouter( // central route tree for the SPA
 );
 
 export default router; // RouterProvider consumes this instance
+

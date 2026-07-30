@@ -12,6 +12,8 @@ Shopella is a portfolio storefront built with React 19 and TypeScript. It keeps 
 
 - Responsive home, catalogue, product gallery, cart, checkout, account, and orders pages
 - DummyJSON catalogue data with React Query caching, retries, and abort signals
+- Frontend-only admin demo with local product CRUD, inventory adjustments, image previews, validation, and audit history
+- Admin workflows are simulated; persistent catalogue storage and server-side authorization are outside this portfolio project's scope
 - Browser-local demo login and demo orders that work without a server or Supabase
 - Optional Supabase authentication and order persistence
 - Protected checkout, account, order history, and confirmation routes
@@ -142,3 +144,4 @@ This project was upgraded with AI assistance for architecture review, code gener
 - AI advice may be incomplete or imperfect and should not be treated as professional advice.
 - Supabase persistence is optional; without it, demo login and orders stay browser-local.
 - A custom domain, newsletter provider, and separate active Express server are outside this project.
+
