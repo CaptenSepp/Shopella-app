@@ -3,6 +3,8 @@
 import Image from "next/image"
 import Link from "next/link"
 import { usePathname, useSearchParams } from "next/navigation"
+import { useSelector } from "react-redux"
+import type { RootState } from "@/app/store"
 import { categoryCards } from "@/features/products/data/categories"
 import { focusRingClass, getNavLinkClassName } from "./header-tools"
 import SearchDrawer from "./SearchDrawer"
@@ -11,6 +13,8 @@ const dropdownClassName =
   "pointer-events-none fixed left-0 right-0 top-[var(--header-total-h)] z-50 hidden rounded-b-lg border-t border-[color:var(--app-border)] bg-[color:var(--app-surface)] p-4 text-[color:var(--app-text)] shadow-lg invisible opacity-0 transition-opacity md:block group-hover:pointer-events-auto group-hover:visible group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:visible group-focus-within:opacity-100" // shared desktop panel
 
 const NavbarCategories = () => {
+  const user = useSelector((state: RootState) => state.auth.user)
+  const isAdmin = user?.email === "admin@shopella.demo"
   const pathname = usePathname()
   const searchParams = useSearchParams()
 
@@ -62,6 +66,11 @@ const NavbarCategories = () => {
           </div>
         </div>
 
+        {isAdmin ? (
+          <Link href="/admin" className={`header-nav-bar__item header-nav-bar__link ${getNavLinkClassName(pathname === "/admin")} ${focusRingClass}`}>
+            <span className="nav-link__label">Admin demo</span>
+          </Link>
+        ) : null}
         <div className="ml-2 shrink-0">
           <SearchDrawer />
         </div>
@@ -71,3 +80,5 @@ const NavbarCategories = () => {
 }
 
 export default NavbarCategories
+
+

@@ -1,7 +1,9 @@
+import { motion } from "framer-motion"
 import { Heart, House, Info, MapPin, ShoppingBag, ShoppingCart } from "lucide-react"
 import { useSelector } from "react-redux"
 import { NavLink } from "react-router-dom"
 import { RootState } from "@/app/store"
+import { hoverIconMotion } from "@/components/ui/motion-presets"
 import { focusRingClass, getIconLinkClassName } from "./header-tools"
 import LoginDrawer from "./LoginDrawer"
 import ThemeToggle from "./ThemeToggle"
@@ -19,7 +21,10 @@ const NavbarIcons = ({ className = "", mobile = false }: NavbarIconsProps) => {
     return (
       <nav className={`header-icons-bar ${className}`.trim()} aria-label="Mobile navigation">
         <NavLink to="/" end aria-label="Home" className={({ isActive }) => `${getIconLinkClassName(isActive)} header-icons-bar__link--mobile ${focusRingClass}`}>
-          <House size={20} /><span className="header-icons-bar__label">Home</span>
+          <motion.span className="inline-flex" {...hoverIconMotion}>
+            <House size={20} />
+          </motion.span>
+          <span className="header-icons-bar__label">Home</span>
         </NavLink>
         <NavLink to="/products" aria-label="Browse products" className={({ isActive }) => `${getIconLinkClassName(isActive)} header-icons-bar__link--mobile ${focusRingClass}`}>
           <ShoppingBag size={20} /><span className="header-icons-bar__label">Shop</span>
