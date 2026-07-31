@@ -10,6 +10,8 @@ const collectionCards = [
   { title: "Fragrance", detail: "Signature scents", image: fragrancesImage, href: "/products?cat=fragrances" },
 ]
 
+const getImageSource = (image: string | { src: string }) => typeof image === "string" ? image : image.src
+
 const ModernHero = ({ LinkComponent }: { LinkComponent: ProductLinkComponent }) => (
   <section className="modern-hero" aria-labelledby="modern-hero-title">
     <div className="modern-hero__glow" aria-hidden="true" />
@@ -44,7 +46,7 @@ const ModernHero = ({ LinkComponent }: { LinkComponent: ProductLinkComponent }) 
       <div className="modern-hero__cards">
         {collectionCards.map((card) => (
           <LinkComponent className="modern-hero__card" href={card.href} key={card.title}>
-            <img className="modern-hero__card-image" src={card.image} alt="" />
+            <img className="modern-hero__card-image" src={getImageSource(card.image)} alt="" />
             <span className="modern-hero__card-shade" aria-hidden="true" />
             <span className="modern-hero__card-copy">
               <small>{card.detail}</small>
