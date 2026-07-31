@@ -25,11 +25,11 @@ const NavbarCategories = () => {
   const isProductsActive = isOnProducts && !isSaleActive // normal products tab state
 
   return (
-    <nav className="flex min-w-0 flex-1 items-center overflow-x-auto no-scrollbar" aria-label="Primary navigation">
+    <nav className="flex min-w-0 flex-1 items-center overflow-x-auto no-scrollbar md:overflow-visible" aria-label="Primary navigation">
       <div className="header-nav-bar flex min-w-max items-stretch gap-0 pr-0">
         {/* Each top-level item keeps its own dropdown content with it.
             That way hover and keyboard focus open the matching panel only. */}
-        <div className="group relative flex items-stretch">
+        <div className="header-nav-bar__dropdown-group group relative flex items-stretch">
           <Link href="/products" className={`header-nav-bar__item header-nav-bar__link ${getNavLinkClassName(isProductsActive)} ${focusRingClass}`}>
             <span className="nav-link__label">Products</span>
           </Link>
@@ -49,7 +49,7 @@ const NavbarCategories = () => {
           </div>
         </div>
 
-        <div className="group relative flex items-stretch">
+        <div className="header-nav-bar__dropdown-group group relative flex items-stretch">
           <Link href="/products?sale=1&sort=price-asc" className={`header-nav-bar__item header-nav-bar__link ${getNavLinkClassName(isSaleActive)} ${focusRingClass}`}>
             <span className="nav-link__label">Best Deals</span>
           </Link>
@@ -80,5 +80,4 @@ const NavbarCategories = () => {
 }
 
 export default NavbarCategories
-
 

@@ -8,7 +8,7 @@ import SearchResults from "./SearchResults"
 import { useHeaderDrawer } from "./use-header-drawer"
 
 const dropdownClassName =
-  "pointer-events-none fixed left-0 top-[calc(var(--header-total-h)-2rem)] z-50 hidden h-[calc(100vh-(var(--header-total-h)-2rem))] w-1/2 rounded-b-lg bg-[color:var(--app-surface)] p-4 text-[color:var(--app-text)] shadow-lg invisible opacity-0 transition-opacity md:block group-hover:pointer-events-auto group-hover:visible group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:visible group-focus-within:opacity-100" // shared desktop panel
+  "pointer-events-none fixed left-0 top-[var(--header-total-h)] z-50 hidden h-[calc(100vh-var(--header-total-h))] w-1/2 rounded-b-lg bg-[color:var(--app-surface)] p-4 text-[color:var(--app-text)] shadow-lg invisible opacity-0 transition-opacity md:block group-hover:pointer-events-auto group-hover:visible group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:visible group-focus-within:opacity-100" // shared desktop panel
 
 const SearchDrawer = () => {
   const [queryText, setQueryText] = useState("") // local search text
@@ -19,7 +19,7 @@ const SearchDrawer = () => {
 
   return (
     <>
-      <div className="group relative hidden md:flex">
+      <div className="header-nav-bar__dropdown-group group relative hidden md:flex">
         <button
           type="button"
           className={`icon-button header-nav-bar__item header-nav-bar__icon transition cursor-pointer text-[color:var(--app-header-text)] ${focusRingClass}`}
