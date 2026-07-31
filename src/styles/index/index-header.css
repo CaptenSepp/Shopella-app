@@ -67,6 +67,14 @@
     color: var(--brand-gray-600) !important; /* keep the hovered icon unchanged */
   }
 
+  [data-theme="light"] .header-icons-bar:has(.header-icons-bar__link:hover) .header-icons-bar__link:hover {
+    color: var(--brand-black) !important;
+  }
+
+  [data-theme="light"] .header-icons-bar:has(.header-icons-bar__link:hover) .header-icons-bar__link:not(:hover):not(:focus-visible) {
+    color: var(--brand-gray-400) !important;
+  }
+
   @media (min-width: 641px) {
     .header-icons-bar {
       gap: 0.75rem; /* restore room on tablet/desktop */

@@ -33,9 +33,9 @@
     --shopella-border-dark: var(--app-border); /* light border */
     --shopella-text-dark: var(--app-text); /* dark text on light */
     --shopella-muted-dark: var(--app-text-muted); /* muted light text */
-    --shopella-overlay-soft: rgba(255, 255, 255, 0.32); /* readable light overlay */
-    --shopella-overlay-medium: rgba(255, 255, 255, 0.58); /* readable light overlay */
-    --shopella-overlay-strong: rgba(255, 255, 255, 0.78); /* readable light overlay */
+    --shopella-overlay-soft: rgba(7, 7, 7, 0.22); /* preserve image depth */
+    --shopella-overlay-medium: rgba(7, 7, 7, 0.5); /* preserve image contrast */
+    --shopella-overlay-strong: rgba(7, 7, 7, 0.76); /* keep captions readable */
     --home-card-shadow: 0 10px 22px rgba(17, 17, 17, 0.08); /* lighter shadow */
   }
 
@@ -187,13 +187,15 @@
   }
 
   .home-page .btn-secondary {
-    background: var(--shopella-soft-dark); /* dark secondary */
-    border-color: var(--shopella-border-dark); /* neutral border */
-    color: var(--shopella-text-dark); /* readable text */
+    background: var(--brand-black); /* stable secondary */
+    border-color: var(--brand-black); /* stable border */
+    color: var(--brand-white); /* readable text */
   }
 
   .home-page .btn-secondary:hover {
-    border-color: var(--shopella-orange); /* orange hover */
+    background: var(--brand-black-true); /* stable hover */
+    border-color: var(--brand-black-true); /* stable hover border */
+    color: var(--brand-white);
     transform: translateY(-2px); /* subtle lift */
   }
 
@@ -346,7 +348,7 @@
     flex-direction: column; /* vertical */
     align-items: flex-start; /* keep badge and title on the left */
     gap: 0.5rem; /* spacing */
-    color: var(--shopella-text-dark); /* light text */
+    color: var(--brand-white); /* readable over photography */
   }
 
   .featured-card__status {
@@ -354,9 +356,10 @@
     align-items: center; /* center text */
     width: fit-content; /* keep badge compact */
     padding: 0.375rem 0.625rem; /* badge spacing */
-    border: 1px solid var(--shopella-border-dark); /* subtle edge */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* subtle edge */
     border-radius: var(--r-md); /* soft badge */
-    background: var(--shopella-surface-dark); /* dark badge */
+    background: rgba(7, 7, 7, 0.58); /* dark image badge */
+    color: var(--brand-white);
     backdrop-filter: blur(8px); /* premium glass effect */
     -webkit-backdrop-filter: blur(8px); /* Safari support */
     font-size: 0.6875rem; /* compact label */
@@ -364,9 +367,10 @@
   }
 
   .featured-card__title {
+    color: var(--brand-white);
     font-size: 0.875rem; /* card title */
     font-weight: var(--fw-bold); /* bold */
-    text-shadow: 0 1px 12px var(--shopella-bg-dark); /* readable on image */
+    text-shadow: 0 1px 12px rgba(7, 7, 7, 0.85); /* readable on image */
   }
 
   .featured-card__btn {
@@ -576,9 +580,7 @@
     position: absolute; /* sit over image */
     inset: 0 0 calc(var(--best-row-card-extra) * -1); /* blur to card bottom */
     pointer-events: none; /* keep cards clickable */
-    background: rgba(128, 128, 128, 0.5); /* mid-gray text support */
-    backdrop-filter: blur(8px); /* soften under text area */
-    -webkit-backdrop-filter: blur(8px); /* Safari support */
+    background: linear-gradient(to top, rgba(7, 7, 7, 0.78), rgba(7, 7, 7, 0.18) 58%, transparent); /* clean text support */
     mask-image: linear-gradient(to top, black 0%, black 34%, transparent 57%); /* fade blur upward */
     -webkit-mask-image: linear-gradient(to top, black 0%, black 34%, transparent 57%); /* Safari mask */
   }
@@ -1117,5 +1119,64 @@
     .brand-mini__text { border-right: 1px solid var(--shopella-border-dark); border-radius: var(--r-md) var(--r-md) 0 0; }
     .brand-mini__media, .brand-mini__image { border-radius: 0 0 var(--r-md) var(--r-md); }
     .fresh-picks { min-height: 23rem; }
+  }
+}
+
+@layer components {
+  .best-row__card,
+  .best-row__card:hover {
+    box-shadow: none;
+  }
+
+  .best-row__content {
+    color: var(--brand-white);
+  }
+
+  .best-row__brand,
+  .best-row__rating-text {
+    color: rgba(255, 255, 255, 0.72);
+  }
+
+  .best-row__media::after {
+    background: linear-gradient(180deg, transparent 38%, rgba(7, 7, 7, 0.24) 58%, rgba(7, 7, 7, 0.86));
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    mask-image: linear-gradient(to top, black 0%, black 38%, transparent 68%);
+    -webkit-mask-image: linear-gradient(to top, black 0%, black 38%, transparent 68%);
+  }
+
+  .category-card::after,
+  .home-page .grid__cards--two-cols > .relative::after {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    display: block;
+    background: linear-gradient(180deg, transparent 48%, rgba(7, 7, 7, 0.78));
+    content: "";
+    pointer-events: none;
+  }
+
+  .category-card__content,
+  .home-page .grid__cards--two-cols > .relative > a {
+    z-index: 2;
+    color: var(--brand-white);
+  }
+
+  [data-theme="light"] .trustbar {
+    background: var(--app-surface-alt);
+    border-color: var(--app-border);
+    color: var(--app-text);
+  }
+
+  [data-theme="light"] .trustbar__title {
+    color: var(--app-text);
+  }
+
+  [data-theme="light"] .trustbar__sub {
+    color: var(--app-text-muted);
+  }
+
+  [data-theme="light"] .trustbar__item:hover {
+    background: var(--app-surface);
   }
 }
