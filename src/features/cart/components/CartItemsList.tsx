@@ -41,41 +41,40 @@ const CartItemsList = () => {
             </div>
           </div>
 
-          <div className="line-item__actions">
-            <div className="flex items-center gap-2">
-              <button
-                type="button"
-                className="btn btn-secondary btn-sm"
-                onClick={() => {
-                  // A decrement from one removes the line instead of retaining zero quantity.
-                  const quantity = item.quantity - 1
-                  if (quantity <= 0) dispatch(removeFromCart(item.id))
-                  else dispatch(updateQuantity({ id: item.id, quantity }))
-                }}
-                aria-label={`Decrease quantity of ${item.title}`}
-              >
-                <Minus size={16} aria-hidden="true" />
-              </button>
-              <span className="min-w-8 text-center">{item.quantity}</span>
-              <button
-                type="button"
-                className="btn btn-primary btn-sm"
-                onClick={() => dispatch(addToCart(item))}
-                disabled={item.stock <= 0}
-                aria-label={`Increase quantity of ${item.title}`}
-              >
-                <Plus size={16} aria-hidden="true" />
-              </button>
-            </div>
-
-            <div className="flex items-center gap-3">
-              <span className="block u-font-bold text-brand-black u-text-lg-md">
+          <div className="line-item__actions cart-line-actions">
+            <button type="button" className="btn btn-danger btn-sm" onClick={() => dispatch(removeFromCart(item.id))}>
+              <Trash2 size={16} aria-hidden="true" /><span>Remove</span>
+            </button>
+            <div className="cart-line-actions__quantity">
+              <div className="cart-line-actions__controls">
+                <button
+                  type="button"
+                  className="btn btn-secondary btn-sm"
+                  onClick={() => {
+                    // A decrement from one removes the line instead of retaining zero quantity.
+                    const quantity = item.quantity - 1
+                    if (quantity <= 0) dispatch(removeFromCart(item.id))
+                    else dispatch(updateQuantity({ id: item.id, quantity }))
+                  }}
+                  aria-label={`Decrease quantity of ${item.title}`}
+                >
+                  <Minus size={16} aria-hidden="true" />
+                </button>
+                <span className="min-w-8 text-center">{item.quantity}</span>
+                <button
+                  type="button"
+                  className="btn btn-primary btn-sm"
+                  onClick={() => dispatch(addToCart(item))}
+                  disabled={item.stock <= 0}
+                  aria-label={`Increase quantity of ${item.title}`}
+                >
+                  <Plus size={16} aria-hidden="true" />
+                </button>
+              </div>
+              <span className="cart-line-actions__total u-font-bold u-text-lg-md">
                 {/* Quantity is included here to display the complete line total. */}
                 <ProductPrice price={item.price} discountPercentage={item.discountPercentage} quantity={item.quantity} />
               </span>
-              <button type="button" className="btn btn-danger btn-sm" onClick={() => dispatch(removeFromCart(item.id))}>
-                <Trash2 size={16} aria-hidden="true" /><span>Remove</span>
-              </button>
             </div>
           </div>
         </li>

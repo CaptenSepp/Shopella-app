@@ -53,7 +53,7 @@ const WishlistItemsList = ({ LinkComponent = NativeLink }: { LinkComponent?: Pro
           </div>
 
           <div className="line-item__actions">
-            <div className="flex items-center gap-2">
+            <div className="flex items-center">
               <button
                 className="btn btn-primary btn-sm"
                 onClick={() => dispatch(addToCart(item))} // add item to cart
@@ -62,8 +62,7 @@ const WishlistItemsList = ({ LinkComponent = NativeLink }: { LinkComponent?: Pro
                 Add to Cart
               </button>
             </div>
-
-            <div className="flex items-center gap-3">
+            <div className="flex items-center">
               <button
                 className="btn btn-danger btn-sm"
                 onClick={() => dispatch(toggleWishlist(item))} // remove from wishlist

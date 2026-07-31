@@ -55,6 +55,29 @@
 
   .line-item__actions {
     @apply flex w-full justify-between border-t border-[color:var(--border-color)] p-4 sm:w-auto sm:border-none sm:pl-0 lg:p-6 lg:pl-0;
+    gap: var(--space-3);
+  }
+
+  .line-item__actions.cart-line-actions {
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  .cart-line-actions__quantity {
+    display: grid;
+    gap: var(--space-2);
+    justify-items: end;
+  }
+
+  .cart-line-actions__controls {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .cart-line-actions__total {
+    color: var(--app-text);
+    text-align: right;
   }
 
   .item-title {
@@ -144,7 +167,7 @@
     .line-item__actions {
       flex-direction: column; /* stack actions to avoid overlap on phones */
       align-items: stretch; /* let controls use full row width */
-      gap: 0.75rem; /* add clean spacing between control rows */
+      gap: var(--space-3); /* add clean spacing between control rows */
     }
   }
 }
