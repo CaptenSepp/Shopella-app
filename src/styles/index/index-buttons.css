@@ -28,16 +28,16 @@
   }
 
   .btn-secondary {
-    color: var(--app-text);
-    background: transparent;
-    border-color: var(--app-border);
+    color: var(--brand-white);
+    background: var(--brand-black);
+    border-color: var(--brand-black);
     transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease; /* smooth */
   }
 
   .btn-secondary:hover {
-    background: var(--app-surface-alt);
-    color: var(--app-text);
-    border-color: var(--border-color-strong);
+    background: var(--brand-black-true);
+    color: var(--brand-white);
+    border-color: var(--brand-black-true);
   }
 
   .btn-icon {
@@ -92,6 +92,7 @@
 @layer components {
   .btn { position: relative; overflow: hidden; transition-duration: 220ms; transition-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1); }
   .btn::after { position: absolute; inset: 0; background: linear-gradient(110deg, transparent 15%, rgba(255, 255, 255, 0.22) 48%, transparent 82%); content: ""; transform: translateX(-120%); transition: transform 420ms ease; pointer-events: none; }
+  .btn-primary::after { background: linear-gradient(110deg, transparent 15%, rgba(255, 255, 255, 0.48) 48%, transparent 82%); }
   .btn:hover::after { transform: translateX(120%); }
   .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(255, 122, 26, 0.25); }
   .btn-secondary:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }

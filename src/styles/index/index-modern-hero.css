@@ -79,34 +79,7 @@
   }
 
   .modern-hero__button {
-    display: inline-flex;
-    gap: 0.65rem;
-    align-items: center;
-    justify-content: center;
-    min-height: 3rem;
-    padding: 0.75rem 1.25rem;
-    border: 1px solid var(--shopella-border-dark);
-    border-radius: var(--r-pill);
-    color: var(--shopella-text-dark);
-    font-size: 0.85rem;
-    font-weight: var(--fw-bold);
     text-decoration: none;
-    transition: 160ms ease;
-  }
-
-  .modern-hero__button:hover {
-    transform: translateY(-2px);
-    border-color: var(--shopella-orange);
-  }
-
-  .modern-hero__button--primary {
-    border-color: var(--shopella-orange);
-    background: var(--shopella-orange);
-    color: var(--brand-black-true);
-  }
-
-  .modern-hero__button--primary:hover {
-    background: var(--shopella-orange-hover);
   }
 
   .modern-hero__assurances {

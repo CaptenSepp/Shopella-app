@@ -21,7 +21,8 @@
   :where(a, button, input, select, textarea, [tabindex], [contenteditable="true"]):focus-visible,
   :where(input, select, textarea):focus {
     outline: none;
-    box-shadow: 0 0 0 2px rgba(255, 122, 26, 0.38), 0 0 0.75rem 0.25rem rgba(255, 122, 26, 0.48);
+    border-color: transparent !important;
+    box-shadow: 0 0 0.75rem 0.25rem rgba(255, 122, 26, 0.48) !important;
   }
 
   @media (prefers-reduced-motion: reduce) {

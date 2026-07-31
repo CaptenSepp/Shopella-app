@@ -27,10 +27,10 @@ const ModernHero = ({ LinkComponent }: { LinkComponent: ProductLinkComponent }) 
       </p>
 
       <div className="modern-hero__actions">
-        <LinkComponent className="modern-hero__button modern-hero__button--primary" href="/products">
+        <LinkComponent className="btn btn-primary modern-hero__button" href="/products">
           Explore the shop <ArrowUpRight aria-hidden="true" />
         </LinkComponent>
-        <LinkComponent className="modern-hero__button modern-hero__button--secondary" href="/products?sort=price-asc">
+        <LinkComponent className="btn btn-secondary modern-hero__button" href="/products?sort=price-asc">
           Shop under $50
         </LinkComponent>
       </div>
