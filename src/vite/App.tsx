@@ -1,6 +1,6 @@
-import { RouterProvider } from 'react-router-dom'
-import router from '@/vite/router'
 import { ThemeProvider } from '@/app/theme'
+import router from '@/vite/router'
+import { RouterProvider } from 'react-router-dom'
 
 const App = () => ( // app root renders router
   <ThemeProvider>

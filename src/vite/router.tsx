@@ -1,13 +1,13 @@
+import RouteLoadingState from "@/components/ui/RouteLoadingState";
+import RequireAuth from "@/vite/auth/RequireAuth";
+import Layout from "@/vite/layouts/RootLayout";
+import ErrorPage from "@/vite/pages/ErrorPage";
+import { lazy, Suspense, type ComponentType, type LazyExoticComponent } from "react";
 import {
   createBrowserRouter,
   createRoutesFromElements,
   Route,
 } from "react-router-dom";
-import { lazy, Suspense, type ComponentType, type LazyExoticComponent } from "react";
-import Layout from "@/vite/layouts/RootLayout";
-import ErrorPage from "@/vite/pages/ErrorPage";
-import RequireAuth from "@/vite/auth/RequireAuth";
-import RouteLoadingState from "@/components/ui/RouteLoadingState";
 
 const About = lazy(() => import("@/vite/pages/About"))
 const Admin = lazy(() => import("@/features/admin/AdminPage"))

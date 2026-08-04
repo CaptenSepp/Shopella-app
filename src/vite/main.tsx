@@ -1,17 +1,17 @@
+import { getQueryClient } from '@/app/queryClient';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { getQueryClient } from '@/app/queryClient';
 
+import '@/App.css';
+import { store } from '@/app/store';
+import ErrorBoundary from '@/components/ui/ErrorBoundary'; // crash fallback UI
+import { ToastProvider } from '@/components/ui/Toast';
+import { TooltipProvider } from '@/components/ui/tooltip';
+import AuthSessionProvider from '@/features/auth/AuthSessionProvider';
+import '@/index.css';
+import App from '@/vite/App';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { Provider } from 'react-redux';
-import App from '@/vite/App';
-import '@/App.css';
-import '@/index.css';
-import { store } from '@/app/store';
-import { ToastProvider } from '@/components/ui/Toast';
-import ErrorBoundary from '@/components/ui/ErrorBoundary'; // crash fallback UI
-import AuthSessionProvider from '@/features/auth/AuthSessionProvider';
-import { TooltipProvider } from '@/components/ui/tooltip';
 
 ReactDOM.createRoot(document.getElementById('root')!).render( // mount app to #root
   <React.StrictMode>
